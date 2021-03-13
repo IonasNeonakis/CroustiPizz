@@ -25,20 +25,16 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             
             await base.OnResume();
-
-            /*
-            // supprimer ça et decommenter le bas
+            
+            // Supprimer ça et décommenter le bas
             User = new UserProfileResponse
             {
                 Email = "Email", FirstName = "Premier nom", LastName = "Dernier nom", PhoneNumber = "0602223277"
-            };*/
-
-
-
-            IUserApiService service = DependencyService.Get<IUserApiService>();
-
-            Response<UserProfileResponse> response = await service.ViewUser();
+            };
             
+            /*
+            IUserApiService service = DependencyService.Get<IUserApiService>();
+            Response<UserProfileResponse> response = await service.ViewUser();
             Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
             
             if (response.IsSuccess)
@@ -55,6 +51,7 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 Console.Write("    NE MARCHE PAS    ");
             }
+            */
         }
     }
     
