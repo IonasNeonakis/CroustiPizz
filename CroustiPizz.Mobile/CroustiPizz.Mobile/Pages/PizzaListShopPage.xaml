@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
+             NavigationPage.HasNavigationBar="False ">
+    <ContentPage.Content>
+        <FlexLayout
+            Margin="20, 20, 20, 20">
+            
+            <FlexLayout
+                Direction="Row"
+                JustifyContent="SpaceBetween">
+                <Button
+                    HorizontalOptions="Start"
+                    Text="MenuBurger"/>
+                <Frame CornerRadius="1000"
+                       IsClippedToBounds="True"
+                       Padding="0">
+                      <Button BackgroundColor="Bisque"
+                              Text="😋"></Button>
+                </Frame>
+            </FlexLayout>
+            
+            <Label Text="Nom du restaurant"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
+                    <Entry Placeholder="Rechercher..." BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                           FontSize="20" />
+                </Frame>
+                <Frame CornerRadius="1000"
+                       IsClippedToBounds="True"
+                       Padding="0">
+                    <Button BackgroundColor="#FA130B"
+                            Text="Filtres"
+                            TextColor="White"/>
+                </Frame>
+            </StackLayout>
+            
+            <!-- liste des pizzas ici -->
+            
+            
+            
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
