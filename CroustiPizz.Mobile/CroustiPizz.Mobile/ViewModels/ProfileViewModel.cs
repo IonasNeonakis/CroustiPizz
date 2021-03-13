@@ -37,7 +37,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
             IUserApiService service = DependencyService.Get<IUserApiService>();
 
-            Response<UserProfileResponse> response = await service.ViewUser();
+            Response<UserProfileResponse> response = await service.GetUser();
             
             
             if (response.IsSuccess)

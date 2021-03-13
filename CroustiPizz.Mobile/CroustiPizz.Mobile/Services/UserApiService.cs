@@ -13,7 +13,7 @@ namespace CroustiPizz.Mobile.Services
     public interface IUserApiService
     {
         
-        Task<Response<UserProfileResponse>> ViewUser();
+        Task<Response<UserProfileResponse>> GetUser();
 
         Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest utilisateur);
         
@@ -30,7 +30,7 @@ namespace CroustiPizz.Mobile.Services
             _apiService = DependencyService.Get<IApiService>();
         }
 
-        public async Task<Response<UserProfileResponse>> ViewUser()
+        public async Task<Response<UserProfileResponse>> GetUser()
         {
             return await _apiService.Get<Response<UserProfileResponse>>(Urls.USER_PROFILE);
         }
@@ -40,10 +40,9 @@ namespace CroustiPizz.Mobile.Services
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
             if (task.IsSuccess)
             {
-                await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
-                await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
-                await SecureStorage.SetAsync(Constantes.EXPIRES_IN, task.Data.ExpiresIn.ToString());
+                saveData(task);
             }
+
             return task;
         }
 
@@ -52,11 +51,19 @@ namespace CroustiPizz.Mobile.Services
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, CreateUserRequest>(Urls.CREATE_USER, credentials);
             if (task.IsSuccess)
             {
-                await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
-                await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
-                await SecureStorage.SetAsync(Constantes.EXPIRES_IN, task.Data.ExpiresIn.ToString());
+                saveData(task);
             }
             return task;
+        }
+
+        private async void saveData(Response<LoginResponse> task)
+        {
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int tempsActuel = (int)t.TotalSeconds;
+            await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
+            await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
+            await SecureStorage.SetAsync(Constantes.EXPIRES_AT, (tempsActuel + task.Data.ExpiresIn).ToString());
+
         }
     }
 }
