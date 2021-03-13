@@ -25,21 +25,23 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             
             await base.OnResume();
-            
-            // Supprimer ça et décommenter le bas
+
+            /*
+            // supprimer ça et decommenter le bas
             User = new UserProfileResponse
             {
-                Email = "samir.toularhmine@etu.univ-orleans.fr", FirstName = "Samir", LastName = "Toularhmine nom", PhoneNumber = "0769303486"
-            };
-            
-            /*
+                Email = "Email", FirstName = "Premier nom", LastName = "Dernier nom", PhoneNumber = "0602223277"
+            };*/
+
+
+
             IUserApiService service = DependencyService.Get<IUserApiService>();
-            Response<UserProfileResponse> response = await service.ViewUser();
-            Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
+
+            Response<UserProfileResponse> response = await service.GetUser();
+            
             
             if (response.IsSuccess)
             {
-                Console.WriteLine($"Appel HTTP : {response.Data.FirstName}");
                 User = new UserProfileResponse()
                 {
                     Email = response.Data.Email, FirstName = response.Data.FirstName, LastName = response.Data.LastName,
@@ -49,9 +51,8 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                Console.Write("    NE MARCHE PAS    ");
+                //@TODO gestion d'erreur
             }
-            */
         }
     }
     
