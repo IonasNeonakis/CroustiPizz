@@ -2,48 +2,91 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
-             NavigationPage.HasNavigationBar="False ">
+             NavigationPage.HasNavigationBar="False "
+             BackgroundColor="White">
     <ContentPage.Content>
-        <FlexLayout
-            Margin="20, 20, 20, 20">
+        
+        <StackLayout BackgroundColor="#EBEFF5">
+        
+            <pancakeView:PancakeView CornerRadius="0, 0, 36, 36"
+                                     BackgroundColor="White">
             
-            <FlexLayout
-                Direction="Row"
-                JustifyContent="SpaceBetween">
-                <Button
-                    HorizontalOptions="Start"
-                    Text="MenuBurger"/>
-                <Frame CornerRadius="1000"
-                       IsClippedToBounds="True"
-                       Padding="0">
-                      <Button BackgroundColor="Bisque"
-                              Text="😋"></Button>
-                </Frame>
+                <StackLayout
+                Margin="24, 24, 24, 24">
+                
+                <FlexLayout
+                    Direction="Row"
+                    JustifyContent="SpaceBetween">
+                    <ImageButton
+                        HorizontalOptions="Start"
+                        Source="menu.svg"/>
+                    <Frame CornerRadius="60"
+                           IsClippedToBounds="True"
+                           Padding="0"
+                           WidthRequest="40"
+                           HeightRequest="40">
+                          <Button BackgroundColor="Bisque"
+                                  Text="😋"></Button>
+                    </Frame>
+                </FlexLayout>
+                
+                <Label Text="Le Borsalino"
+                       FontAttributes="Bold"
+                       FontSize="Title"
+                       TextColor="Black"/>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
+                        <Entry Placeholder="Rechercher..." BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                               FontSize="20" />
+                    </Frame>
+                    <Frame CornerRadius="1000"
+                           IsClippedToBounds="True"
+                           Padding="0">
+                        <Button BackgroundColor="#FA130B"
+                                Text="Filtres"
+                                TextColor="White"/>
+                    </Frame>
+                </StackLayout>
+                
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <Frame CornerRadius="24" HasShadow="False" WidthRequest="128" BackgroundColor="#EBEFF5">
+                            <StackLayout>
+                                <Image />
+                                <Label FontAttributes="Bold" Text="Margharita" TextColor="Black" FontSize="Body"></Label>
+                                <Label Text="Jambon, emmental rapé, voilà quoi"></Label>
+                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="SpaceBetween">
+                                    <Label Text="12 €" TextColor="#FA130B"></Label>
+                                    <Frame CornerRadius="60"
+                                           IsClippedToBounds="True"
+                                           Padding="0"
+                                           WidthRequest="40"
+                                           HeightRequest="40">
+                                        <Button FontAttributes="Bold" Text=">" BackgroundColor="#FA130B" CornerRadius="1000" TextColor="White"></Button>
+                                    </Frame>
+                                </FlexLayout>
+                            </StackLayout>
+                        </Frame>
+                        
+                        
+                    </StackLayout>
+                </ScrollView>
+                
+            </StackLayout>
+                
+            </pancakeView:PancakeView>
+            
+            <FlexLayout VerticalOptions="EndAndExpand" Direction="Row" JustifyContent="SpaceEvenly">
+                <Button Text="🏠"></Button>
+                <Button Text="💗"></Button>
+                <Button Text="🔔"></Button>
+                <Button Text="👜"></Button>
             </FlexLayout>
             
-            <Label Text="Nom du restaurant"
-                   FontAttributes="Bold"
-                   FontSize="Title"/>
-            
-            <StackLayout Orientation="Horizontal">
-                <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
-                    <Entry Placeholder="Rechercher..." BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
-                           FontSize="20" />
-                </Frame>
-                <Frame CornerRadius="1000"
-                       IsClippedToBounds="True"
-                       Padding="0">
-                    <Button BackgroundColor="#FA130B"
-                            Text="Filtres"
-                            TextColor="White"/>
-                </Frame>
-            </StackLayout>
-            
-            <!-- liste des pizzas ici -->
-            
-            
-            
-        </FlexLayout>
+        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
