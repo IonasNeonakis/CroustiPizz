@@ -24,6 +24,9 @@ namespace CroustiPizz.Mobile
             DependencyService.RegisterSingleton<IApiService>(new ApiService());
             
             DependencyService.RegisterSingleton<IPizzaApiService>(new PizzaApiService());
+            
+            DependencyService.RegisterSingleton<IUserApiService>(new UserApiService());
+
         }
     }
 }
