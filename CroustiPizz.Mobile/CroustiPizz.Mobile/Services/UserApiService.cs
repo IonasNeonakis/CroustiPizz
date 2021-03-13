@@ -18,6 +18,9 @@ namespace CroustiPizz.Mobile.Services
         Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest utilisateur);
         
         Task<Response<LoginResponse>> RegisterUser(CreateUserRequest utilisateur);
+
+        Task<Response> ChangePassword(SetPasswordRequest credentials);
+
     }
 
     
@@ -40,7 +43,7 @@ namespace CroustiPizz.Mobile.Services
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
             if (task.IsSuccess)
             {
-                saveData(task);
+                saveLoginData(task);
             }
 
             return task;
@@ -51,12 +54,24 @@ namespace CroustiPizz.Mobile.Services
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, CreateUserRequest>(Urls.CREATE_USER, credentials);
             if (task.IsSuccess)
             {
-                saveData(task);
+                saveLoginData(task);
             }
             return task;
         }
 
-        private async void saveData(Response<LoginResponse> task)
+        //@TODO verifier que ça marche
+        public async Task<Response> ChangePassword(SetPasswordRequest credentials)
+        {
+            return await _apiService.Patch<Response, SetPasswordRequest>(Urls.SET_PASSWORD, credentials);
+        }
+
+        //@TODO verifier que ça marche
+        public async Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data)
+        {
+            return await _apiService.Patch<Response<SetUserProfileRequest>, SetUserProfileRequest>(Urls.SET_USER_PROFILE, data);
+        }
+
+        private async void saveLoginData(Response<LoginResponse> task)
         {
             TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
             int tempsActuel = (int)t.TotalSeconds;
