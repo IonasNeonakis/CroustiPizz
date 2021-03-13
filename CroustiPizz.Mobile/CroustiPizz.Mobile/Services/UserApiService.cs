@@ -43,10 +43,6 @@ namespace CroustiPizz.Mobile.Services
                 await SecureStorage.SetAsync(Constantes.EXPIRES_IN, task.Data.ExpiresIn.ToString());
             }
             return task;
-            
-            
-            
-            
         }
     }
 }
