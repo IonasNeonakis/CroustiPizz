@@ -19,7 +19,10 @@ namespace CroustiPizz.Mobile.Services
         
         Task<Response<LoginResponse>> RegisterUser(CreateUserRequest utilisateur);
 
-        Task<Response> ChangePassword(SetPasswordRequest credentials);
+        Task<Response> ChangePassword(SetPasswordRequest data);
+
+        Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data);
+
 
     }
 
@@ -60,9 +63,9 @@ namespace CroustiPizz.Mobile.Services
         }
 
         //@TODO verifier que ça marche
-        public async Task<Response> ChangePassword(SetPasswordRequest credentials)
+        public async Task<Response> ChangePassword(SetPasswordRequest data)
         {
-            return await _apiService.Patch<Response, SetPasswordRequest>(Urls.SET_PASSWORD, credentials);
+            return await _apiService.Patch<Response, SetPasswordRequest>(Urls.SET_PASSWORD, data);
         }
 
         //@TODO verifier que ça marche
