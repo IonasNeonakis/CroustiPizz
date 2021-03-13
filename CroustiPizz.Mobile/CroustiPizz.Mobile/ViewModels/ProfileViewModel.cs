@@ -29,7 +29,7 @@ namespace CroustiPizz.Mobile.ViewModels
             // Supprimer ça et décommenter le bas
             User = new UserProfileResponse
             {
-                Email = "Email", FirstName = "Premier nom", LastName = "Dernier nom", PhoneNumber = "0602223277"
+                Email = "samir.toularhmine@etu.univ-orleans.fr", FirstName = "Samir", LastName = "Toularhmine nom", PhoneNumber = "0769303486"
             };
             
             /*
