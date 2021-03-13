@@ -9,6 +9,7 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
 {
+
     public interface IUserApiService
     {
         
@@ -35,11 +36,12 @@ namespace CroustiPizz.Mobile.Services
         public async Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest credentials)
         {
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
-            Console.Write(task.Data.AccessToken);
-            await SecureStorage.SetAsync("access_token", task.Data.AccessToken);
-            await SecureStorage.SetAsync("refresh_token", task.Data.RefreshToken);
-            await SecureStorage.SetAsync("expires_in", task.Data.ExpiresIn.ToString());
-            
+            if (task.IsSuccess)
+            {
+                await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
+                await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
+                await SecureStorage.SetAsync(Constantes.EXPIRES_IN, task.Data.ExpiresIn.ToString());
+            }
             return task;
             
             

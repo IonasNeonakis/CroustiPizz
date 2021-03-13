@@ -96,21 +96,19 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 Login = Email,
                 Password = Mdp,
-                ClientId = "MOBILE",
-                ClientSecret = "UNIV"
+                ClientId = Constantes.CLIENT_ID,
+                ClientSecret = Constantes.CLIENT_SECRET
             };
             
             Response<LoginResponse> response = await service.LoginUser(utilisateur);
             
-            Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
-            
             if (response.IsSuccess)
             {
-                Console.WriteLine($"Appel HTTP : {response.Data.AccessToken}");
+                //@TODO Se déplacer vers la page d'accueil
             }
             else
             {
-                Console.Write("    NE MARCHE PAS    ");
+                //@TODO afficher un message d'erreur
             }
         }
 
