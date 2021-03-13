@@ -111,6 +111,8 @@
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
         <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1821" />
+        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1821" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\CroustiPizz.Mobile\CroustiPizz.Mobile.csproj">
