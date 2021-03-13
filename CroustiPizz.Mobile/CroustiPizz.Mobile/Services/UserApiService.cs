@@ -15,7 +15,9 @@ namespace CroustiPizz.Mobile.Services
         
         Task<Response<UserProfileResponse>> ViewUser();
 
-        Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest loginWithCredentialsRequest);
+        Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest utilisateur);
+        
+        Task<Response<LoginResponse>> RegisterUser(CreateUserRequest utilisateur);
     }
 
     
@@ -36,6 +38,18 @@ namespace CroustiPizz.Mobile.Services
         public async Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest credentials)
         {
             Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
+            if (task.IsSuccess)
+            {
+                await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
+                await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
+                await SecureStorage.SetAsync(Constantes.EXPIRES_IN, task.Data.ExpiresIn.ToString());
+            }
+            return task;
+        }
+
+        public async Task<Response<LoginResponse>> RegisterUser(CreateUserRequest credentials)
+        {
+            Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, CreateUserRequest>(Urls.CREATE_USER, credentials);
             if (task.IsSuccess)
             {
                 await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);

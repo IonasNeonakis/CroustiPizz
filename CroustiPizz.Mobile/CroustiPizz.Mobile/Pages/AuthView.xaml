@@ -10,7 +10,7 @@
         <StackLayout Orientation="Vertical" BackgroundColor="White">
             <yummy:PancakeView BackgroundColor="#EBEFF5" CornerRadius="0,0,40,40" HorizontalOptions="FillAndExpand"
                                Padding="0,50,0,0">
-                <StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <StackLayout  Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Fill">
                     <Label Text="Crous'Ti Pizz'" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
                            FontFamily="GilroyBold" FontSize="60" />
                     <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"

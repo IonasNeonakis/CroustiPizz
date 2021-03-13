@@ -39,11 +39,9 @@ namespace CroustiPizz.Mobile.ViewModels
 
             Response<UserProfileResponse> response = await service.ViewUser();
             
-            Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
             
             if (response.IsSuccess)
             {
-                Console.WriteLine($"Appel HTTP : {response.Data.FirstName}");
                 User = new UserProfileResponse()
                 {
                     Email = response.Data.Email, FirstName = response.Data.FirstName, LastName = response.Data.LastName,
@@ -53,7 +51,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                Console.Write("    NE MARCHE PAS    ");
+                //@TODO gestion d'erreur
             }
         }
     }

@@ -61,6 +61,55 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _mdp;
             set => SetProperty(ref _mdp, value);
         }
+
+        private string _nom;
+
+        public string Nom
+        {
+            get => _nom;
+            set => SetProperty(ref _nom, value);
+        }
+
+        private string _prenom;
+
+        public string Prenom
+        {
+            get => _prenom;
+            set => SetProperty(ref _prenom, value);
+        }
+
+        private string _emailRegister;
+
+        public string EmailRegister
+        {
+            get => _emailRegister;
+            set => SetProperty(ref _emailRegister, value);
+        }
+
+        private string _mdp1;
+
+        public string Mdp1
+        {
+            get => _mdp1;
+            set => SetProperty(ref _mdp1, value);
+        }
+
+        private string mdp2;
+
+        public string Mdp2
+        {
+            get => mdp2;
+            set => SetProperty(ref mdp2, value);
+        }
+        
+        //@TODO Regex et le passer en nul 
+        private string _numero;
+
+        public string Numero
+        {
+            get => _numero;
+            set => SetProperty(ref _numero, value);
+        }
         
         public ICommand SignUpCommand { get; }
         public ICommand LoginCommand { get; }
@@ -68,8 +117,11 @@ namespace CroustiPizz.Mobile.ViewModels
         public ICommand ShowSignUpCommand { get; }
         public ICommand ShowLoginCommand { get; }
         
+        public IUserApiService UserApiService { get; }
         public AuthViewModel()
         {
+            UserApiService = DependencyService.Get<IUserApiService>();
+
             ShowSignUpCommand = new Command(ShowSignUpAction);
             ShowLoginCommand = new Command(ShowLoginAction);
 
@@ -83,14 +135,40 @@ namespace CroustiPizz.Mobile.ViewModels
             SignUpTextColor = UNSELECTED_COLOR;
         }
 
-        private void SignUpAction()
+        private async void SignUpAction()
         {
-            throw new NotImplementedException();
+            if (Mdp1 == Mdp2)
+            {
+                CreateUserRequest utilisateur = new CreateUserRequest
+                {
+                    Email = EmailRegister,
+                    FirstName = Prenom,
+                    LastName = Nom,
+                    PhoneNumber = Numero,
+                    Password = Mdp1,
+                    ClientId = Constantes.CLIENT_ID,
+                    ClientSecret = Constantes.CLIENT_SECRET
+                };
+
+                Response<LoginResponse> response = await this.UserApiService.RegisterUser(utilisateur);
+
+                if (response.IsSuccess)
+                {
+                    //@TODO Se déplacer vers la page d'accueil
+                }
+                else
+                {
+                    //@TODO afficher un message d'erreur
+                }
+            }
+            else
+            {
+                //@TODO Message d'erruer quand les mdp ne sont pas pareils
+            }
         }
         
         private async void LoginAction()
         {
-            IUserApiService service = DependencyService.Get<IUserApiService>();
 
             LoginWithCredentialsRequest utilisateur = new LoginWithCredentialsRequest()
             {
@@ -100,7 +178,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 ClientSecret = Constantes.CLIENT_SECRET
             };
             
-            Response<LoginResponse> response = await service.LoginUser(utilisateur);
+            Response<LoginResponse> response = await UserApiService.LoginUser(utilisateur);
             
             if (response.IsSuccess)
             {
