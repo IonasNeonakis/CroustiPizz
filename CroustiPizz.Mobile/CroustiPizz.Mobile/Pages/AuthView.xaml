@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="CroustiPizz.Mobile.Pages.AuthView"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <yummy:PancakeView BackgroundColor="#EBEFF5" CornerRadius="0,0,40,40" HorizontalOptions="FillAndExpand"
+                               Padding="0,50,0,0">
+                <StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <Label Text="Crous'Ti Pizz'" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                           FontFamily="GilroyBold" FontSize="60" />
+                    <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"
+                                 HorizontalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Vertical">
+                            <Button BackgroundColor="#EBEFF5" Text="Se connecter" FontFamily="GilroyBold"
+                                    TextColor="{Binding LoginTextColor}" Command="{Binding ShowLoginCommand}" />
+                            <BoxView IsVisible="{Binding ShowingLogin}" BackgroundColor="#FA130B" CornerRadius="20" HeightRequest="4" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Button BackgroundColor="#EBEFF5" Text="S'inscrire" FontFamily="GilroyBold"
+                                    TextColor="{Binding SignUpTextColor}" Command="{Binding ShowSignUpCommand}"/>
+                            <BoxView IsVisible="{Binding ShowingSignup}" BackgroundColor="#FA130B" CornerRadius="20" HeightRequest="4" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+
+            <StackLayout IsVisible="{Binding ShowingLogin}" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="20" Spacing="20">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Pseudo" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                    <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
+                        <Entry BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2" FontSize="20" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
+                        <Entry IsPassword="True" BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                               FontSize="20" />
+                    </Frame>
+                </StackLayout>
+                
+                <Button Text="J'ai oublié mon mot de passe" BackgroundColor="White" FontFamily="GilroyBold"
+                        TextColor="#4C4E52" CornerRadius="50" />
+
+                <Button Text="Se connecter" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+                        VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" Command="{Binding LoginCommand}" />
+            </StackLayout>
+            
+            <StackLayout IsVisible="{Binding ShowingSignup}" VerticalOptions="FillAndExpand" Orientation="Vertical" Padding="20" Spacing="20">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Pseudo" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                    <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
+                        <Entry BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2" FontSize="20" />
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
+                        <Entry IsPassword="True" BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                               FontSize="20" />
+                    </Frame>
+                </StackLayout>
+                
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Confirmer le mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
+                        <Entry IsPassword="True" BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                               FontSize="20" />
+                    </Frame>
+                </StackLayout>
+
+                <Button Text="S'inscrire" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+                        VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" Command="{Binding SignUpCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -16,5 +16,31 @@
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
         <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1821" />
+        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1821" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Fonts\Biko_Regular.otf" />
+      <None Remove="Resources\Fonts\Biko_Light-Restricted.otf" />
+      <None Remove="Resources\Fonts\Biko_Bold.otf" />
+      <None Remove="Resources\Fonts\Biko_Black.otf" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\Fonts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Fonts\Gilroy-Regular.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Gilroy-Regular.ttf" />
+      <None Remove="Resources\Fonts\Gilroy-Medium.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Gilroy-Medium.ttf" />
+      <None Remove="Resources\Fonts\Gilroy-Light.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Gilroy-Light.ttf" />
+      <None Remove="Resources\Fonts\Gilroy-Heavy.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Gilroy-Heavy.ttf" />
+      <None Remove="Resources\Fonts\Gilroy-Bold.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Gilroy-Bold.ttf" />
     </ItemGroup>
 </Project>
