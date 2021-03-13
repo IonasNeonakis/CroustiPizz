@@ -36,7 +36,6 @@ namespace CroustiPizz.Mobile.Services
         //@TODO verifeir que cette fonction fonctionne
         public async Task<TResponse> Post<TResponse, TRequest>(string url, TRequest body)
         {
-	        
 	        StringContent contentBody = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 	        HttpRequestMessage request = new HttpRequestMessage
 	        {

@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using CroustiPizz.Mobile.Dtos;
+using CroustiPizz.Mobile.Dtos.Accounts;
+using CroustiPizz.Mobile.Dtos.Authentications;
+using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
+using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
     public class AuthViewModel : ViewModelBase
     {
+        
         public const string SELECTED_COLOR = "Black";
         public const string UNSELECTED_COLOR = "#BAC5DB";
         
@@ -37,6 +45,23 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _showingSignup;
             set => SetProperty(ref _showingSignup, value);
         }
+
+        private string _email;
+
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        private string _mdp;
+
+        public string Mdp
+        {
+            get => _mdp;
+            set => SetProperty(ref _mdp, value);
+        }
+        
         public ICommand SignUpCommand { get; }
         public ICommand LoginCommand { get; }
         
@@ -63,9 +88,30 @@ namespace CroustiPizz.Mobile.ViewModels
             throw new NotImplementedException();
         }
         
-        private void LoginAction()
+        private async void LoginAction()
         {
-            throw new NotImplementedException();
+            IUserApiService service = DependencyService.Get<IUserApiService>();
+
+            LoginWithCredentialsRequest utilisateur = new LoginWithCredentialsRequest()
+            {
+                Login = Email,
+                Password = Mdp,
+                ClientId = "MOBILE",
+                ClientSecret = "UNIV"
+            };
+            
+            Response<LoginResponse> response = await service.LoginUser(utilisateur);
+            
+            Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
+            
+            if (response.IsSuccess)
+            {
+                Console.WriteLine($"Appel HTTP : {response.Data.AccessToken}");
+            }
+            else
+            {
+                Console.Write("    NE MARCHE PAS    ");
+            }
         }
 
         private void ShowSignUpAction()

@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
@@ -32,7 +34,17 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest credentials)
         {
-            return await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
+            Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
+            Console.Write(task.Data.AccessToken);
+            await SecureStorage.SetAsync("access_token", task.Data.AccessToken);
+            await SecureStorage.SetAsync("refresh_token", task.Data.RefreshToken);
+            await SecureStorage.SetAsync("expires_in", task.Data.ExpiresIn.ToString());
+            
+            return task;
+            
+            
+            
+            
         }
     }
 }
