@@ -1,5 +1,4 @@
-﻿
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications;
@@ -14,25 +13,27 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class AuthViewModel : ViewModelBase
     {
-        
         public const string SELECTED_COLOR = "Black";
         public const string UNSELECTED_COLOR = "#BAC5DB";
-        
+
         private string _loginTextColor;
+
         public string LoginTextColor
         {
             get => _loginTextColor;
             set => SetProperty(ref _loginTextColor, value);
         }
-        
+
         private string _signupTextColor;
+
         public string SignUpTextColor
         {
             get => _signupTextColor;
             set => SetProperty(ref _signupTextColor, value);
         }
-        
+
         private bool _showingLogin;
+
         public bool ShowingLogin
         {
             get => _showingLogin;
@@ -40,6 +41,7 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private bool _showingSignup;
+
         public bool ShowingSignup
         {
             get => _showingSignup;
@@ -101,7 +103,7 @@ namespace CroustiPizz.Mobile.ViewModels
             get => mdp2;
             set => SetProperty(ref mdp2, value);
         }
-        
+
         //@TODO Regex et le passer en nul 
         private string _numero;
 
@@ -110,14 +112,15 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _numero;
             set => SetProperty(ref _numero, value);
         }
-        
+
         public ICommand SignUpCommand { get; }
         public ICommand LoginCommand { get; }
-        
+
         public ICommand ShowSignUpCommand { get; }
         public ICommand ShowLoginCommand { get; }
-        
+
         public IUserApiService UserApiService { get; }
+
         public AuthViewModel()
         {
             UserApiService = DependencyService.Get<IUserApiService>();
@@ -130,7 +133,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
             ShowingLogin = true;
             ShowingSignup = !ShowingLogin;
-            
+
             LoginTextColor = SELECTED_COLOR;
             SignUpTextColor = UNSELECTED_COLOR;
         }
@@ -166,10 +169,9 @@ namespace CroustiPizz.Mobile.ViewModels
                 //@TODO Message d'erruer quand les mdp ne sont pas pareils
             }
         }
-        
+
         private async void LoginAction()
         {
-
             LoginWithCredentialsRequest utilisateur = new LoginWithCredentialsRequest()
             {
                 Login = Email,
@@ -177,9 +179,9 @@ namespace CroustiPizz.Mobile.ViewModels
                 ClientId = Constantes.CLIENT_ID,
                 ClientSecret = Constantes.CLIENT_SECRET
             };
-            
+
             Response<LoginResponse> response = await UserApiService.LoginUser(utilisateur);
-            
+
             if (response.IsSuccess)
             {
                 AllerPageAccueil();
@@ -199,20 +201,20 @@ namespace CroustiPizz.Mobile.ViewModels
             LoginTextColor = UNSELECTED_COLOR;
             SignUpTextColor = SELECTED_COLOR;
         }
-        
+
         private void ShowLoginAction()
         {
             ShowingLogin = true;
             ShowingSignup = !ShowingLogin;
-            
+
             LoginTextColor = SELECTED_COLOR;
             SignUpTextColor = UNSELECTED_COLOR;
         }
-        
+
         private void AllerPageAccueil()
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
-            navigationService.PushAsync<ShopMapPage>();
+            navigationService.PushAsync<ProfilePage>();
         }
     }
 }
