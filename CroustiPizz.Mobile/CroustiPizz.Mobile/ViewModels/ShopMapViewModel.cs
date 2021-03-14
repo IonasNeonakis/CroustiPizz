@@ -23,16 +23,17 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
-            /*
+           
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<ShopItem>> response = await service.ListShops();
 
             if (response.IsSuccess)
             {
-                _shops = new ObservableCollection<ShopItem>(response.Data);
+                Shops = new ObservableCollection<ShopItem>(response.Data);
             }
-            */
+            
+            
         }
     }
 }

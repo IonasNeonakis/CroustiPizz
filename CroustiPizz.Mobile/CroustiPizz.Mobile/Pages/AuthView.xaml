@@ -4,7 +4,9 @@
                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                        xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                        xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                       xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
                        x:Class="CroustiPizz.Mobile.Pages.AuthView"
+                       x:DataType="viewModels:AuthViewModel"
                        NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White">
