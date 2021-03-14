@@ -1,14 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
+             xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+             xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
              x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
-             NavigationPage.HasNavigationBar="False "
+             NavigationPage.HasNavigationBar="False " 
              BackgroundColor="White">
+    <ContentPage.Resources>
+        <converters:DoubleToStringConverter x:Key="DoubleToStringConverter"/> 
+        <x:String x:Key="Grey">#EBEFF5</x:String>
+        <x:String x:Key="Red">#FA130B</x:String>
+    </ContentPage.Resources>
     <ContentPage.Content>
         
-        <StackLayout BackgroundColor="#EBEFF5">
+        <StackLayout BackgroundColor="{StaticResource Grey}">
         
             <pancakeView:PancakeView CornerRadius="0, 0, 36, 36"
                                      BackgroundColor="White">
@@ -19,9 +27,13 @@
                 <FlexLayout
                     Direction="Row"
                     JustifyContent="SpaceBetween">
-                    <ImageButton
-                        HorizontalOptions="Start"
-                        Source="menu.svg"/>
+                    <Frame CornerRadius="16"
+                           HasShadow="False" 
+                           BackgroundColor="{StaticResource Grey}">
+                        <ImageButton
+                            HorizontalOptions="Start"
+                            Source="outline_menu_black_24dp"/>
+                    </Frame>
                     <Frame CornerRadius="60"
                            IsClippedToBounds="True"
                            Padding="0"
@@ -32,20 +44,25 @@
                     </Frame>
                 </FlexLayout>
                 
-                <Label Text="Le Borsalino"
+                <Label Text="{Binding }"
                        FontAttributes="Bold"
                        FontSize="Title"
                        TextColor="Black"/>
                 
                 <StackLayout Orientation="Horizontal">
-                    <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
-                        <Entry Placeholder="Rechercher..." BackgroundColor="#EBEFF5" Visual="Material" TranslationY="2"
+                    <Frame Padding="0" 
+                           CornerRadius="15" 
+                           BackgroundColor="{StaticResource Grey}">
+                        <Entry Placeholder="Rechercher..." 
+                               BackgroundColor="{StaticResource Grey}" 
+                               Visual="Material" 
+                               TranslationY="2"
                                FontSize="20" />
                     </Frame>
                     <Frame CornerRadius="1000"
                            IsClippedToBounds="True"
                            Padding="0">
-                        <Button BackgroundColor="#FA130B"
+                        <Button BackgroundColor="{StaticResource Red}"
                                 Text="Filtres"
                                 TextColor="White"/>
                     </Frame>
@@ -53,23 +70,50 @@
                 
                 <ScrollView Orientation="Horizontal">
                     <StackLayout Orientation="Horizontal">
-                        <Frame CornerRadius="24" HasShadow="False" WidthRequest="128" BackgroundColor="#EBEFF5">
-                            <StackLayout>
-                                <Image />
-                                <Label FontAttributes="Bold" Text="Margharita" TextColor="Black" FontSize="Body"></Label>
-                                <Label Text="Jambon, emmental rapé, voilà quoi"></Label>
-                                <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="SpaceBetween">
-                                    <Label Text="12 €" TextColor="#FA130B"></Label>
-                                    <Frame CornerRadius="60"
-                                           IsClippedToBounds="True"
-                                           Padding="0"
-                                           WidthRequest="40"
-                                           HeightRequest="40">
-                                        <Button FontAttributes="Bold" Text=">" BackgroundColor="#FA130B" CornerRadius="1000" TextColor="White"></Button>
-                                    </Frame>
-                                </FlexLayout>
-                            </StackLayout>
-                        </Frame>
+                        
+                        <ListView ItemsSource="{Binding Pizzas}"
+                                  SelectionMode="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell x:DataType="pizzas:PizzaItem">
+                                        <Frame CornerRadius="24" 
+                                               HasShadow="False" 
+                                               WidthRequest="128" 
+                                               BackgroundColor="{StaticResource Grey}">
+                                            <StackLayout>
+                                                <Image />
+                                                <Label FontAttributes="Bold" 
+                                                       Text="Nom" 
+                                                       TextColor="Black" 
+                                                       FontSize="Body"></Label>
+                                                <Label Text="Description"></Label>
+                                                <FlexLayout Direction="Row" 
+                                                            AlignItems="Center" 
+                                                            JustifyContent="SpaceBetween">
+                                                    <Label
+                                                        Text="Truc"
+                                                        
+                                                           TextColor="{StaticResource Red}"></Label>
+                                                    <Frame CornerRadius="60"
+                                                           IsClippedToBounds="True"
+                                                           Padding="0"
+                                                           WidthRequest="40"
+                                                           HeightRequest="40">
+                                                        <Button FontAttributes="Bold" 
+                                                                Text=">" 
+                                                                BackgroundColor="{StaticResource Red}" 
+                                                                CornerRadius="1000" 
+                                                                TextColor="White"></Button>
+                                                    </Frame>
+                                                </FlexLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            
+                        </ListView>
+                        
                         
                         
                     </StackLayout>
@@ -89,4 +133,4 @@
         </StackLayout>
         
     </ContentPage.Content>
-</ContentPage>
+</forms:BaseContentPage>
