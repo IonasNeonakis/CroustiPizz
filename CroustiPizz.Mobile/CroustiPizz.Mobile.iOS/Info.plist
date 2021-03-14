@@ -34,5 +34,8 @@
     <string>CroustiPizz.Mobile</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Pouvons nous utiliser votre emplacement lorsque l'application est utilisée?</string>
 </dict>
 </plist>
