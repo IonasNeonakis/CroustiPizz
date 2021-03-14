@@ -9,9 +9,9 @@ namespace CroustiPizz.Mobile.Pages
     public partial class ShopMapPage: BaseContentPage {
         public ShopMapPage()
         {
-
             BindingContext = new ShopMapViewModel();
             InitializeComponent();
+
         }
     }
 }
