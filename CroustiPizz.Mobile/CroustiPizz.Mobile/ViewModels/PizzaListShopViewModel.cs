@@ -33,6 +33,28 @@ namespace CroustiPizz.Mobile.ViewModels
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
+            Pizzas = new ObservableCollection<PizzaItem>();
+            
+            PizzaItem pizzaItem = new PizzaItem
+            {
+                Id = 1,
+                Name = "truc",
+                Description = "Ntm Romain",
+                Price = 10,
+                OutOfStock = false
+            };
+            
+            PizzaItem pizzaItem2 = new PizzaItem
+            {
+                Id = 2,
+                Name = "trucMachain",
+                Description = "Ntm LOLXD",
+                Price = 10,
+                OutOfStock = false
+            };
+            
+            Pizzas.Add(pizzaItem);
+            Pizzas.Add(pizzaItem2);
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -43,19 +65,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
-
-            PizzaItem pizzaItem = new PizzaItem
-            {
-                Id = 1,
-                Name = "truc",
-                Description = "Ntm Romain",
-                Price = 10,
-                OutOfStock = false
-            };
             
-            _pizzas.Add(pizzaItem);
-            
-
             // IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
             //
             // Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
