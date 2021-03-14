@@ -1,5 +1,5 @@
-﻿using CroustiPizz.Mobile.ViewModels;
-using Rg.Plugins.Popup.Pages;
+using CroustiPizz.Mobile.ViewModels;
+using Storm.Mvvm.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AuthView : PopupPage
+    public partial class AuthView : BaseContentPage
     {
         public AuthView()
         {

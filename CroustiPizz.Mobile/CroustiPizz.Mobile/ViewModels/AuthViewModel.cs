@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
+using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
-using Xamarin.Essentials;
+using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -154,7 +154,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
                 if (response.IsSuccess)
                 {
-                    //@TODO Se déplacer vers la page d'accueil
+                    AllerPageAccueil();
                 }
                 else
                 {
@@ -182,6 +182,7 @@ namespace CroustiPizz.Mobile.ViewModels
             
             if (response.IsSuccess)
             {
+                AllerPageAccueil();
                 //@TODO Se déplacer vers la page d'accueil
             }
             else
@@ -206,6 +207,12 @@ namespace CroustiPizz.Mobile.ViewModels
             
             LoginTextColor = SELECTED_COLOR;
             SignUpTextColor = UNSELECTED_COLOR;
+        }
+        
+        private void AllerPageAccueil()
+        {
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PushAsync<ShopMapPage>();
         }
     }
 }

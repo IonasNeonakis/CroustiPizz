@@ -29,7 +29,9 @@ namespace CroustiPizz.Mobile.Services
 	        RefreshifNeeded();
 
 	        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, HOST + url);
-
+	        string accessToken = await SecureStorage.GetAsync(Constantes.ACCESS_TOKEN);
+	        
+	        request.Headers.Add("Authorization", "Bearer "+ accessToken);
 	        HttpResponseMessage response = await _client.SendAsync(request);
 
 	        string content = await response.Content.ReadAsStringAsync();
