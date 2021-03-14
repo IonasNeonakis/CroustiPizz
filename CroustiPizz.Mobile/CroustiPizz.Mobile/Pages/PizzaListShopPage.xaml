@@ -64,50 +64,46 @@
                                     TextColor="White" />
 						</Frame>
 					</StackLayout>
-					<ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-						<ListView ItemsSource="{Binding Pizzas}"
-							          SelectionMode="None"
-							          WidthRequest="0"
-							          RowHeight="250">
-								<ListView.ItemTemplate>
-									<DataTemplate>
-										<ViewCell x:DataType="pizzas:PizzaItem">
-											<pancakeView:PancakeView 
-												CornerRadius="24"
-											    BackgroundColor="#EBEFF5"
-											    Padding="10">
-												<StackLayout>
-													<Image />
-													<Label FontAttributes="Bold"
-                                                           Text="Nom"
-                                                           TextColor="Black"
-                                                           FontSize="Body" />
-													<Label Text="Description" />
-													<FlexLayout Direction="Row"
-                                                                AlignItems="Center"
-                                                                JustifyContent="SpaceBetween">
-														<Label
-                                                            Text="Truc"
-                                                            TextColor="#FA130B" />
-														<Frame CornerRadius="60"
-                                                               IsClippedToBounds="True"
-                                                               Padding="0"
-                                                               WidthRequest="40"
-                                                               HeightRequest="40">
-															<Button FontAttributes="Bold"
-                                                                    Text=">"
-                                                                    BackgroundColor="#FA130B"
-                                                                    CornerRadius="1000"
-                                                                    TextColor="White" />
-														</Frame>
-													</FlexLayout>
-												</StackLayout>
-											</pancakeView:PancakeView>
-										</ViewCell>
-									</DataTemplate>
-								</ListView.ItemTemplate>
-							</ListView>
-					</ScrollView>
+					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20">
+						<CarouselView.ItemsLayout>
+							<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
+						</CarouselView.ItemsLayout>
+						<CarouselView.ItemTemplate>
+								<DataTemplate>
+									<pancakeView:PancakeView 
+										CornerRadius="24"
+										BackgroundColor="#EBEFF5"
+										Padding="10">
+										<StackLayout>
+											<Image />
+											<Label FontAttributes="Bold"
+											       Text="Nom"
+											       TextColor="Black"
+											       FontSize="Body" />
+											<Label Text="Description" />
+											<FlexLayout Direction="Row"
+											            AlignItems="Center"
+											            JustifyContent="SpaceBetween">
+												<Label
+													Text="Truc"
+													TextColor="#FA130B" />
+												<Frame CornerRadius="60"
+												       IsClippedToBounds="True"
+												       Padding="0"
+												       WidthRequest="40"
+												       HeightRequest="40">
+													<Button FontAttributes="Bold"
+													        Text=">"
+													        BackgroundColor="#FA130B"
+													        CornerRadius="1000"
+													        TextColor="White" />
+												</Frame>
+											</FlexLayout>
+										</StackLayout>
+									</pancakeView:PancakeView>
+								</DataTemplate>
+							</CarouselView.ItemTemplate>
+						</CarouselView>
 				</StackLayout>
 			</pancakeView:PancakeView>
 			<FlexLayout VerticalOptions="EndAndExpand" Direction="Row" JustifyContent="SpaceEvenly">
