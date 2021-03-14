@@ -129,7 +129,8 @@
                             </yummy:PancakeView>
                             <Button Text="Sauvegarder" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="15"
                                     Margin="0,50,0,0"
-                                    VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" />
+                                    VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" 
+                                    Command="{Binding SaveProfileInformationCommand}"/>
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>

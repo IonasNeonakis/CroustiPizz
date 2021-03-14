@@ -17,6 +17,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public ICommand EditPasswordCommand { get; }
         public ICommand EditMailCommand { get; }
         public ICommand EditPhoneNumberCommand { get; }
+        public ICommand SaveProfileInformationCommand { get; }
 
         private string _newPassword;
         public string NewPassword
@@ -51,6 +52,7 @@ namespace CroustiPizz.Mobile.ViewModels
             EditPasswordCommand = new Command(EditPasswordAction);
             EditMailCommand = new Command(EditMailAction);
             EditPhoneNumberCommand = new Command(EditPhoneNumberAction);
+            SaveProfileInformationCommand = new Command(SaveProfileInformationAction);
             
             // supprimer ça et decommenter le bas
             _user = new UserProfileResponse
@@ -126,6 +128,11 @@ namespace CroustiPizz.Mobile.ViewModels
             });
             
             await PopupNavigation.Instance.PushAsync(popup);
+        }
+
+        private void SaveProfileInformationAction()
+        {
+            
         }
     }
 }
