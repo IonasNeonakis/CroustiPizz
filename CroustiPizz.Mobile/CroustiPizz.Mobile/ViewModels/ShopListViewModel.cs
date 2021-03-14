@@ -41,10 +41,8 @@ namespace CroustiPizz.Mobile.ViewModels
 
 	        Response<List<ShopItem>> response = await service.ListShops();
 
-			Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
 	        if (response.IsSuccess)
 	        {
-		        Console.WriteLine($"Appel HTTP : {response.Data.Count}");
 				Shops = new ObservableCollection<ShopItem>(response.Data);
 	        }
         }
