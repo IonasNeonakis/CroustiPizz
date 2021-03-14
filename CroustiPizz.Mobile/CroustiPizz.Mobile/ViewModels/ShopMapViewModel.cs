@@ -13,11 +13,17 @@ namespace CroustiPizz.Mobile.ViewModels
     {
         private ObservableCollection<ShopItem> _shops;
 
+        public ObservableCollection<ShopItem> Shops
+        {
+            get => _shops;
+            set => SetProperty(ref _shops, value);
+        }
+
      
         public override async Task OnResume()
         {
             await base.OnResume();
-
+            /*
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<ShopItem>> response = await service.ListShops();
@@ -26,6 +32,7 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 _shops = new ObservableCollection<ShopItem>(response.Data);
             }
+            */
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CroustiPizz.Mobile.ViewModels;
+﻿using CroustiPizz.Mobile.ViewModels;
 using Storm.Mvvm.Forms;
-using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace CroustiPizz.Mobile.Pages
@@ -14,6 +9,11 @@ namespace CroustiPizz.Mobile.Pages
     public partial class ShopMapPage: BaseContentPage {
         public ShopMapPage()
         {
+            Map map = new Map
+            {
+                MapType = MapType.Street
+            };
+            Content = map;
             BindingContext = new ShopMapViewModel();
             InitializeComponent();
         }
