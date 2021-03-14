@@ -145,30 +145,34 @@ namespace CroustiPizz.Mobile.ViewModels
             await PopupNavigation.Instance.PushAsync(popup);
         }
 
-        private void SaveProfileInformationAction()
+        private async void SaveProfileInformationAction()
         {
             IUserApiService service = DependencyService.Get<IUserApiService>();
-            Task<Response> reponsePassword = service.ChangePassword(new SetPasswordRequest
+            SetPasswordRequest passwordRequest = new SetPasswordRequest
             {
                 OldPassword = CurrentPassword,
                 NewPassword = NewPassword
-            });
+            };
+            Response reponsePassword = await service.ChangePassword(passwordRequest);
 
-            Task<Response<SetUserProfileRequest>> reponseUser = service.UpdateUser(new SetUserProfileRequest
+            
+            SetUserProfileRequest userProfileRequest =  new SetUserProfileRequest
             {
                 Email = NewMail,
                 PhoneNumber = NewPhoneNumber,
                 FirstName = User.FirstName,
                 LastName = User.LastName
-            });
-
-            if (!reponsePassword.Result.IsSuccess)
+            };
+            
+            
+            Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
+            if (!reponsePassword.IsSuccess)
             {
                 /* @TODO: Implémenter un message d'erreur */
                 throw new NotImplementedException();
             }
 
-            if (!reponseUser.Result.IsSuccess)
+            if (!reponseUser.IsSuccess)
             {
                 /* @TODO: Implémenter un message d'erreur */
                 throw new NotImplementedException();
