@@ -25,16 +25,8 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             
             await base.OnResume();
-
-            /*
-            // supprimer ça et decommenter le bas
-            User = new UserProfileResponse
-            {
-                Email = "Email", FirstName = "Premier nom", LastName = "Dernier nom", PhoneNumber = "0602223277"
-            };*/
-
-
-
+            
+            
             IUserApiService service = DependencyService.Get<IUserApiService>();
 
             Response<UserProfileResponse> response = await service.GetUser();
@@ -53,6 +45,7 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 //@TODO gestion d'erreur
             }
+            
         }
     }
     
