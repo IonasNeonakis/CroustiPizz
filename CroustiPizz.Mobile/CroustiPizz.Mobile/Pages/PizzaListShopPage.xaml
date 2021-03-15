@@ -41,13 +41,15 @@
                                     Text="😋" />
 						</Frame>
 					</FlexLayout>
-					<Label Text="salut test"
+					<Label Text="Restaurant salut"
                            FontAttributes="Bold"
                            FontSize="Title"
-                           TextColor="Black" />
-					<StackLayout Orientation="Horizontal">
+                           TextColor="Black"
+                           Margin="0, 8, 0, 0"/>
+					<StackLayout Orientation="Horizontal"
+					             Margin="0, 8, 0, 0">
 						<Frame Padding="0"
-                               CornerRadius="15"
+                               CornerRadius="16"
                                BackgroundColor="#EBEFF5"
                                HorizontalOptions="FillAndExpand">
 							<Entry Placeholder="Rechercher..."
@@ -56,15 +58,16 @@
                                    TranslationY="2"
                                    FontSize="20" />
 						</Frame>
-						<Frame CornerRadius="1000"
+						<Frame CornerRadius="16"
                                IsClippedToBounds="True"
-                               Padding="0">
+                               Padding="0"
+                               Margin="8, 0, 0, 0">
 							<Button BackgroundColor="#FA130B"
                                     Text="Filtres"
                                     TextColor="White" />
 						</Frame>
 					</StackLayout>
-					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20">
+					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20" Margin="0, 16, 0, 0">
 						<CarouselView.ItemsLayout>
 							<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
 						</CarouselView.ItemsLayout>
@@ -77,15 +80,15 @@
 										<StackLayout>
 											<Image />
 											<Label FontAttributes="Bold"
-											       Text="Nom"
+											       Text="{Binding Name}"
 											       TextColor="Black"
-											       FontSize="Body" />
-											<Label Text="Description" />
+											       FontSize="Title" />
+											<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand"/>
 											<FlexLayout Direction="Row"
 											            AlignItems="Center"
 											            JustifyContent="SpaceBetween">
 												<Label
-													Text="Truc"
+													Text="{Binding Price}"
 													TextColor="#FA130B" />
 												<Frame CornerRadius="60"
 												       IsClippedToBounds="True"

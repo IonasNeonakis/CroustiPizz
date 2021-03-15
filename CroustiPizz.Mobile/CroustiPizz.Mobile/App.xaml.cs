@@ -11,7 +11,7 @@ namespace CroustiPizz.Mobile
 {
     public partial class App
     {
-        public App() : base(() => new AuthView(), RegisterServices)
+        public App() : base(() => new PizzaListShopPage(), RegisterServices)
         {
 #if DEBUG
             Log.Listeners.Add(new DelegateLogListener((arg1, arg2) => Debug.WriteLine($"{arg1} : {arg2}")));

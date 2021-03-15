@@ -39,7 +39,7 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 Id = 1,
                 Name = "truc",
-                Description = "Ntm Romain",
+                Description = "Du jambon, des olives, des grenouilles, du sel, des tomates, du gruyère râpé",
                 Price = 10,
                 OutOfStock = false
             };
