@@ -8,6 +8,8 @@
                        x:DataType="viewModels:ShopMapViewModel"
                        xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
                        NavigationPage.HasNavigationBar="False">
-    <maps:Map x:Name="Carte"/>
+    <forms:BaseContentPage.Content>
+        <ContentView Content="{Binding MaMap}"></ContentView>
+    </forms:BaseContentPage.Content>
 
 </forms:BaseContentPage>

@@ -22,16 +22,16 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shops, value);
         }
 
-        /*private Map _maMap;
+        private Map _maMap;
 
         public Map MaMap
         {
             get => _maMap;
             set => SetProperty(ref _maMap, value);
         }
-        */
+        
 
-     
+
         public override async Task OnResume()
         {
             await base.OnResume();
@@ -44,6 +44,37 @@ namespace CroustiPizz.Mobile.ViewModels
             if (response.IsSuccess)
             {
                 Shops = new ObservableCollection<ShopItem>(response.Data);
+
+                Position position;
+                MapSpan mapSpan;
+                Location location = await Geolocation.GetLastKnownLocationAsync();
+                if (location != null) {
+                    position = new Position(location.Latitude, location.Longitude);
+                    mapSpan = new MapSpan(position, 0.01, 0.01);
+                }else {
+                    position = new Position(46.4547, 2.2529);
+                    mapSpan = new MapSpan(position, 12, 12);
+                }
+                MaMap = new Map(mapSpan)
+                {
+                    IsShowingUser = true
+                };
+                
+                foreach (ShopItem unShop in Shops)
+                {
+                    Pin pin = new Pin
+                    {
+                        Label = unShop.Name,
+                        Address = unShop.Address,
+                        Type = PinType.Place,
+                        Position = new Position(unShop.Latitude, unShop.Longitude)
+                    };
+                    MaMap.Pins.Add(pin);
+                }
+                
+                
+                
+                
             }
             
             
