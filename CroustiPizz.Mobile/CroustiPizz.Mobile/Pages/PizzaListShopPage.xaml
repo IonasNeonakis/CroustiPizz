@@ -41,7 +41,7 @@
                                     Text="😋" />
 						</Frame>
 					</FlexLayout>
-					<Label Text="Restaurant salut"
+					<Label Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            FontSize="Title"
                            TextColor="Black"

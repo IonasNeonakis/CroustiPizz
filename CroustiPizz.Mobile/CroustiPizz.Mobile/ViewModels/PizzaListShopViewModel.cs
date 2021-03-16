@@ -21,6 +21,14 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _pizzas, value);
         }
 
+        private string _shopName;
+
+        public string ShopName
+        {
+            get => _shopName;
+            set => SetProperty(ref _shopName, value);
+        }
+
         public ICommand SelectedCommand { get; }
 
         public PizzaListShopViewModel()
@@ -34,6 +42,13 @@ namespace CroustiPizz.Mobile.ViewModels
         private void SelectedAction(PizzaItem obj)
         {
             
+        }
+
+        public override void Initialize(Dictionary<string, object> navigationParameters)
+        {
+            base.Initialize(navigationParameters);
+
+            ShopName = GetNavigationParameter<string>("ShopName"); 
         }
 
         public override async Task OnResume()
