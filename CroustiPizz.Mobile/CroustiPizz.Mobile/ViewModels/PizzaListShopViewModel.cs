@@ -21,8 +21,17 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _pizzas, value);
         }
 
-        private int _shopId = 1;
-        public int ShopId
+        private string _shopName;
+
+        public string ShopName
+        {
+            get => _shopName;
+            set => SetProperty(ref _shopName, value);
+        }
+
+        private long _shopId;
+
+        public long ShopId
         {
             get => _shopId;
             set => SetProperty(ref _shopId, value);
@@ -33,28 +42,9 @@ namespace CroustiPizz.Mobile.ViewModels
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
-            Pizzas = new ObservableCollection<PizzaItem>();
             
-            PizzaItem pizzaItem = new PizzaItem
-            {
-                Id = 1,
-                Name = "truc",
-                Description = "Ntm Romain",
-                Price = 10,
-                OutOfStock = false
-            };
+            // Pizzas = new ObservableCollection<PizzaItem>();
             
-            PizzaItem pizzaItem2 = new PizzaItem
-            {
-                Id = 2,
-                Name = "trucMachain",
-                Description = "Ntm LOLXD",
-                Price = 10,
-                OutOfStock = false
-            };
-            
-            Pizzas.Add(pizzaItem);
-            Pizzas.Add(pizzaItem2);
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -62,20 +52,47 @@ namespace CroustiPizz.Mobile.ViewModels
             
         }
 
+        public override void Initialize(Dictionary<string, object> navigationParameters)
+        {
+            base.Initialize(navigationParameters);
+
+            ShopName = GetNavigationParameter<string>("ShopName");
+            ShopId = GetNavigationParameter<long>("ShopId");
+        }
+
         public override async Task OnResume()
         {
             await base.OnResume();
-            
-            // IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
-            //
-            // Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
-            //
-            // Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
-            // if (response.IsSuccess)
+
+            // PizzaItem pizzaItem = new PizzaItem
             // {
-            //     Console.WriteLine($"Appel HTTP : {response.Data.Count}");
-            //     Pizzas = new ObservableCollection<PizzaItem>(response.Data);
-            // }
+            //     Id = 1,
+            //     Name = "truc",
+            //     Description = "Du jambon, des olives, des grenouilles, du sel, des tomates, du gruyère râpé",
+            //     Price = 10,
+            //     OutOfStock = false
+            // };
+            //
+            // PizzaItem pizzaItem2 = new PizzaItem
+            // {
+            //     Id = 2,
+            //     Name = "trucMachain",
+            //     Description = "Ntm LOLXD",
+            //     Price = 10,
+            //     OutOfStock = false
+            // };
+            //
+            // Pizzas.Add(pizzaItem);
+            // Pizzas.Add(pizzaItem2);
+            
+            IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
+
+            Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
+            
+            if (response.IsSuccess)
+            {
+                Pizzas = new ObservableCollection<PizzaItem>(response.Data);
+            }
         }
     }
 }

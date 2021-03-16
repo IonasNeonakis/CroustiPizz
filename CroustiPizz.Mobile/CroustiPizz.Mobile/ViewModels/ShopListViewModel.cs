@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
+using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -30,7 +32,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
 	    private void SelectedAction(ShopItem obj)
 	    {
-		    
+		    INavigationService navigationService = DependencyService.Get<INavigationService>();
+		    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+		    {
+			    {"ShopName", obj.Name},
+			    {"ShopId", obj.Id}
+		    });
 	    }
 
 	    public override async Task OnResume()
