@@ -38,30 +38,33 @@
 							<ImageButton BackgroundColor="Bisque" Source="cart.png" Padding="10" Command="{Binding GoToCartCommand}"/>
 						</Frame>
 					</FlexLayout>
-					<Label Text="salut test"
+					<Label Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            FontSize="Title"
-                           TextColor="Black" />
-					<StackLayout Orientation="Horizontal">
+                           TextColor="Black"
+                           Margin="0, 8, 0, 0"/>
+					<StackLayout Orientation="Horizontal"
+					             Margin="0, 8, 0, 0">
 						<Frame Padding="0"
-                               CornerRadius="15"
+                               CornerRadius="16"
                                BackgroundColor="#EBEFF5"
                                HorizontalOptions="FillAndExpand">
-							<Entry Placeholder="Rechercher..."
+							<Entry Placeholder="Rechercher une Pizz'..."
                                    BackgroundColor="#EBEFF5"
                                    Visual="Material"
                                    TranslationY="2"
                                    FontSize="20" />
 						</Frame>
-						<Frame CornerRadius="1000"
+						<Frame CornerRadius="16"
                                IsClippedToBounds="True"
-                               Padding="0">
+                               Padding="0"
+                               Margin="8, 0, 0, 0">
 							<Button BackgroundColor="#FA130B"
                                     Text="Filtres"
                                     TextColor="White" />
 						</Frame>
 					</StackLayout>
-					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20">
+					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20" Margin="0, 16, 0, 0">
 						<CarouselView.ItemsLayout>
 							<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
 						</CarouselView.ItemsLayout>
@@ -70,32 +73,38 @@
 									<pancakeView:PancakeView 
 										CornerRadius="24"
 										BackgroundColor="#EBEFF5"
-										Padding="10">
+										Padding="30">
 										<StackLayout>
-											<Image />
-											<Label FontAttributes="Bold"
-											       Text="Nom"
-											       TextColor="Black"
-											       FontSize="Body" />
-											<Label Text="Description" />
+											<!-- <pancakeView:PancakeView CornerRadius="24" > -->
+											<!-- 	<Image Source="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/1/image"/> -->
+											<!-- </pancakeView:PancakeView> -->
+											<StackLayout>
+												<Label FontAttributes="Bold"
+												       Text="{Binding Name}"
+												       TextColor="Black"
+												       FontSize="Title" />
+												<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand" MaxLines="1" LineBreakMode="TailTruncation"/>
+											</StackLayout>
+											
 											<FlexLayout Direction="Row"
 											            AlignItems="Center"
 											            JustifyContent="SpaceBetween">
 												<Label
-													Text="Truc"
-													TextColor="#FA130B" />
+													Text="{Binding Price}"
+													TextColor="#FA130B" 
+													FontAttributes="Bold"/>
 												<Frame CornerRadius="60"
 												       IsClippedToBounds="True"
 												       Padding="0"
-												       WidthRequest="40"
 												       HeightRequest="40">
 													<Button FontAttributes="Bold"
-													        Text=">"
+													        Text="Détails"
 													        BackgroundColor="#FA130B"
 													        CornerRadius="1000"
 													        TextColor="White" />
 												</Frame>
 											</FlexLayout>
+											
 										</StackLayout>
 									</pancakeView:PancakeView>
 								</DataTemplate>

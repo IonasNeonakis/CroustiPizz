@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,7 +6,6 @@ using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
-using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -24,8 +22,17 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _pizzas, value);
         }
 
-        private int _shopId = 1;
-        public int ShopId
+        private string _shopName;
+
+        public string ShopName
+        {
+            get => _shopName;
+            set => SetProperty(ref _shopName, value);
+        }
+
+        private long _shopId;
+
+        public long ShopId
         {
             get => _shopId;
             set => SetProperty(ref _shopId, value);
@@ -40,26 +47,8 @@ namespace CroustiPizz.Mobile.ViewModels
             GoToCartCommand = new Command(GoToCartAction);
             Pizzas = new ObservableCollection<PizzaItem>();
             
-            PizzaItem pizzaItem = new PizzaItem
-            {
-                Id = 1,
-                Name = "truc",
-                Description = "Ntm Romain",
-                Price = 10,
-                OutOfStock = false
-            };
+            // Pizzas = new ObservableCollection<PizzaItem>();
             
-            PizzaItem pizzaItem2 = new PizzaItem
-            {
-                Id = 2,
-                Name = "trucMachain",
-                Description = "Ntm LOLXD",
-                Price = 10,
-                OutOfStock = false
-            };
-            
-            Pizzas.Add(pizzaItem);
-            Pizzas.Add(pizzaItem2);
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -67,20 +56,26 @@ namespace CroustiPizz.Mobile.ViewModels
             
         }
 
+        public override void Initialize(Dictionary<string, object> navigationParameters)
+        {
+            base.Initialize(navigationParameters);
+
+            ShopName = GetNavigationParameter<string>("ShopName");
+            ShopId = GetNavigationParameter<long>("ShopId");
+        }
+
         public override async Task OnResume()
         {
             await base.OnResume();
+
+            IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
+
+            Response<List<PizzaItem>> response = await service.ListPizzas(ShopId);
             
-            // IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
-            //
-            // Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
-            //
-            // Console.WriteLine($"Appel HTTP : {response.IsSuccess}");
-            // if (response.IsSuccess)
-            // {
-            //     Console.WriteLine($"Appel HTTP : {response.Data.Count}");
-            //     Pizzas = new ObservableCollection<PizzaItem>(response.Data);
-            // }
+            if (response.IsSuccess)
+            {
+                Pizzas = new ObservableCollection<PizzaItem>(response.Data);
+            }
         }
 
         public void GoToCartAction()

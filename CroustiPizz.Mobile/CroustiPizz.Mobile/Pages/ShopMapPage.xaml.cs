@@ -12,7 +12,6 @@ namespace CroustiPizz.Mobile.Pages
         {
             BindingContext = new ShopMapViewModel();
             InitializeComponent();
-
         }
     }
 }
