@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
 using Xamarin.Forms;
 
@@ -29,10 +32,12 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         public ICommand SelectedCommand { get; }
+        public ICommand GoToCartCommand { get; }
 
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
+            GoToCartCommand = new Command(GoToCartAction);
             Pizzas = new ObservableCollection<PizzaItem>();
             
             PizzaItem pizzaItem = new PizzaItem
@@ -76,6 +81,11 @@ namespace CroustiPizz.Mobile.ViewModels
             //     Console.WriteLine($"Appel HTTP : {response.Data.Count}");
             //     Pizzas = new ObservableCollection<PizzaItem>(response.Data);
             // }
+        }
+
+        public void GoToCartAction()
+        {
+            PopupNavigation.Instance.PushAsync(new ShopCartPopup());
         }
     }
 }

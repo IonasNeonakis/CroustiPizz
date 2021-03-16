@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AuthView : BaseContentPage
+    public partial class AuthView : ContentPage
     {
         public AuthView()
         {

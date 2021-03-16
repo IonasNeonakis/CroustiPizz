@@ -1,22 +1,21 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using CroustiPizz.Mobile.ViewModels;
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Pages;
-using Storm.Mvvm.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : PopupPage
+    public partial class MainView : ContentPage
     {
-        public ProfilePage()
+        public MainView()
         {
             InitializeComponent();
-            BindingContext = new ProfileViewModel();
+            BindingContext = new MainViewModel();
         }
     }
 }

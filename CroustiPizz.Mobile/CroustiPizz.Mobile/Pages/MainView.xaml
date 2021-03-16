@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
+            xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+            x:Class="CroustiPizz.Mobile.Pages.MainView"
+            NavigationPage.HasNavigationBar="false">
+    <yummy:PancakeView BackgroundColor="#EBEFF5">
+        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowingMap}">
+            <pages:ShopMapPage VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowingList}">
+            <pages:PizzaListShopPage/>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowingOrders}">
+            <pages:PizzaListShopPage/>
+        </StackLayout>
+        <!--<StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" IsVisible="{Binding ShowingProfile}">
+            <pages:ProfilePage/>
+        </StackLayout>-->
+        <yummy:PancakeView CornerRadius="20,20,0,0">
+            <StackLayout Orientation="Horizontal" BackgroundColor="#EBEFF5" HeightRequest="80">
+                <yummy:PancakeView Padding="0" WidthRequest="75" HorizontalOptions="FillAndExpand">
+                    <ImageButton Source="map.png" Padding="27" BackgroundColor="#EBEFF5" Command="{Binding ShowMapCommand}"/>
+                </yummy:PancakeView>
+                <yummy:PancakeView Padding="0" WidthRequest="75" HorizontalOptions="FillAndExpand">
+                    <ImageButton Source="list.png" Padding="27" BackgroundColor="#EBEFF5" Command="{Binding ShowListCommand}"/>
+                </yummy:PancakeView>
+                <yummy:PancakeView Padding="0" WidthRequest="75" HorizontalOptions="FillAndExpand">
+                    <ImageButton Source="pizza.png" Padding="27" BackgroundColor="#EBEFF5" Command="{Binding ShowOrdersCommand}"/>
+                </yummy:PancakeView>
+                <yummy:PancakeView Padding="0" WidthRequest="75" HorizontalOptions="FillAndExpand">
+                    <ImageButton Source="person.png" Padding="27" BackgroundColor="#EBEFF5" Command="{Binding ShowProfileCommand}"/>
+                </yummy:PancakeView>
+            </StackLayout>
+        </yummy:PancakeView>
+    </StackLayout>
+    </yummy:PancakeView>
+</ContentPage>

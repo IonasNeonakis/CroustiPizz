@@ -29,5 +29,17 @@
         <DependentUpon>EditPhoneNumberPopup.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Pages\ShopCartPopup.xaml.cs">
+        <DependentUpon>ShopCartPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\home.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\person.png" />
     </ItemGroup>
 </Project>

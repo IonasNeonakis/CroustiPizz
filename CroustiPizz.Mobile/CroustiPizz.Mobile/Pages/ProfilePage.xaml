@@ -1,23 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
-                       xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
-                       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                       x:Class="CroustiPizz.Mobile.Pages.ProfilePage"
-                       x:DataType="viewModels:ProfileViewModel"
-                       Title="Info Compte"
-                       NavigationPage.HasNavigationBar="False"
-                       BackgroundColor="#bc91d7"
-                       Padding="0, 35,0,0">
-
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="CroustiPizz.Mobile.Pages.ProfilePage"
+             Padding="0">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    
     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10,0,10,0">
-            <Frame BackgroundColor="Transparent" Padding="0" WidthRequest="40" HeightRequest="40" CornerRadius="20"
-                   HorizontalOptions="Start" />
-            <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="Black" />
-            <Button Text="X" BackgroundColor="White" Padding="0" WidthRequest="40" HeightRequest="40" CornerRadius="20" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0" >
+            <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="White" Margin="70,0,0,0"/>
+            <Button Text="X" BackgroundColor="White" Padding="0" WidthRequest="40" HeightRequest="40" CornerRadius="20" Command="{Binding CloseProfileCommand}"/>
         </StackLayout>
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -26,9 +32,10 @@
                 AbsoluteLayout.LayoutFlags="All"
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 Margin="0,40,0,0"
-                CornerRadius="60,60,0,0">
-                <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-                    <StackLayout Orientation="Horizontal" Margin="0,60,0,0" HorizontalOptions="CenterAndExpand">
+                CornerRadius="60,60,0,0"
+                Padding="0,0,0,10">
+                <StackLayout Orientation="Vertical" Padding="20,20,20,0">
+                    <StackLayout Orientation="Horizontal" Margin="0,40,0,0" HorizontalOptions="CenterAndExpand">
                         <Label Text="{Binding User.FirstName}" FontFamily="GilroyBold" TextColor="Black" />
                         <Label Text="{Binding User.LastName}" FontFamily="GilroyBold" TextColor="Black" />
                     </StackLayout>
@@ -127,12 +134,16 @@
                                         Command="{Binding EditPhoneNumberCommand}"/>
                                 </StackLayout>
                             </yummy:PancakeView>
-                            <Button Text="Sauvegarder" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="15"
-                                    Margin="0,50,0,0"
-                                    VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" 
-                                    Command="{Binding SaveProfileInformationCommand}"/>
                         </StackLayout>
                     </ScrollView>
+                    <Button Text="Sauvegarder" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="15"
+                            Margin="0,10,0,10"
+                            VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" 
+                            Command="{Binding SaveProfileInformationCommand}"/>
+                    
+                    <Button Text="Me déconnecter" BackgroundColor="Red" HeightRequest="50" CornerRadius="15"
+                            VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" 
+                            Command="{Binding LogoutCommand}"/>
                 </StackLayout>
             </yummy:PancakeView>
             <yummy:PancakeView AbsoluteLayout.LayoutFlags="All"
@@ -147,4 +158,4 @@
         <Label Text="{Binding User.Email}"></Label>
         <Label Text="{Binding User.PhoneNumber}"></Label>
     </StackLayout>-->
-</forms:BaseContentPage>
+</pages:PopupPage>
