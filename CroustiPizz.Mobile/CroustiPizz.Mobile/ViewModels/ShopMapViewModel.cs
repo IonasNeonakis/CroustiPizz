@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using CroustiPizz.Mobile.Controls;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
 using CroustiPizz.Mobile.Services;
@@ -29,14 +31,34 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _maMap;
             set => SetProperty(ref _maMap, value);
         }
-        
+
+        private bool _visible;
+
+        public bool Visible
+        {
+            get => _visible;
+            set => SetProperty(ref _visible, value);
+        }
+
+        private ShopItem _pizzeria;
+
+        public ShopItem Pizzeria
+        {
+            get => _pizzeria;
+            set => SetProperty(ref _pizzeria, value);
+        }
+
+        public ShopMapViewModel()
+        {
+            Visible = false;
+        }
 
 
         public override async Task OnResume()
         {
             await base.OnResume();
             
-            
+
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<ShopItem>> response = await service.ListShops();
@@ -62,23 +84,31 @@ namespace CroustiPizz.Mobile.ViewModels
                 
                 foreach (ShopItem unShop in Shops)
                 {
-                    Pin pin = new Pin
+                    BindablePin pin = new BindablePin
                     {
                         Label = unShop.Name,
                         Address = unShop.Address,
                         Type = PinType.Place,
                         Position = new Position(unShop.Latitude, unShop.Longitude)
                     };
+
+                    pin.MarkerClicked += (s, args) =>
+                    {
+                        args.HideInfoWindow = true;
+                        Visible = true;
+                        Pizzeria = unShop;
+                    };
                     
                     MaMap.Pins.Add(pin);
+
+                    MaMap.MapClicked += (s, e) =>
+                    {
+                        Visible = false;
+                    };
                 }
-                
-                
-                
-                
+
             }
-            
-            
+
         }
     }
 }

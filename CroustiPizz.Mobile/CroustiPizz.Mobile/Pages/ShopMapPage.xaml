@@ -22,7 +22,7 @@
                 <yummy:PancakeView 
                     AbsoluteLayout.LayoutFlags="All"
                     AbsoluteLayout.LayoutBounds="0,0,1,1.75"
-                    IsVisible="True" BackgroundColor="#EBEFF5" CornerRadius="15"
+                    IsVisible="{Binding Visible}" BackgroundColor="#EBEFF5" CornerRadius="15"
                                    Margin="10 ,10 ,10 ,10"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                                    Padding="0,0,0,0">
@@ -30,11 +30,11 @@
                                  VerticalOptions="Start"
                                  HorizontalOptions="Fill">
 
-                        <Label Text="NomPizzeria" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Center"
+                        <Label Text="{Binding Pizzeria.Name}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Center"
                                FontFamily="GilroyBold" FontSize="40" />
                         <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="FillAndExpand">
-                            <Label TextColor="White" Text="Starf je suis le tres grand texte qui arrive lma"
+                            <Label TextColor="White" Text="{Binding Pizzeria.Address}"
                                    Margin="10, 10, 10, 10 " VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="StartAndExpand"
                                    HorizontalTextAlignment="Center"
