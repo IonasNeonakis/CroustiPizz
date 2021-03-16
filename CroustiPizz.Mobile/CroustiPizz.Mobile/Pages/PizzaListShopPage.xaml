@@ -52,7 +52,7 @@
                                CornerRadius="16"
                                BackgroundColor="#EBEFF5"
                                HorizontalOptions="FillAndExpand">
-							<Entry Placeholder="Rechercher..."
+							<Entry Placeholder="Rechercher une Pizz'..."
                                    BackgroundColor="#EBEFF5"
                                    Visual="Material"
                                    TranslationY="2"
@@ -86,7 +86,7 @@
 												       Text="{Binding Name}"
 												       TextColor="Black"
 												       FontSize="Title" />
-												<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand"/>
+												<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand" MaxLines="1" LineBreakMode="TailTruncation"/>
 											</StackLayout>
 											
 											<FlexLayout Direction="Row"
