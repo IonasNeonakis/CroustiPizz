@@ -69,6 +69,7 @@ namespace CroustiPizz.Mobile.ViewModels
                         Type = PinType.Place,
                         Position = new Position(unShop.Latitude, unShop.Longitude)
                     };
+                    
                     MaMap.Pins.Add(pin);
                 }
                 
