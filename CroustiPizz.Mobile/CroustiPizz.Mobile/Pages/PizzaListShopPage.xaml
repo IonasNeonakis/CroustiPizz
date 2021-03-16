@@ -76,32 +76,38 @@
 									<pancakeView:PancakeView 
 										CornerRadius="24"
 										BackgroundColor="#EBEFF5"
-										Padding="10">
+										Padding="30">
 										<StackLayout>
-											<Image />
-											<Label FontAttributes="Bold"
-											       Text="{Binding Name}"
-											       TextColor="Black"
-											       FontSize="Title" />
-											<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand"/>
+											<!-- <pancakeView:PancakeView CornerRadius="24" > -->
+											<!-- 	<Image Source="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/1/image"/> -->
+											<!-- </pancakeView:PancakeView> -->
+											<StackLayout>
+												<Label FontAttributes="Bold"
+												       Text="{Binding Name}"
+												       TextColor="Black"
+												       FontSize="Title" />
+												<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand"/>
+											</StackLayout>
+											
 											<FlexLayout Direction="Row"
 											            AlignItems="Center"
 											            JustifyContent="SpaceBetween">
 												<Label
 													Text="{Binding Price}"
-													TextColor="#FA130B" />
+													TextColor="#FA130B" 
+													FontAttributes="Bold"/>
 												<Frame CornerRadius="60"
 												       IsClippedToBounds="True"
 												       Padding="0"
-												       WidthRequest="40"
 												       HeightRequest="40">
 													<Button FontAttributes="Bold"
-													        Text=">"
+													        Text="Détails"
 													        BackgroundColor="#FA130B"
 													        CornerRadius="1000"
 													        TextColor="White" />
 												</Frame>
 											</FlexLayout>
+											
 										</StackLayout>
 									</pancakeView:PancakeView>
 								</DataTemplate>
