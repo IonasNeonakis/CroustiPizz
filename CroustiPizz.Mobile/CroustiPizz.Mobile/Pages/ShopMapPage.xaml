@@ -19,16 +19,17 @@
                 VerticalOptions="FillAndExpand" Content="{Binding MaMap}" />
             
             
-                <yummy:PancakeView 
+                <yummy:PancakeView
                     AbsoluteLayout.LayoutFlags="All"
                     AbsoluteLayout.LayoutBounds="0,0,1,1.75"
+                    Opacity="0.92"
                     IsVisible="{Binding Visible}" BackgroundColor="#EBEFF5" CornerRadius="15"
                                    Margin="10 ,10 ,10 ,10"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="Center"
                                    Padding="0,0,0,0">
-                    <StackLayout HeightRequest="125" BackgroundColor="#4C4E52" Orientation="Vertical"
-                                 VerticalOptions="Start"
-                                 HorizontalOptions="Fill">
+                    <StackLayout  HeightRequest="125" BackgroundColor="#4C4E52" Orientation="Vertical"
+                                  VerticalOptions="Start"
+                                  HorizontalOptions="Fill">
 
                         <Label Text="{Binding Pizzeria.Name}" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Center"
                                FontFamily="GilroyBold" FontSize="40" />
@@ -39,9 +40,10 @@
                                    HorizontalOptions="StartAndExpand"
                                    HorizontalTextAlignment="Center"
                                    FontFamily="GilroyBold" FontSize="20" />
-                            <Button BackgroundColor="#FA130B" CornerRadius="15" TextColor="White" Text="Commander"
+                            <Button  BackgroundColor="#FA130B" CornerRadius="15" TextColor="White" Text="Commander"
                                     HeightRequest="40" HorizontalOptions="End"
-                                    FontFamily="GilroyBold" />
+                                    FontFamily="GilroyBold"
+                                    Command="{Binding ClickPizzeria}"/>
 
                         </StackLayout>
                     </StackLayout>

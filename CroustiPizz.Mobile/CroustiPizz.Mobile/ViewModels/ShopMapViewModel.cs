@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CroustiPizz.Mobile.Controls;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
+using Storm.Mvvm.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -51,7 +53,10 @@ namespace CroustiPizz.Mobile.ViewModels
         public ShopMapViewModel()
         {
             Visible = false;
+            ClickPizzeria = new Command(SelectionPizzeria);
         }
+        
+        public ICommand ClickPizzeria { get; }
 
 
         public override async Task OnResume()
@@ -97,6 +102,9 @@ namespace CroustiPizz.Mobile.ViewModels
                         args.HideInfoWindow = true;
                         Visible = true;
                         Pizzeria = unShop;
+                        
+                        Position position = new Position(unShop.Latitude, unShop.Longitude);
+                        MaMap.MoveToRegion(new MapSpan(position, 0.01, 0.01));
                     };
                     
                     MaMap.Pins.Add(pin);
@@ -108,6 +116,19 @@ namespace CroustiPizz.Mobile.ViewModels
                 }
 
             }
+
+        }
+
+        private void SelectionPizzeria()
+        {
+            INavigationService service = DependencyService.Get<INavigationService>();
+
+            service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+            {
+                {"ShopName", Pizzeria.Name},
+                {"ShopId", Pizzeria.Id}
+            });
+            
 
         }
     }
