@@ -35,7 +35,8 @@ namespace CroustiPizz.Mobile.ViewModels
 		    INavigationService navigationService = DependencyService.Get<INavigationService>();
 		    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
 		    {
-			    {"ShopName", obj.Name}
+			    {"ShopName", obj.Name},
+			    {"ShopId", obj.Id}
 		    });
 	    }
 

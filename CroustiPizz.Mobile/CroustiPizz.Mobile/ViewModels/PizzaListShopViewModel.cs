@@ -29,6 +29,14 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shopName, value);
         }
 
+        private long _shopId;
+
+        public long ShopId
+        {
+            get => _shopId;
+            set => SetProperty(ref _shopId, value);
+        }
+
         public ICommand SelectedCommand { get; }
 
         public PizzaListShopViewModel()
@@ -48,7 +56,8 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             base.Initialize(navigationParameters);
 
-            ShopName = GetNavigationParameter<string>("ShopName"); 
+            ShopName = GetNavigationParameter<string>("ShopName");
+            ShopId = GetNavigationParameter<long>("ShopId");
         }
 
         public override async Task OnResume()
@@ -77,8 +86,8 @@ namespace CroustiPizz.Mobile.ViewModels
             // Pizzas.Add(pizzaItem2);
             
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
-            
-            Response<List<PizzaItem>> response = await service.ListPizzas(1);
+
+            Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
             
             if (response.IsSuccess)
             {

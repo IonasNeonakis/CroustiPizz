@@ -11,7 +11,7 @@ namespace CroustiPizz.Mobile.Services
     {
         Task<Response<List<ShopItem>>> ListShops();
 
-        Task<Response<List<PizzaItem>>> ListPizzas(int shopId);
+        Task<Response<List<PizzaItem>>> ListPizzas(long shopId);
 
         Task<Response<List<OrderItem>>> ListOrders();
 
@@ -31,7 +31,7 @@ namespace CroustiPizz.Mobile.Services
 	        return await _apiService.Get<Response<List<ShopItem>>>(Urls.LIST_SHOPS);
         }
 
-        public async Task<Response<List<PizzaItem>>> ListPizzas(int shopId)
+        public async Task<Response<List<PizzaItem>>> ListPizzas(long shopId)
         {
             return await _apiService.Get<Response<List<PizzaItem>>>(Urls.LIST_PIZZA.Replace("{shopId}", shopId.ToString()));
         }
