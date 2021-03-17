@@ -1,26 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using CroustiPizz.Mobile.ViewModels;
-using Storm.Mvvm.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShopListPage : ContentView
+    public partial class OrdersPage : ContentView
     {
-        public ShopListPage()
+        public OrdersPage()
         {
-            BindingContext = new ShopListViewModel();
+            BindingContext = new OrdersViewModel();
             InitializeComponent();
         }
-        
+
         protected override async void OnParentSet()
         {
             base.OnParentSet();
 
-            if (BindingContext is ShopListViewModel shopListViewModel)
+            if (BindingContext is OrdersViewModel ordersViewModel)
             {
-                await shopListViewModel.OnResume();
+                await ordersViewModel.OnResume();
             }
         }
     }

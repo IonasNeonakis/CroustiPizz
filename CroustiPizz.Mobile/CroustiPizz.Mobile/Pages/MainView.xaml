@@ -13,7 +13,7 @@
                            VerticalOptions="FillAndExpand">
             <pages:ShopMapPage/>
             <pages:ShopListPage/>
-            <pages:ShopListPage/>
+            <pages:OrdersPage/>
             <pages:ProfilePage/>
         </tabs:ViewSwitcher>
 
