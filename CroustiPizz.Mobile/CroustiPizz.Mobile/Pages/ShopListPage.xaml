@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
-                       xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
-                       xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
-                       xmlns:extensions="clr-namespace:CroustiPizz.Mobile.Extensions;assembly=CroustiPizz.Mobile"
-                       x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
-                       x:DataType="viewModels:ShopListViewModel">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+             xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
+             xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
+             xmlns:extensions="clr-namespace:CroustiPizz.Mobile.Extensions;assembly=CroustiPizz.Mobile"
+             x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
+             x:DataType="viewModels:ShopListViewModel">
     <ContentView.Content>
         <StackLayout>
             <ListView ItemsSource="{Binding Shops}"
-                      SelectionMode="None"
-            >
+                      SelectionMode="None">
                 <ListView.Behaviors>
-                    <extensions:ListViewItemTappedBehavior Command="{Binding SelectedCommand}"/>
+                    <extensions:ListViewItemTappedBehavior Command="{Binding SelectedCommand}" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell x:DataType="pizzas:ShopItem">
                             <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}"
-                                />
-                                <Label Text="{Binding Address}"
-                                />
+                                <Label Text="{Binding Name}" />
+                                <Label Text="{Binding Address}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

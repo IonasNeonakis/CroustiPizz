@@ -26,6 +26,8 @@ namespace CroustiPizz.Mobile.iOS
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.FormsMaps.Init();
             LoadApplication(new App());
+            
+            Sharpnado.Tabs.iOS.Preserver.Preserve();
 
             return base.FinishedLaunching(app, options);
         }

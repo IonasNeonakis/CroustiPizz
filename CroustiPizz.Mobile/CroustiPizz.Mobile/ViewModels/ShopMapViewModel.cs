@@ -55,38 +55,39 @@ namespace CroustiPizz.Mobile.ViewModels
             Visible = false;
             ClickPizzeria = new Command(SelectionPizzeria);
         }
-        
-        public ICommand ClickPizzeria { get; }
 
+        public ICommand ClickPizzeria { get; }
 
         public override async Task OnResume()
         {
             await base.OnResume();
             
-
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
-
             Response<List<ShopItem>> response = await service.ListShops();
 
             if (response.IsSuccess)
             {
                 Shops = new ObservableCollection<ShopItem>(response.Data);
-
                 Position position;
                 MapSpan mapSpan;
                 Location location = await Geolocation.GetLastKnownLocationAsync();
-                if (location != null) {
+                
+                if (location != null)
+                {
                     position = new Position(location.Latitude, location.Longitude);
                     mapSpan = new MapSpan(position, 0.01, 0.01);
-                }else {
+                }
+                else
+                {
                     position = new Position(46.4547, 2.2529);
                     mapSpan = new MapSpan(position, 12, 12);
                 }
+
                 MaMap = new Map(mapSpan)
                 {
                     IsShowingUser = true
                 };
-                
+
                 foreach (ShopItem unShop in Shops)
                 {
                     BindablePin pin = new BindablePin
@@ -102,34 +103,26 @@ namespace CroustiPizz.Mobile.ViewModels
                         args.HideInfoWindow = true;
                         Visible = true;
                         Pizzeria = unShop;
-                        
+
                         Position position = new Position(unShop.Latitude, unShop.Longitude);
                         MaMap.MoveToRegion(new MapSpan(position, 0.01, 0.01));
                     };
-                    
+
                     MaMap.Pins.Add(pin);
-
-                    MaMap.MapClicked += (s, e) =>
-                    {
-                        Visible = false;
-                    };
+                    MaMap.MapClicked += (s, e) => { Visible = false; };
                 }
-
             }
-
         }
 
         private void SelectionPizzeria()
         {
             INavigationService service = DependencyService.Get<INavigationService>();
 
-            /*service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+            service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
             {
                 {"ShopName", Pizzeria.Name},
                 {"ShopId", Pizzeria.Id}
-            });*/
-            
-
+            });
         }
     }
 }

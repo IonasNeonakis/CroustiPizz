@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : PopupPage
+    public partial class ProfilePage : ContentView
     {
         public ProfilePage()
         {

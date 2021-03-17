@@ -1,117 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentView
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-	xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
-	x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
-	NavigationPage.HasNavigationBar="False"
-	BackgroundColor="White">
-	<ContentView.Resources>
-		<converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
-		<x:String x:Key="Grey">#EBEFF5</x:String>
-		<x:String x:Key="Red">#FA130B</x:String>
-	</ContentView.Resources>
-	<ContentView.Content>
-		<StackLayout BackgroundColor="#EBEFF5">
-			<pancakeView:PancakeView CornerRadius="0, 0, 36, 36"
+
+<forms:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
+    xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+    x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="White">
+    <forms:BaseContentPage.Resources>
+        <converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+        <x:String x:Key="Grey">#EBEFF5</x:String>
+        <x:String x:Key="Red">#FA130B</x:String>
+    </forms:BaseContentPage.Resources>
+    <forms:BaseContentPage.Content>
+        <StackLayout BackgroundColor="#EBEFF5">
+            <pancakeView:PancakeView CornerRadius="0, 0, 36, 36"
                                      BackgroundColor="White"
                                      VerticalOptions="FillAndExpand">
-				<StackLayout
+                <StackLayout
                     Margin="24, 24, 24, 24">
-					<FlexLayout
+                    <FlexLayout
                         Direction="Row"
                         JustifyContent="SpaceBetween">
-						<Frame CornerRadius="16"
+                        <Frame CornerRadius="15"
                                HasShadow="False"
-                               BackgroundColor="#EBEFF5">
-							<ImageButton
+                               BackgroundColor="#EBEFF5"
+                               Padding="0"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                               IsClippedToBounds="True">
+                            <ImageButton
                                 HorizontalOptions="Start"
-                                Source="outline_menu_black_24dp" />
-						</Frame>
-						<Frame CornerRadius="15"
+                                Source="back.png"
+                                Command="{Binding BackCommand}"
+                                BackgroundColor="#EBEFF5"
+                                Padding="10"/>
+                        </Frame>
+                        <Frame CornerRadius="15"
                                IsClippedToBounds="True"
                                Padding="0"
                                Margin="0,0,10,0"
                                WidthRequest="40"
                                HeightRequest="40">
-							<ImageButton BackgroundColor="Bisque" Source="cart.png" Padding="10" Command="{Binding GoToCartCommand}"/>
-						</Frame>
-					</FlexLayout>
-					<Label Text="{Binding ShopName}"
+                            <ImageButton BackgroundColor="Bisque" Source="cart.png" Padding="10"
+                                         Command="{Binding GoToCartCommand}" />
+                        </Frame>
+                    </FlexLayout>
+                    <Label Text="{Binding ShopName}"
                            FontAttributes="Bold"
                            FontSize="Title"
                            TextColor="Black"
-                           Margin="0, 8, 0, 0"/>
-					<StackLayout Orientation="Horizontal"
-					             Margin="0, 8, 0, 0">
-						<Frame Padding="0"
+                           Margin="0, 8, 0, 0" />
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="0, 8, 0, 0">
+                        <Frame Padding="0"
                                CornerRadius="16"
                                BackgroundColor="#EBEFF5"
                                HorizontalOptions="FillAndExpand">
-							<Entry Placeholder="Rechercher une Pizz'..."
+                            <Entry Placeholder="Rechercher une Pizz'..."
                                    BackgroundColor="#EBEFF5"
                                    Visual="Material"
                                    TranslationY="2"
                                    FontSize="20" />
-						</Frame>
-						<Frame CornerRadius="16"
+                        </Frame>
+                        <Frame CornerRadius="16"
                                IsClippedToBounds="True"
                                Padding="0"
                                Margin="8, 0, 0, 0">
-							<Button BackgroundColor="#FA130B"
+                            <Button BackgroundColor="#FA130B"
                                     Text="Filtres"
                                     TextColor="White" />
-						</Frame>
-					</StackLayout>
-					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20" Margin="0, 16, 0, 0">
-						<CarouselView.ItemsLayout>
-							<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
-						</CarouselView.ItemsLayout>
-						<CarouselView.ItemTemplate>
-								<DataTemplate>
-									<pancakeView:PancakeView 
-										CornerRadius="24"
-										BackgroundColor="#EBEFF5"
-										Padding="30">
-										<StackLayout>
-											<!-- <pancakeView:PancakeView CornerRadius="24" > -->
-											<!-- 	<Image Source="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/1/image"/> -->
-											<!-- </pancakeView:PancakeView> -->
-											<StackLayout>
-												<Label FontAttributes="Bold"
-												       Text="{Binding Name}"
-												       TextColor="Black"
-												       FontSize="Title" />
-												<Label Text="{Binding Description}" FontSize="Subtitle" VerticalOptions="FillAndExpand" MaxLines="1" LineBreakMode="TailTruncation"/>
-											</StackLayout>
-											
-											<FlexLayout Direction="Row"
-											            AlignItems="Center"
-											            JustifyContent="SpaceBetween">
-												<Label
-													Text="{Binding Price}"
-													TextColor="#FA130B" 
-													FontAttributes="Bold"/>
-												<Frame CornerRadius="60"
-												       IsClippedToBounds="True"
-												       Padding="0"
-												       HeightRequest="40">
-													<Button FontAttributes="Bold"
-													        Text="Détails"
-													        BackgroundColor="#FA130B"
-													        CornerRadius="1000"
-													        TextColor="White" />
-												</Frame>
-											</FlexLayout>
-											
-										</StackLayout>
-									</pancakeView:PancakeView>
-								</DataTemplate>
-							</CarouselView.ItemTemplate>
-						</CarouselView>
-				</StackLayout>
-			</pancakeView:PancakeView>
-		</StackLayout>
-	</ContentView.Content>
-</ContentView>
+                        </Frame>
+                    </StackLayout>
+                    <CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20"
+                                  Margin="0, 16, 0, 0">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <pancakeView:PancakeView
+                                    CornerRadius="24"
+                                    BackgroundColor="#EBEFF5"
+                                    Padding="30">
+                                    <StackLayout>
+                                        <!-- <pancakeView:PancakeView CornerRadius="24" > -->
+                                        <!-- 	<Image Source="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/1/image"/> -->
+                                        <!-- </pancakeView:PancakeView> -->
+                                        <StackLayout>
+                                            <Label FontAttributes="Bold"
+                                                   Text="{Binding Name}"
+                                                   TextColor="Black"
+                                                   FontSize="Title" />
+                                            <Label Text="{Binding Description}" FontSize="Subtitle"
+                                                   VerticalOptions="FillAndExpand" MaxLines="1"
+                                                   LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+
+                                        <FlexLayout Direction="Row"
+                                                    AlignItems="Center"
+                                                    JustifyContent="SpaceBetween">
+                                            <Label
+                                                Text="{Binding Price}"
+                                                TextColor="#FA130B"
+                                                FontAttributes="Bold" />
+                                            <Frame CornerRadius="60"
+                                                   IsClippedToBounds="True"
+                                                   Padding="0"
+                                                   HeightRequest="40">
+                                                <Button FontAttributes="Bold"
+                                                        Text="Détails"
+                                                        BackgroundColor="#FA130B"
+                                                        CornerRadius="1000"
+                                                        TextColor="White" />
+                                            </Frame>
+                                        </FlexLayout>
+
+                                    </StackLayout>
+                                </pancakeView:PancakeView>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+            </pancakeView:PancakeView>
+        </StackLayout>
+    </forms:BaseContentPage.Content>
+</forms:BaseContentPage>

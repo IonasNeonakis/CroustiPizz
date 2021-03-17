@@ -28,40 +28,30 @@ namespace CroustiPizz.Mobile.ViewModels
 	    public ShopListViewModel()
 	    {
 		    SelectedCommand = new Command<ShopItem>(SelectedAction);
-		    Shops = new ObservableCollection<ShopItem>();
-		    Shops.Add(new ShopItem()
-		    {
-			    Address = "ionas ton gros zgeg",
-			    Id = 1,
-			    Latitude = 2,
-			    Longitude = 2,
-			    Name = "ionas je te deteste gros chien de merde",
-			    MinutesPerKilometer = 63
-		    });
 	    }
 
 	    private void SelectedAction(ShopItem obj)
 	    {
 		    INavigationService navigationService = DependencyService.Get<INavigationService>();
-		    /*navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+		    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
 		    {
 			    {"ShopName", obj.Name},
 			    {"ShopId", obj.Id}
-		    });*/
+		    });
 	    }
 
 	    public override async Task OnResume()
         {
 	        await base.OnResume();
 
-	        /*IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
+	        IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
 	        Response<List<ShopItem>> response = await service.ListShops();
 
 	        if (response.IsSuccess)
 	        {
 				Shops = new ObservableCollection<ShopItem>(response.Data);
-	        }*/
+	        }
         }
     }
 }

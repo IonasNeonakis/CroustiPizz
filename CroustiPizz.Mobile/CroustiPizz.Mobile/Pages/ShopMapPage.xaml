@@ -7,8 +7,7 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="CroustiPizz.Mobile.Pages.ShopMapPage"
              x:DataType="viewModels:ShopMapViewModel"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
     <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
         <ContentView
@@ -16,8 +15,6 @@
             AbsoluteLayout.LayoutBounds="0,0,1,1"
 
             VerticalOptions="FillAndExpand" Content="{Binding MaMap}" />
-
-
         <yummy:PancakeView
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0,0,1,1.75"

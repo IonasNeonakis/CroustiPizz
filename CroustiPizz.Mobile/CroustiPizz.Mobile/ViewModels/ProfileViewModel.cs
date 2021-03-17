@@ -192,7 +192,8 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void CloseProfileAction()
         {
-            PopupNavigation.Instance.PopAsync();
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PopAsync();
         }
     }
 }

@@ -8,6 +8,7 @@ using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
+using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -40,15 +41,16 @@ namespace CroustiPizz.Mobile.ViewModels
 
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
+        
+        public ICommand BackCommand { get; }
 
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
             GoToCartCommand = new Command(GoToCartAction);
+            BackCommand = new Command(BackAction);
+            
             Pizzas = new ObservableCollection<PizzaItem>();
-            
-            // Pizzas = new ObservableCollection<PizzaItem>();
-            
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -81,6 +83,12 @@ namespace CroustiPizz.Mobile.ViewModels
         public void GoToCartAction()
         {
             PopupNavigation.Instance.PushAsync(new ShopCartPopup());
+        }
+        
+        public void BackAction()
+        {
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PopAsync();
         }
     }
 }

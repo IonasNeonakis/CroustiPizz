@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PizzaListShopPage : ContentView
+    public partial class PizzaListShopPage : BaseContentPage
     {
         public PizzaListShopPage()
         {
