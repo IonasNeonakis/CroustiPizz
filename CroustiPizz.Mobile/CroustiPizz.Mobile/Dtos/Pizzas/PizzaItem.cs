@@ -18,5 +18,8 @@ namespace CroustiPizz.Mobile.Dtos.Pizzas
         
         [JsonProperty("out_of_stock")]
         public bool OutOfStock { get; set; }
+        
+        public string Url { get; set; }
+
     }
 }

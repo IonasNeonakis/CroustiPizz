@@ -10,6 +10,7 @@ using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
 using Storm.Mvvm.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
@@ -74,27 +75,6 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             await base.OnResume();
 
-            // PizzaItem pizzaItem = new PizzaItem
-            // {
-            //     Id = 1,
-            //     Name = "truc",
-            //     Description = "Du jambon, des olives, des grenouilles, du sel, des tomates, du gruyère râpé",
-            //     Price = 10,
-            //     OutOfStock = false
-            // };
-            //
-            // PizzaItem pizzaItem2 = new PizzaItem
-            // {
-            //     Id = 2,
-            //     Name = "trucMachain",
-            //     Description = "Ntm LOLXD",
-            //     Price = 10,
-            //     OutOfStock = false
-            // };
-            //
-            // Pizzas.Add(pizzaItem);
-            // Pizzas.Add(pizzaItem2);
-            
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
@@ -102,12 +82,9 @@ namespace CroustiPizz.Mobile.ViewModels
             if (response.IsSuccess)
             {
                 Pizzas = new ObservableCollection<PizzaItem>(response.Data);
+                Pizzas.ForEach(el => el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image");
             }
         }
-
-        public string GetPizzaPicture(PizzaItem pizzaItem)
-        {
-            return "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + pizzaItem.Id + "/image";
-        }
+        
     }
 }

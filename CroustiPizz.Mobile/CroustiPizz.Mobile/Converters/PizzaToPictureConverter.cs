@@ -10,8 +10,16 @@ namespace CroustiPizz.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            long pizzaId = (long) value;
-            return "https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/" + pizzaId + "/image";
+            PizzaItem pizzaId = (PizzaItem) value;
+            VisualElement sender = parameter as VisualElement;
+            PizzaListShopViewModel viewModel = sender?.BindingContext as PizzaListShopViewModel;
+
+            if (viewModel != null)
+            {
+                return "https://pizza.julienmialon.ovh/api/v1/shops/" + viewModel.ShopId + "/pizzas/" + pizzaId.Id + "/image";
+            }
+
+            return "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
