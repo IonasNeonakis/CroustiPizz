@@ -22,23 +22,33 @@
             Margin="10 ,10 ,10 ,10"
             HorizontalOptions="FillAndExpand" VerticalOptions="Center"
             Padding="0,0,0,0">
-            <StackLayout HeightRequest="125" BackgroundColor="#4C4E52" Orientation="Vertical"
+            <yummy:PancakeView.Shadow>
+                <yummy:DropShadow Color="#000000" Offset="10,10" />
+            </yummy:PancakeView.Shadow>
+            <StackLayout HeightRequest="125" BackgroundColor="White" Orientation="Vertical"
                          VerticalOptions="Start"
-                         HorizontalOptions="Fill">
+                         HorizontalOptions="Fill"
+                         Padding="0,10,0,0">
 
                 <Label Text="{Binding Pizzeria.Name}" VerticalOptions="StartAndExpand"
                        HorizontalTextAlignment="Center"
+                       TextColor="Black"
                        FontFamily="GilroyBold" FontSize="40" />
                 <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"
-                             HorizontalOptions="FillAndExpand">
-                    <Label TextColor="White" Text="{Binding Pizzeria.Address}"
-                           Margin="10, 10, 10, 10 " VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="FillAndExpand"
+                             Padding="0,0,10,10">
+                    <Label Text="{Binding Pizzeria.Address}"
                            HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
                            HorizontalTextAlignment="Center"
-                           FontFamily="GilroyBold" FontSize="20" />
-                    <Button BackgroundColor="#FA130B" CornerRadius="15" TextColor="White" Text="Commander"
-                            HeightRequest="40" HorizontalOptions="End"
+                           FontFamily="GilroyBold" />
+                    <Button BackgroundColor="#FA130B" 
+                            CornerRadius="15" 
+                            TextColor="White" 
+                            Text="Commander"
+                            HorizontalOptions="End"
                             FontFamily="GilroyBold"
+                            FontSize="Large"
                             Command="{Binding ClickPizzeria}" />
 
                 </StackLayout>

@@ -10,7 +10,9 @@
     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0" >
             <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="Black" Margin="70,0,0,0"/>
-            <Button Text="X" BackgroundColor="#FA130B" TextColor="White" Padding="0" WidthRequest="40" HeightRequest="40" CornerRadius="20" Command="{Binding CloseProfileCommand}"/>
+            <yummy:PancakeView Padding="0" BackgroundColor="#EBEFF5" WidthRequest="40" HeightRequest="40" CornerRadius="20">
+                <ImageButton Source="logout.png" BackgroundColor="#EBEFF5" Padding="5" WidthRequest="20" HeightRequest="20" Command="{Binding CloseProfileCommand}"/>
+            </yummy:PancakeView>
         </StackLayout>
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">

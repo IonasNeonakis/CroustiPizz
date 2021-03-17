@@ -74,6 +74,7 @@
         <AndroidResource Include="Resources\drawable\cart.png" />
         <AndroidResource Include="Resources\drawable\home.png" />
         <AndroidResource Include="Resources\drawable\list.png" />
+        <AndroidResource Include="Resources\drawable\logout.png" />
         <AndroidResource Include="Resources\drawable\map.png" />
         <AndroidResource Include="Resources\drawable\person.png" />
         <AndroidResource Include="Resources\drawable\pizza.png" />
