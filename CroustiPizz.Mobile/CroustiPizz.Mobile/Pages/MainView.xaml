@@ -11,10 +11,10 @@
                            SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
                            xmlns:tabs="http://sharpnado.com"
                            VerticalOptions="FillAndExpand">
-            <pages:ShopMapPage/>
-            <pages:ShopListPage/>
-            <pages:OrdersPage/>
-            <pages:ProfilePage/>
+            <pages:ShopMapPage />
+            <pages:ShopListPage />
+            <pages:OrdersPage />
+            <pages:ProfilePage />
         </tabs:ViewSwitcher>
 
         <tabs:TabHostView forms:Grid.Row="2"
@@ -26,36 +26,18 @@
             <tabs:TabHostView.Tabs>
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="map.png"
-                                    Label="Map"/>
+                                    Label="Map" />
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="list.png"
                                     Label="Liste" />
-
-                <!--  Circle button  -->
-                <!--<tabs:TabButton ButtonBackgroundColor="Accent"
-                                ButtonCircleSize="60"
-                                ButtonPadding="15"
-                                IconImageSource="theme.png"
-                                Scale="1.3"
-                                TranslationY="-10" />-->
 
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="pizza.png"
                                     Label="Commandes" />
                 <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
                                     IconImageSource="person.png"
-                                    Label="Profile"
-                                    />
+                                    Label="Profil" />
             </tabs:TabHostView.Tabs>
         </tabs:TabHostView>
     </StackLayout>
 </ContentPage>
-
-<!--<xamarinForms:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
-            xmlns:xamarinForms="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
-            x:Class="CroustiPizz.Mobile.Pages.MainView">
-    <pages:ShopMapPage Title="Carte"/>
-    <pages:ShopListPage Title="Liste"/>
-</xamarinForms:BottomBarPage >-->
