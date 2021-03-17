@@ -18,5 +18,15 @@ namespace CroustiPizz.Mobile.Pages
             InitializeComponent();
             BindingContext = new ProfileViewModel();
         }
+
+        protected override async void OnParentSet()
+        {
+            base.OnParentSet();
+
+            if (BindingContext is ProfileViewModel profileViewModel)
+            {
+                await profileViewModel.OnResume();
+            }
+        }
     }
 }

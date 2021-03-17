@@ -11,7 +11,7 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0" >
             <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="Black" Margin="70,0,0,0"/>
             <yummy:PancakeView Padding="0" BackgroundColor="#EBEFF5" WidthRequest="40" HeightRequest="40" CornerRadius="20">
-                <ImageButton Source="logout.png" BackgroundColor="#EBEFF5" Padding="5" WidthRequest="20" HeightRequest="20" Command="{Binding CloseProfileCommand}"/>
+                <ImageButton Source="logout.png" BackgroundColor="#EBEFF5" Padding="8" WidthRequest="20" HeightRequest="20" Command="{Binding CloseProfileCommand}"/>
             </yummy:PancakeView>
         </StackLayout>
 
@@ -135,14 +135,9 @@
                                HeightRequest="100"
                                AbsoluteLayout.LayoutBounds="0.5, 0"
                                AbsoluteLayout.LayoutFlags="PositionProportional"
-                               BackgroundColor="Blue"
-                               CornerRadius="100" />
+                               CornerRadius="30">
+                <Image Source="chien.jpg" Aspect="AspectFill"/>
+            </yummy:PancakeView>
         </AbsoluteLayout>
     </StackLayout>
-    <!--<StackLayout>
-        <Label Text="{Binding User.FirstName}"></Label>
-        <Label Text="{Binding User.LastName}"></Label>
-        <Label Text="{Binding User.Email}"></Label>
-        <Label Text="{Binding User.PhoneNumber}"></Label>
-    </StackLayout>-->
 </ContentView>
