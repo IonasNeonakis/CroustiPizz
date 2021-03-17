@@ -72,24 +72,12 @@ namespace CroustiPizz.Mobile.ViewModels
             SaveProfileInformationCommand = new Command(SaveProfileInformationAction);
             LogoutCommand = new Command(LogoutAction);
             CloseProfileCommand = new Command(CloseProfileAction);
-
-            // supprimer ça et decommenter le bas
-            _user = new UserProfileResponse
-            {
-                Email = "samir.toularhmine@etu.univ-orleans.fr", FirstName = "Samir", LastName = "Toularhmine",
-                PhoneNumber = "0769303486"
-            };
-
-            NewPassword = "************";
-            NewMail = _user.Email;
-            NewPhoneNumber = _user.PhoneNumber;
         }
 
         public override async Task OnResume()
         {
             await base.OnResume();
-
-            /*
+            
             IUserApiService service = DependencyService.Get<IUserApiService>();
             Response<UserProfileResponse> response = await service.GetUser();
 
@@ -101,12 +89,14 @@ namespace CroustiPizz.Mobile.ViewModels
                     PhoneNumber = response.Data.PhoneNumber
                 };
                 User = response.Data;
+                NewMail = User.Email;
+                NewPassword = "***************";
+                NewPhoneNumber = User.PhoneNumber;
             }
             else
             {
                 //@TODO gestion d'erreur
             }
-            */
         }
 
         private async void EditPasswordAction()
