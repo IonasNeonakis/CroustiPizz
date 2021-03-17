@@ -10,7 +10,7 @@
                        NavigationPage.HasNavigationBar="False "
                        BackgroundColor="White">
 	<forms:BaseContentPage.Resources>
-		<converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
+		<converters:PizzaToPictureConverter x:Key="PizzaToPictureConverter" />
 		<x:String x:Key="Grey">#EBEFF5</x:String>
 		<x:String x:Key="Red">#FA130B</x:String>
 	</forms:BaseContentPage.Resources>
@@ -67,7 +67,7 @@
                                     TextColor="White" />
 						</Frame>
 					</StackLayout>
-					<CarouselView ItemsSource="{Binding Pizzas}" WidthRequest="0" PeekAreaInsets="20" Margin="0, 16, 0, 0">
+					<CarouselView ItemsSource="{Binding Pizzas}"  WidthRequest="0" PeekAreaInsets="20" Margin="0, 16, 0, 0">
 						<CarouselView.ItemsLayout>
 							<LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
 						</CarouselView.ItemsLayout>
@@ -76,11 +76,20 @@
 									<pancakeView:PancakeView 
 										CornerRadius="24"
 										BackgroundColor="#EBEFF5"
-										Padding="30">
-										<StackLayout>
-											<!-- <pancakeView:PancakeView CornerRadius="24" > -->
-											<!-- 	<Image Source="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/1/image"/> -->
-											<!-- </pancakeView:PancakeView> -->
+										Padding="30"
+										x:DataType="pizzas:PizzaItem">
+										<StackLayout
+											VerticalOptions="FillAndExpand">
+											<pancakeView:PancakeView CornerRadius="24" >
+											 	<Image>
+												    <Image.Source>
+													    <MultiBinding StringFormat="https://pizza.julienmialon.ovh/api/v1/shops/1/pizzas/{0}/image">
+														    <!-- <Binding Path="ShopId"/> -->
+														    <Binding Path="Id"/>
+													    </MultiBinding>
+												    </Image.Source>
+											    </Image>
+											</pancakeView:PancakeView> 
 											<StackLayout>
 												<Label FontAttributes="Bold"
 												       Text="{Binding Name}"
@@ -92,10 +101,14 @@
 											<FlexLayout Direction="Row"
 											            AlignItems="Center"
 											            JustifyContent="SpaceBetween">
-												<Label
-													Text="{Binding Price}"
-													TextColor="#FA130B" 
-													FontAttributes="Bold"/>
+												
+												<StackLayout Orientation="Horizontal">
+													<Label
+														Text="{Binding Price, StringFormat='{0:0.00} €'}"
+														TextColor="#FA130B" 
+														FontAttributes="Bold"
+														FontSize="Title"/>
+												</StackLayout>
 												<Frame CornerRadius="60"
 												       IsClippedToBounds="True"
 												       Padding="0"
@@ -107,6 +120,33 @@
 													        TextColor="White" />
 												</Frame>
 											</FlexLayout>
+											
+											<StackLayout Orientation="Horizontal">
+												
+												<!-- <pancakeView:PancakeView VerticalOptions="CenterAndExpand" -->
+												<!--                          Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="2000" -->
+												<!--                          WidthRequest="50" HorizontalOptions="StartAndExpand"> -->
+												<!-- 	<Button Text="-" BackgroundColor="White" HorizontalOptions="CenterAndExpand" -->
+												<!-- 	             VerticalOptions="CenterAndExpand" Padding="15" -->
+												<!-- 	             Command="{Binding LessCommand}" /> -->
+												<!-- </pancakeView:PancakeView> -->
+												<!-- -->
+												<!-- <Label Text="{Binding ItemQuantity}" FontSize="Subtitle"></Label> -->
+												<!-- -->
+												<!-- <pancakeView:PancakeView VerticalOptions="CenterAndExpand" -->
+												<!--                          Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="2000" -->
+												<!--                          WidthRequest="50" HorizontalOptions="StartAndExpand"> -->
+												<!-- 	<Button Text="+" BackgroundColor="White" HorizontalOptions="CenterAndExpand" -->
+												<!-- 	        VerticalOptions="CenterAndExpand" Padding="15" -->
+												<!-- 	        Command="{Binding MoreCommand}" /> -->
+												<!-- </pancakeView:PancakeView> -->
+												
+											</StackLayout>
+											
+											<StackLayout Orientation="Horizontal" VerticalOptions="End">
+												<Button BackgroundColor="#FA130B" TextColor="White" CornerRadius="20" 
+												        Text="AJOUTER AU PANIER" HorizontalOptions="FillAndExpand" />
+											</StackLayout>
 											
 										</StackLayout>
 									</pancakeView:PancakeView>

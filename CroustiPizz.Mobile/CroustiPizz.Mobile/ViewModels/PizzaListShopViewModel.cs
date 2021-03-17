@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
+using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -49,7 +51,15 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void SelectedAction(PizzaItem obj)
         {
-            
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PushAsync<PizzaDetailsPage>(new Dictionary<string, object>()
+            {
+                {"PizzaImage", ShopId},
+                {"PizzaId", obj.Id},
+                {"PizzaName", obj.Name},
+                {"PizzaDescription", obj.Description},
+                {"PizzaPrice", obj.Price}
+            });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -93,6 +103,11 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 Pizzas = new ObservableCollection<PizzaItem>(response.Data);
             }
+        }
+
+        public string GetPizzaPicture(PizzaItem pizzaItem)
+        {
+            return "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + pizzaItem.Id + "/image";
         }
     }
 }

@@ -25,20 +25,20 @@ namespace CroustiPizz.Mobile.ViewModels
 
 		public ICommand SelectedCommand { get; }
 
-	    public ShopListViewModel()
-	    {
+		public ShopListViewModel()
+		{
 		    SelectedCommand = new Command<ShopItem>(SelectedAction);
-	    }
+		}
 
-	    private void SelectedAction(ShopItem obj)
-	    {
+		private void SelectedAction(ShopItem obj)
+		{
 		    INavigationService navigationService = DependencyService.Get<INavigationService>();
 		    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
 		    {
 			    {"ShopName", obj.Name},
 			    {"ShopId", obj.Id}
 		    });
-	    }
+		}
 
 	    public override async Task OnResume()
         {
