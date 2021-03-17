@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using CroustiPizz.Mobile.Pages;
 using Rg.Plugins.Popup.Contracts;
 using Rg.Plugins.Popup.Services;
@@ -91,6 +92,14 @@ namespace CroustiPizz.Mobile.ViewModels
              ShowingOrders = false;
              ShowingProfile = true;*/
              PopupNavigation.Instance.PushAsync(new ProfilePage());
+         }
+
+         public override async Task OnResume()
+         {
+            await base.OnResume();
+            
+            ShopMapViewModel shopMapViewModel = new ShopMapViewModel();
+            await shopMapViewModel.OnResume();
          }
     }
 }

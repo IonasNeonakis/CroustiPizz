@@ -123,11 +123,11 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             INavigationService service = DependencyService.Get<INavigationService>();
 
-            service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+            /*service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
             {
                 {"ShopName", Pizzeria.Name},
                 {"ShopId", Pizzeria.Id}
-            });
+            });*/
             
 
         }

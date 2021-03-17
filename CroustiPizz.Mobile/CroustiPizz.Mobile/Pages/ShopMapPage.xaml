@@ -9,46 +9,44 @@
              x:DataType="viewModels:ShopMapViewModel"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              NavigationPage.HasNavigationBar="False">
-    <ContentView.Content>
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
 
-            <ContentView
-                AbsoluteLayout.LayoutFlags="All"
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
+        <ContentView
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
 
-                VerticalOptions="FillAndExpand" Content="{Binding MaMap}" />
+            VerticalOptions="FillAndExpand" Content="{Binding MaMap}" />
 
 
-            <yummy:PancakeView
-                AbsoluteLayout.LayoutFlags="All"
-                AbsoluteLayout.LayoutBounds="0,0,1,1.75"
-                Opacity="0.92"
-                IsVisible="{Binding Visible}" BackgroundColor="#EBEFF5" CornerRadius="15"
-                Margin="10 ,10 ,10 ,10"
-                HorizontalOptions="FillAndExpand" VerticalOptions="Center"
-                Padding="0,0,0,0">
-                <StackLayout HeightRequest="125" BackgroundColor="#4C4E52" Orientation="Vertical"
-                             VerticalOptions="Start"
-                             HorizontalOptions="Fill">
+        <yummy:PancakeView
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1.75"
+            Opacity="0.92"
+            IsVisible="{Binding Visible}" BackgroundColor="#EBEFF5" CornerRadius="15"
+            Margin="10 ,10 ,10 ,10"
+            HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+            Padding="0,0,0,0">
+            <StackLayout HeightRequest="125" BackgroundColor="#4C4E52" Orientation="Vertical"
+                         VerticalOptions="Start"
+                         HorizontalOptions="Fill">
 
-                    <Label Text="{Binding Pizzeria.Name}" VerticalOptions="StartAndExpand"
+                <Label Text="{Binding Pizzeria.Name}" VerticalOptions="StartAndExpand"
+                       HorizontalTextAlignment="Center"
+                       FontFamily="GilroyBold" FontSize="40" />
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <Label TextColor="White" Text="{Binding Pizzeria.Address}"
+                           Margin="10, 10, 10, 10 " VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Center"
-                           FontFamily="GilroyBold" FontSize="40" />
-                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand"
-                                 HorizontalOptions="FillAndExpand">
-                        <Label TextColor="White" Text="{Binding Pizzeria.Address}"
-                               Margin="10, 10, 10, 10 " VerticalOptions="CenterAndExpand"
-                               HorizontalOptions="StartAndExpand"
-                               HorizontalTextAlignment="Center"
-                               FontFamily="GilroyBold" FontSize="20" />
-                        <Button BackgroundColor="#FA130B" CornerRadius="15" TextColor="White" Text="Commander"
-                                HeightRequest="40" HorizontalOptions="End"
-                                FontFamily="GilroyBold"
-                                Command="{Binding ClickPizzeria}" />
+                           FontFamily="GilroyBold" FontSize="20" />
+                    <Button BackgroundColor="#FA130B" CornerRadius="15" TextColor="White" Text="Commander"
+                            HeightRequest="40" HorizontalOptions="End"
+                            FontFamily="GilroyBold"
+                            Command="{Binding ClickPizzeria}" />
 
-                    </StackLayout>
                 </StackLayout>
-            </yummy:PancakeView>
-        </AbsoluteLayout>
-    </ContentView.Content>
+            </StackLayout>
+        </yummy:PancakeView>
+    </AbsoluteLayout>
 </ContentView>
