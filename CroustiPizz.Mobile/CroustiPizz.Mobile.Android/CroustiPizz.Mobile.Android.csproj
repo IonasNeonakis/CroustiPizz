@@ -50,6 +50,7 @@
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
+        <PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
         <PackageReference Include="Storm.Mvvm.Forms" Version="2.4.0" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
@@ -69,6 +70,14 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\back.png" />
+        <AndroidResource Include="Resources\drawable\cart.png" />
+        <AndroidResource Include="Resources\drawable\home.png" />
+        <AndroidResource Include="Resources\drawable\list.png" />
+        <AndroidResource Include="Resources\drawable\logout.png" />
+        <AndroidResource Include="Resources\drawable\map.png" />
+        <AndroidResource Include="Resources\drawable\person.png" />
+        <AndroidResource Include="Resources\drawable\pizza.png" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
         <AndroidResource Include="Resources\values\styles.xml" />

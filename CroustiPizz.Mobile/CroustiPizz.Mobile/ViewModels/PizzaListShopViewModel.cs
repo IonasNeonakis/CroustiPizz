@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,6 +6,7 @@ using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
+using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
 using Storm.Mvvm.Services;
 using Xamarin.Forms;
@@ -16,8 +16,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class PizzaListShopViewModel : ViewModelBase
     {
-        
         private ObservableCollection<PizzaItem> _pizzas;
+
         public ObservableCollection<PizzaItem> Pizzas
         {
             get => _pizzas;
@@ -41,13 +41,15 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         public ICommand SelectedCommand { get; }
+        public ICommand GoToCartCommand { get; }
+
+        public ICommand BackCommand { get; }
 
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
-            
-            // Pizzas = new ObservableCollection<PizzaItem>();
-            
+            GoToCartCommand = new Command(GoToCartAction);
+            BackCommand = new Command(BackAction);
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -77,14 +79,25 @@ namespace CroustiPizz.Mobile.ViewModels
 
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
-            Response<List<PizzaItem>> response = await service.ListPizzas(_shopId);
-            
+            Response<List<PizzaItem>> response = await service.ListPizzas(ShopId);
+
             if (response.IsSuccess)
             {
                 Pizzas = new ObservableCollection<PizzaItem>(response.Data);
-                Pizzas.ForEach(el => el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image");
+                Pizzas.ForEach(el =>
+                    el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image");
             }
         }
-        
+
+        public void GoToCartAction()
+        {
+            PopupNavigation.Instance.PushAsync(new ShopCartPopup());
+        }
+
+        public void BackAction()
+        {
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PopAsync();
+        }
     }
 }

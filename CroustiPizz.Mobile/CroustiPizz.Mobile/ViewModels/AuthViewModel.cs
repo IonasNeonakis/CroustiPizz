@@ -214,7 +214,7 @@ namespace CroustiPizz.Mobile.ViewModels
         private void AllerPageAccueil()
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
-            navigationService.PushAsync<ProfilePage>();
+            navigationService.PushAsync<MainView>();
         }
     }
 }

@@ -12,7 +12,6 @@
     NavigationPage.HasNavigationBar="False "
     BackgroundColor="White">
     <forms:BaseContentPage.Resources>
-        <converters:PizzaToPictureConverter x:Key="PizzaToPictureConverter" />
         <x:String x:Key="Grey">#EBEFF5</x:String>
         <x:String x:Key="Red">#FA130B</x:String>
     </forms:BaseContentPage.Resources>
@@ -26,20 +25,28 @@
                     <FlexLayout
                         Direction="Row"
                         JustifyContent="SpaceBetween">
-                        <Frame CornerRadius="16"
+                        <Frame CornerRadius="15"
                                HasShadow="False"
-                               BackgroundColor="#EBEFF5">
-                            <ImageButton
-                                HorizontalOptions="Start"
-                                Source="outline_menu_black_24dp" />
-                        </Frame>
-                        <Frame CornerRadius="60"
-                               IsClippedToBounds="True"
+                               BackgroundColor="#EBEFF5"
                                Padding="0"
                                WidthRequest="40"
+                               HeightRequest="40"
+                               IsClippedToBounds="True">
+                            <ImageButton
+                                HorizontalOptions="Start"
+                                Source="back.png"
+                                Command="{Binding BackCommand}"
+                                BackgroundColor="#EBEFF5"
+                                Padding="10" />
+                        </Frame>
+                        <Frame CornerRadius="15"
+                               IsClippedToBounds="True"
+                               Padding="0"
+                               Margin="0,0,10,0"
+                               WidthRequest="40"
                                HeightRequest="40">
-                            <Button BackgroundColor="Bisque"
-                                    Text="😋" />
+                            <ImageButton BackgroundColor="Bisque" Source="cart.png" Padding="10"
+                                         Command="{Binding GoToCartCommand}" />
                         </Frame>
                     </FlexLayout>
                     <Label Text="{Binding ShopName}"
@@ -146,7 +153,6 @@
                                             <Button BackgroundColor="#FA130B" TextColor="White" CornerRadius="20"
                                                     Text="AJOUTER AU PANIER" HorizontalOptions="FillAndExpand" />
                                         </StackLayout>
-
                                     </StackLayout>
                                 </pancakeView:PancakeView>
                             </DataTemplate>
@@ -154,12 +160,6 @@
                     </CarouselView>
                 </StackLayout>
             </pancakeView:PancakeView>
-            <FlexLayout VerticalOptions="EndAndExpand" Direction="Row" JustifyContent="SpaceEvenly">
-                <Button Text="🏠" />
-                <Button Text="💗" />
-                <Button Text="🔔" />
-                <Button Text="👜" />
-            </FlexLayout>
         </StackLayout>
     </forms:BaseContentPage.Content>
 </forms:BaseContentPage>

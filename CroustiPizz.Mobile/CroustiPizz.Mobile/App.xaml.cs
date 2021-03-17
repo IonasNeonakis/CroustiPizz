@@ -11,11 +11,15 @@ namespace CroustiPizz.Mobile
 {
     public partial class App
     {
-        public App() : base(() => new ShopListPage(), RegisterServices)
+        public App() : base(() => new AuthView(), RegisterServices)
         {
 #if DEBUG
             Log.Listeners.Add(new DelegateLogListener((arg1, arg2) => Debug.WriteLine($"{arg1} : {arg2}")));
 #endif
+            
+            Sharpnado.Tabs.Initializer.Initialize(false, false);
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
+            
             InitializeComponent();
         }
 

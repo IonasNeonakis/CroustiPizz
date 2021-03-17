@@ -21,6 +21,8 @@ namespace CroustiPizz.Mobile.ViewModels
         public ICommand EditMailCommand { get; }
         public ICommand EditPhoneNumberCommand { get; }
         public ICommand SaveProfileInformationCommand { get; }
+        public ICommand LogoutCommand { get; }
+        public ICommand CloseProfileCommand { get; }
 
         private string _currentPassword;
 
@@ -68,6 +70,8 @@ namespace CroustiPizz.Mobile.ViewModels
             EditMailCommand = new Command(EditMailAction);
             EditPhoneNumberCommand = new Command(EditPhoneNumberAction);
             SaveProfileInformationCommand = new Command(SaveProfileInformationAction);
+            LogoutCommand = new Command(LogoutAction);
+            CloseProfileCommand = new Command(CloseProfileAction);
 
             // supprimer ça et decommenter le bas
             _user = new UserProfileResponse
@@ -177,6 +181,19 @@ namespace CroustiPizz.Mobile.ViewModels
                 /* @TODO: Implémenter un message d'erreur */
                 throw new NotImplementedException();
             }
+        }
+
+        private void LogoutAction()
+        {
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            PopupNavigation.Instance.PopAllAsync();
+            navigationService.PopAsync();
+        }
+
+        private void CloseProfileAction()
+        {
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PopAsync();
         }
     }
 }

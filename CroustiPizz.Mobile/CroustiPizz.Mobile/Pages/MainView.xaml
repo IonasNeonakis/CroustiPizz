@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
+             x:Class="CroustiPizz.Mobile.Pages.MainView"
+             NavigationPage.HasNavigationBar="false">
+    <StackLayout Orientation="Vertical" BackgroundColor="#EBEFF5">
+        <tabs:ViewSwitcher x:Name="Switcher"
+                           Animate="True"
+                           SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
+                           xmlns:tabs="http://sharpnado.com"
+                           VerticalOptions="FillAndExpand">
+            <pages:ShopMapPage />
+            <pages:ShopListPage />
+            <pages:OrdersPage />
+            <pages:ProfilePage />
+        </tabs:ViewSwitcher>
+
+        <tabs:TabHostView forms:Grid.Row="2"
+                          SelectedIndex="{Binding Source={Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+                          TabType="Fixed"
+                          xmlns:tabs="http://sharpnado.com"
+                          xmlns:forms="http://xamarin.com/schemas/2014/forms"
+                          xmlns:mobile="clr-namespace:CroustiPizz.Mobile;assembly=CroustiPizz.Mobile">
+            <tabs:TabHostView.Tabs>
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="map.png"
+                                    Label="Map" />
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="list.png"
+                                    Label="Liste" />
+
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="pizza.png"
+                                    Label="Commandes" />
+                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
+                                    IconImageSource="person.png"
+                                    Label="Profil" />
+            </tabs:TabHostView.Tabs>
+        </tabs:TabHostView>
+    </StackLayout>
+</ContentPage>
