@@ -17,7 +17,7 @@
         <yummy:PancakeView
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0,0,1,1.75"
-            Opacity="0.92"
+            Opacity="0.90"
             IsVisible="{Binding Visible}" BackgroundColor="#EBEFF5" CornerRadius="15"
             Margin="10 ,10 ,10 ,10"
             HorizontalOptions="FillAndExpand" VerticalOptions="Center"
