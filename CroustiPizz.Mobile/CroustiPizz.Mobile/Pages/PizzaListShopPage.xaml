@@ -59,9 +59,11 @@
                                BackgroundColor="#EBEFF5"
                                Visual="Material"
                                TranslationY="2"
-                               FontSize="20" />
+                               FontSize="20"
+                               Text="{Binding Filter}"
+                               ReturnCommand="{Binding FilterReturnCommand}"/>
                     </Frame>
-                    <CarouselView ItemsSource="{Binding Pizzas}"
+                    <CarouselView ItemsSource="{Binding DisplayedPizzas}"
                                   PeekAreaInsets="20"
                                   Margin="0,8,0,0"
                                   x:Name="LesPizzas">

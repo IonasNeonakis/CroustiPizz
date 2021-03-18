@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
@@ -24,6 +25,13 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             get => _pizzas;
             set => SetProperty(ref _pizzas, value);
+        }
+
+        private ObservableCollection<PizzaItem> _displayedPizzas;
+        public ObservableCollection<PizzaItem> DisplayedPizzas
+        {
+            get => _displayedPizzas;
+            set => SetProperty(ref _displayedPizzas, value);
         }
 
         private string _shopName;
@@ -50,8 +58,16 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _itemQuantity, value);
         }
 
+        private string _filter;
+        public string Filter
+        {
+            get => _filter;
+            set => SetProperty(ref _filter, value);
+        }
+
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
+        public ICommand FilterReturnCommand { get; }
 
 
         public ICommand CommandeAjoutPanier
@@ -104,8 +120,10 @@ namespace CroustiPizz.Mobile.ViewModels
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
             GoToCartCommand = new Command(GoToCartAction);
             BackCommand = new Command(BackAction);
+            FilterReturnCommand = new Command(FilterReturnAction);
 
             Pizzas = new ObservableCollection<PizzaItem>();
+            DisplayedPizzas = new ObservableCollection<PizzaItem>();
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -145,6 +163,7 @@ namespace CroustiPizz.Mobile.ViewModels
                     el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image";
                     el.Quantite = 1;
                 });
+                DisplayedPizzas = Pizzas;
             }
         }
 
@@ -172,6 +191,20 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();
+        }
+
+        private void FilterReturnAction()
+        {
+            if (Filter == "")
+            {
+                Console.WriteLine("Filter vide");
+                DisplayedPizzas = Pizzas;
+            }
+            else
+            {
+                DisplayedPizzas = Pizzas;
+                DisplayedPizzas = new ObservableCollection<PizzaItem>(DisplayedPizzas.Where(el => el.Name.ToLower().Contains(Filter.ToLower())));
+            }
         }
     }
 }
