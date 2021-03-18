@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Services;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -18,39 +21,56 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _cart;
             set => SetProperty(ref _cart, value);
         }
+        
+        private string _shopName;
+
+        public string ShopName
+        {
+            get => _shopName;
+            set => SetProperty(ref _shopName, value);
+        }
+
+        private long _shopId;
+
+        public long ShopId
+        {
+            get => _shopId;
+            set => SetProperty(ref _shopId, value);
+        }
+
 
         public ShopCartViewModel()
         {
             CloseShopCartPopupCommand = new Command(CloseShopCartPopupAction);
-            Cart = new ObservableCollection<PizzaItem>();
-            Cart.Add(new PizzaItem()
-            {
-                Id = 1,
-                Name = "Pizza de fou dingue",
-                Description = "OQzdoinqzdoiNI oQZdoINQZDoin O QOZDNQOZ o OQZIQOIOIN?DOINQOnoinoqinzdoiqndoinq",
-                Price = 20
-            });
-            
-            Cart.Add(new PizzaItem()
-            {
-                Id = 1,
-                Name = "Pizza de fou dingue 2",
-                Description = "OQzdoinqzdoiNI oQZdoINQZDoin O QOZDNQOZ o OQZIQOIOIN?DOINQOnoinoqinzdoiqndoinq",
-                Price = 90
-            });
-            
-            Cart.Add(new PizzaItem()
-            {
-                Id = 1,
-                Name = "Pizza de fou dingue 3",
-                Description = "OQzdoin",
-                Price = 40
-            });
+
         }
 
         private void CloseShopCartPopupAction()
         {
             PopupNavigation.Instance.PopAsync();
+        }
+        
+        public override void Initialize(Dictionary<string, object> navigationParameters)
+        {
+            base.Initialize(navigationParameters);
+
+            ShopName = GetNavigationParameter<string>("ShopName");
+            ShopId = GetNavigationParameter<long>("ShopId");
+        }
+
+
+        public override async Task OnResume()
+        {
+            await base.OnResume();
+            
+                        
+            CartService service = DependencyService.Get<CartService>();
+
+            Dictionary<long, Dictionary<long, int>> cartDur = service.Cart;
+
+            Dictionary<long, int> idPizQuantite = cartDur[ShopId];
+
+            Cart = new ObservableCollection<PizzaItem>();
         }
     }
 }

@@ -31,6 +31,8 @@ namespace CroustiPizz.Mobile
             
             DependencyService.RegisterSingleton<IUserApiService>(new UserApiService());
 
+            DependencyService.RegisterSingleton(new CartService());
+
         }
     }
 }

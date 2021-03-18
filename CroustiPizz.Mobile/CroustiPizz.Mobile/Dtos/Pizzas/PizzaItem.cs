@@ -1,8 +1,10 @@
+using System.ComponentModel;
 using Newtonsoft.Json;
+using Storm.Mvvm;
 
 namespace CroustiPizz.Mobile.Dtos.Pizzas
 {
-    public class PizzaItem
+    public class PizzaItem: NotifierBase
     {
         [JsonProperty("id")]
         public long Id { get; set; }
@@ -18,5 +20,11 @@ namespace CroustiPizz.Mobile.Dtos.Pizzas
         
         [JsonProperty("out_of_stock")]
         public bool OutOfStock { get; set; }
+
+        private int _quantite;
+        public int Quantite {
+            get => _quantite;
+            set => SetProperty(ref _quantite, value);
+        }
     }
 }

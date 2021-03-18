@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using CroustiPizz.Mobile.Dtos.Authentications;
 
 namespace CroustiPizz.Mobile.Services
 {
@@ -17,6 +18,8 @@ namespace CroustiPizz.Mobile.Services
             Cart = new Dictionary<long, Dictionary<long, int>>();
         }
 
+        
+
         // A appeler uniquement depuis la liste des pizzas !!!
         public void AddToCart(long shopId, long pizzaId, int quantity)
         {
@@ -28,7 +31,10 @@ namespace CroustiPizz.Mobile.Services
                 }
                 else // aucune pizza avec cet id dans le panier
                 {
-                    Cart[shopId][pizzaId] = quantity;
+                    if (quantity > 0)
+                    {
+                        Cart[shopId][pizzaId] = quantity;
+                    }
                 }
             }
             else // le panier pour ce restaurant n'existe pas
@@ -62,6 +68,22 @@ namespace CroustiPizz.Mobile.Services
         {
             Cart.Remove(shopId);
         }
+
+        public List<long> GetListId(long shopId)
+        {
+            List<long> list = new List<long>();
+
+            foreach (KeyValuePair<long,int> keyValuePair in Cart[shopId])
+            {
+                for (int i = 0; i < keyValuePair.Value; i++)
+                {
+                    list.Add(keyValuePair.Key);
+                }
+            }
+
+            return list;
+        }
+        
         
         
     }
