@@ -113,6 +113,20 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _numero, value);
         }
 
+        private bool _isLoading = false;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
+        }
+        
+        private bool _isSubmitEnabled = true;
+        public bool IsSubmitEnabled
+        {
+            get => _isSubmitEnabled;
+            set => SetProperty(ref _isSubmitEnabled, value);
+        }
+
         public ICommand SignUpCommand { get; }
         public ICommand LoginCommand { get; }
 
@@ -153,19 +167,25 @@ namespace CroustiPizz.Mobile.ViewModels
                     ClientSecret = Constantes.CLIENT_SECRET
                 };
 
+                IsLoading = true;
+                IsSubmitEnabled = false;
+
                 Response<LoginResponse> response = await this.UserApiService.RegisterUser(utilisateur);
 
                 if (response.IsSuccess)
                 {
                     AllerPageAccueil();
+                    ResetActivityIndicatorAndSubmitButton();
                 }
                 else
                 {
+                    ResetActivityIndicatorAndSubmitButton();
                     //@TODO afficher un message d'erreur
                 }
             }
             else
             {
+                ResetActivityIndicatorAndSubmitButton();
                 //@TODO Message d'erruer quand les mdp ne sont pas pareils
             }
         }
@@ -180,17 +200,28 @@ namespace CroustiPizz.Mobile.ViewModels
                 ClientSecret = Constantes.CLIENT_SECRET
             };
 
+            IsLoading = true;
+            IsSubmitEnabled = false;
+
             Response<LoginResponse> response = await UserApiService.LoginUser(utilisateur);
 
             if (response.IsSuccess)
             {
                 AllerPageAccueil();
+                ResetActivityIndicatorAndSubmitButton();
                 //@TODO Se déplacer vers la page d'accueil
             }
             else
             {
+                ResetActivityIndicatorAndSubmitButton();
                 //@TODO afficher un message d'erreur
             }
+        }
+
+        private void ResetActivityIndicatorAndSubmitButton()
+        {
+            IsLoading = false;
+            IsSubmitEnabled = true;
         }
 
         private void ShowSignUpAction()

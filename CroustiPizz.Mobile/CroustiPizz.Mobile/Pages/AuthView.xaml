@@ -54,10 +54,13 @@
 
                 <Button Text="J'ai oublié mon mot de passe" BackgroundColor="White" FontFamily="GilroyBold"
                         TextColor="#4C4E52" CornerRadius="50" />
+                
+                <ActivityIndicator IsRunning="{Binding IsLoading}"></ActivityIndicator>
 
                 <Button Text="Se connecter" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
                         VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
-                        Command="{Binding LoginCommand}" />
+                        Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding IsSubmitEnabled}"/>
             </StackLayout>
 
             <StackLayout IsVisible="{Binding ShowingSignup}" VerticalOptions="FillAndExpand" Orientation="Vertical"
@@ -117,7 +120,8 @@
                         <Button Text="S'inscrire" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
                                 Margin="0,50,0,0"
                                 VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
-                                Command="{Binding SignUpCommand}" />
+                                Command="{Binding SignUpCommand}"
+                                IsEnabled="{Binding IsSubmitEnabled}"/>
                     </StackLayout>
                 </ScrollView>
             </StackLayout>
