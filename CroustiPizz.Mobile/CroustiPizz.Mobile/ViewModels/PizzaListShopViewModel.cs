@@ -41,7 +41,7 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _shopId;
             set => SetProperty(ref _shopId, value);
         }
-        
+
         private long _itemQuantity;
 
         public long ItemQuantity
@@ -66,7 +66,6 @@ namespace CroustiPizz.Mobile.ViewModels
 
 
                     service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
-
                 });
             }
         }
@@ -79,29 +78,10 @@ namespace CroustiPizz.Mobile.ViewModels
                 {
                     PizzaItem pizza = e as PizzaItem;
                     pizza.Quantite++;
-                    
-
-
-/*
-                    ObservableCollection<PizzaItem> copie = Pizzas;
-                    
-                    foreach (PizzaItem unePizza in copie)
-                    {
-                        if (unePizza == pizza)
-                        {
-                            pizza.Quantite++; 
-                            unePizza.Quantite = pizza.Quantite;
-                            break;
-                        }
-                    }
-
-                    Pizzas = copie;
-*/
-
                 });
             }
         }
-        
+
         public ICommand DecrementerQuantite
         {
             get
@@ -109,18 +89,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 return new Command(e =>
                 {
                     PizzaItem pizza = e as PizzaItem;
-
                     if (pizza.Quantite > 0)
                     {
-                        pizza.Quantite --;
+                        pizza.Quantite--;
                     }
-
                 });
             }
         }
         
-        
-
         public ICommand BackCommand { get; }
 
         public PizzaListShopViewModel()
@@ -128,7 +104,7 @@ namespace CroustiPizz.Mobile.ViewModels
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
             GoToCartCommand = new Command(GoToCartAction);
             BackCommand = new Command(BackAction);
-            
+
             Pizzas = new ObservableCollection<PizzaItem>();
         }
 
@@ -160,14 +136,14 @@ namespace CroustiPizz.Mobile.ViewModels
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<PizzaItem>> response = await service.ListPizzas(ShopId);
-            
+
             if (response.IsSuccess)
             {
                 Pizzas = new ObservableCollection<PizzaItem>(response.Data);
                 Pizzas.ForEach(el =>
                 {
                     el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image";
-                    el.Quantite = 0;
+                    el.Quantite = 1;
                 });
             }
         }
@@ -175,7 +151,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public void GoToCartAction()
         {
             PopupNavigation.Instance.PushAsync(new ShopCartPopup());
-            
+
             INavigationService service = DependencyService.Get<INavigationService>();
 
             service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
