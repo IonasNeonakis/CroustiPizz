@@ -53,17 +53,16 @@
                            HorizontalTextAlignment="Center"
                            TextColor="Black" />
                     <Frame Padding="0"
-                            CornerRadius="16"
-                            BackgroundColor="#EBEFF5"
-                            HorizontalOptions="FillAndExpand">
+                           CornerRadius="16"
+                           BackgroundColor="#EBEFF5"
+                           HorizontalOptions="FillAndExpand">
                         <Entry Placeholder="Rechercher une Pizz'..."
                                BackgroundColor="#EBEFF5"
                                Visual="Material"
                                TranslationY="2"
                                FontSize="20" />
                     </Frame>
-                    <CarouselView ItemsSource="{Binding Pizzas}" 
-                                  WidthRequest="0"
+                    <CarouselView ItemsSource="{Binding Pizzas}"
                                   PeekAreaInsets="20"
                                   Margin="0,8,0,0">
                         <CarouselView.ItemsLayout>
@@ -74,16 +73,36 @@
                                 <pancakeView:PancakeView
                                     CornerRadius="24"
                                     BackgroundColor="#EBEFF5"
-                                    Padding="20"
-                                    x:DataType="pizzas:PizzaItem">
-                                    <StackLayout
-                                        VerticalOptions="FillAndExpand">
-                                        <pancakeView:PancakeView CornerRadius="24">
-                                            <Image Source="{Binding Url}" />
-
-
+                                    Padding="20,20,20,20"
+                                    >
+                                    <StackLayout>
+                                        <pancakeView:PancakeView CornerRadius="24" HorizontalOptions="CenterAndExpand">
+                                            <Image Source="{Binding Url}" HeightRequest="200" />
                                         </pancakeView:PancakeView>
-                                        <StackLayout>
+                                        <StackLayout Orientation="Horizontal" TranslationY="-20" HorizontalOptions="CenterAndExpand" Spacing="5">
+                                            <pancakeView:PancakeView VerticalOptions="CenterAndExpand"
+                                                                     Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
+                                                                     CornerRadius="10"
+                                                                     WidthRequest="30"
+                                                                     HeightRequest="30">
+                                                <Button Text="-" BackgroundColor="White" 
+                                                        Padding="0"
+                                                        Command="{Binding LessCommand}" />
+                                            </pancakeView:PancakeView>
+                                            <pancakeView:PancakeView Padding="0" 
+                                                                     CornerRadius="10">
+                                                <Label Text="150" FontSize="Medium" Padding="5,0,5,0" BackgroundColor="White" VerticalTextAlignment="Center"/>
+                                            </pancakeView:PancakeView>
+                                            <pancakeView:PancakeView Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
+                                                                     CornerRadius="10"
+                                                                     WidthRequest="30"
+                                                                     HeightRequest="30">
+                                                <Button Text="+" BackgroundColor="White"
+                                                        Padding="0"
+                                                        Command="{Binding MoreCommand}" />
+                                            </pancakeView:PancakeView>
+                                        </StackLayout>
+                                        <StackLayout VerticalOptions="StartAndExpand">
                                             <Label FontAttributes="Bold"
                                                    Text="{Binding Name}"
                                                    TextColor="Black"
@@ -92,11 +111,9 @@
                                                    VerticalOptions="FillAndExpand" MaxLines="1"
                                                    LineBreakMode="TailTruncation" />
                                         </StackLayout>
-
                                         <FlexLayout Direction="Row"
                                                     AlignItems="Center"
                                                     JustifyContent="SpaceBetween">
-
                                             <StackLayout Orientation="Horizontal">
                                                 <Label
                                                     Text="{Binding Price, StringFormat='{0:0.00} €'}"
@@ -115,29 +132,6 @@
                                                         TextColor="White" />
                                             </Frame>
                                         </FlexLayout>
-
-                                        <StackLayout Orientation="Horizontal">
-
-                                            <!-- <pancakeView:PancakeView VerticalOptions="CenterAndExpand" -->
-                                            <!--                          Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="2000" -->
-                                            <!--                          WidthRequest="50" HorizontalOptions="StartAndExpand"> -->
-                                            <!-- 	<Button Text="-" BackgroundColor="White" HorizontalOptions="CenterAndExpand" -->
-                                            <!-- 	             VerticalOptions="CenterAndExpand" Padding="15" -->
-                                            <!-- 	             Command="{Binding LessCommand}" /> -->
-                                            <!-- </pancakeView:PancakeView> -->
-                                            <!-- -->
-                                            <!-- <Label Text="{Binding ItemQuantity}" FontSize="Subtitle"></Label> -->
-                                            <!-- -->
-                                            <!-- <pancakeView:PancakeView VerticalOptions="CenterAndExpand" -->
-                                            <!--                          Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="2000" -->
-                                            <!--                          WidthRequest="50" HorizontalOptions="StartAndExpand"> -->
-                                            <!-- 	<Button Text="+" BackgroundColor="White" HorizontalOptions="CenterAndExpand" -->
-                                            <!-- 	        VerticalOptions="CenterAndExpand" Padding="15" -->
-                                            <!-- 	        Command="{Binding MoreCommand}" /> -->
-                                            <!-- </pancakeView:PancakeView> -->
-
-                                        </StackLayout>
-
                                         <StackLayout Orientation="Horizontal" VerticalOptions="End">
                                             <Button BackgroundColor="#FA130B" TextColor="White" CornerRadius="20"
                                                     Text="AJOUTER AU PANIER" HorizontalOptions="FillAndExpand" />

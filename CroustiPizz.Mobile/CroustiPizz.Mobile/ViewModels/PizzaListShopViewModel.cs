@@ -39,17 +39,29 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _shopId;
             set => SetProperty(ref _shopId, value);
         }
+        
+        private long _itemQuantity;
+
+        public long ItemQuantity
+        {
+            get => _itemQuantity;
+            set => SetProperty(ref _itemQuantity, value);
+        }
 
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
 
         public ICommand BackCommand { get; }
+        public ICommand LessCommand { get; }
+        public ICommand MoreCommand { get; }
 
         public PizzaListShopViewModel()
         {
             SelectedCommand = new Command<PizzaItem>(SelectedAction);
             GoToCartCommand = new Command(GoToCartAction);
             BackCommand = new Command(BackAction);
+            LessCommand = new Command(LessAction);
+            MoreCommand = new Command(MoreAction);
         }
 
         private void SelectedAction(PizzaItem obj)
@@ -89,15 +101,24 @@ namespace CroustiPizz.Mobile.ViewModels
             }
         }
 
-        public void GoToCartAction()
+        private void GoToCartAction()
         {
             PopupNavigation.Instance.PushAsync(new ShopCartPopup());
         }
 
-        public void BackAction()
+        private void BackAction()
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();
+        }
+        
+        private void LessAction()
+        {
+        }
+
+        private void MoreAction()
+        {
+            
         }
     }
 }
