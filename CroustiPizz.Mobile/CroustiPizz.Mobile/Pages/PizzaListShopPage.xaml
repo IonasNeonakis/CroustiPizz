@@ -22,6 +22,7 @@
                                      VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="15">
                     <FlexLayout
+                        Margin="0,0,0,50"
                         Direction="Row"
                         JustifyContent="SpaceBetween">
                         <Frame CornerRadius="15"
@@ -38,6 +39,12 @@
                                 BackgroundColor="#EBEFF5"
                                 Padding="10" />
                         </Frame>
+                        <Label Text="{Binding ShopName}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black" />
                         <Frame CornerRadius="15"
                                IsClippedToBounds="True"
                                Padding="0"
@@ -47,11 +54,6 @@
                                          Command="{Binding GoToCartCommand}" />
                         </Frame>
                     </FlexLayout>
-                    <Label Text="{Binding ShopName}"
-                           FontAttributes="Bold"
-                           FontSize="Large"
-                           HorizontalTextAlignment="Center"
-                           TextColor="Black" />
                     <Frame Padding="0"
                            CornerRadius="16"
                            BackgroundColor="#EBEFF5"
