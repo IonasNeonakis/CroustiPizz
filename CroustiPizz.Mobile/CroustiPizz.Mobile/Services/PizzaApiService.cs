@@ -15,7 +15,7 @@ namespace CroustiPizz.Mobile.Services
 
         Task<Response<List<OrderItem>>> ListOrders();
         
-        Task<Response<OrderItem>> OrderPizzas(CreateOrderRequest body);
+        Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body);
 
     }
     
@@ -43,9 +43,9 @@ namespace CroustiPizz.Mobile.Services
             return await _apiService.Get<Response<List<OrderItem>>>(Urls.LIST_ORDERS);
         }
 
-        public async Task<Response<OrderItem>> OrderPizzas(CreateOrderRequest body)
+        public async Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body)
         {
-            return await _apiService.Post<Response<OrderItem>, CreateOrderRequest>(Urls.DO_ORDER, body);
+            return await _apiService.Post<Response<OrderItem>, CreateOrderRequest>(Urls.DO_ORDER.Replace("{shopId}", shopId.ToString()), body);
         }
     }
 }

@@ -150,8 +150,14 @@ namespace CroustiPizz.Mobile.ViewModels
 
         public void GoToCartAction()
         {
-            PopupNavigation.Instance.PushAsync(new ShopCartPopup());
+            PopupNavigation.Instance.PushAsync(new ShopCartPopup(new Dictionary<string, object>()
+            {
+                {"ShopName", ShopName},
+                {"ShopId", ShopId}
+            }));
 
+            /*
+            
             INavigationService service = DependencyService.Get<INavigationService>();
 
             service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
@@ -159,6 +165,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 {"ShopName", ShopName},
                 {"ShopId", ShopId}
             });
+            */
         }
 
         private void BackAction()

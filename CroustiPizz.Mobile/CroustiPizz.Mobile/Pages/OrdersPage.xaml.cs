@@ -18,6 +18,7 @@ namespace CroustiPizz.Mobile.Pages
             InitializeComponent();
         }
 
+        
         protected override async void OnParentSet()
         {
             base.OnParentSet();
