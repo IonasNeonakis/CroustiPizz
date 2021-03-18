@@ -9,6 +9,7 @@ using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
 using Storm.Mvvm.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -16,6 +17,8 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopListViewModel : ViewModelBase
     {
 	    private ObservableCollection<ShopItem> _shops;
+
+	    private Location _userLocation;
 
 	    public ObservableCollection<ShopItem> Shops
 	    {
@@ -43,6 +46,8 @@ namespace CroustiPizz.Mobile.ViewModels
 	    public override async Task OnResume()
         {
 	        await base.OnResume();
+	        
+	        _userLocation = await Geolocation.GetLastKnownLocationAsync();
 
 	        IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
@@ -50,8 +55,46 @@ namespace CroustiPizz.Mobile.ViewModels
 
 	        if (response.IsSuccess)
 	        {
-				Shops = new ObservableCollection<ShopItem>(response.Data);
+		        List<ShopItem> list = response.Data;
+		        
+		        list.Sort(DistancePoint);
+		        
+				Shops = new ObservableCollection<ShopItem>(list);
 	        }
         }
+
+	    private int DistancePoint(ShopItem item1, ShopItem item2)
+	    {
+		    double distanceX = GetDistance(item1.Longitude, item1.Latitude, _userLocation.Longitude, _userLocation.Latitude);
+		    double distanceY = GetDistance(item2.Longitude, item2.Latitude, _userLocation.Longitude, _userLocation.Latitude);
+
+		    
+		    //le deuxieme plus grand on return -1
+		    if (distanceY > distanceX)
+		    {
+			    return -1;
+		    }
+		    //le premier plus grand on return 1
+		    if (distanceX > distanceY)
+		    {
+			    return 1;
+		    }
+		    //egaux on return 0
+		    return 0;
+
+
+	    }
+	    
+	    
+	    private double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
+	    {
+		    var d1 = latitude * (Math.PI / 180.0);
+		    var num1 = longitude * (Math.PI / 180.0);
+		    var d2 = otherLatitude * (Math.PI / 180.0);
+		    var num2 = otherLongitude * (Math.PI / 180.0) - num1;
+		    var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
+    
+		    return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
+	    }
     }
 }
