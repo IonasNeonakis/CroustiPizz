@@ -18,8 +18,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class PizzaListShopViewModel : ViewModelBase
     {
-        
         private ObservableCollection<PizzaItem> _pizzas;
+
         public ObservableCollection<PizzaItem> Pizzas
         {
             get => _pizzas;
@@ -41,9 +41,18 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _shopId;
             set => SetProperty(ref _shopId, value);
         }
+        
+        private long _itemQuantity;
+
+        public long ItemQuantity
+        {
+            get => _itemQuantity;
+            set => SetProperty(ref _itemQuantity, value);
+        }
 
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
+
 
         public ICommand CommandeAjoutPanier
         {
@@ -125,7 +134,15 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void SelectedAction(PizzaItem obj)
         {
-            
+            INavigationService navigationService = DependencyService.Get<INavigationService>();
+            navigationService.PushAsync<PizzaDetailsPage>(new Dictionary<string, object>()
+            {
+                {"PizzaImage", ShopId},
+                {"PizzaId", obj.Id},
+                {"PizzaName", obj.Name},
+                {"PizzaDescription", obj.Description},
+                {"PizzaPrice", obj.Price}
+            });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -147,7 +164,11 @@ namespace CroustiPizz.Mobile.ViewModels
             if (response.IsSuccess)
             {
                 Pizzas = new ObservableCollection<PizzaItem>(response.Data);
-                Pizzas.ForEach( pizz => pizz.Quantite = 0);
+                Pizzas.ForEach(el =>
+                {
+                    el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image";
+                    el.Quantite = 0;
+                });
             }
         }
 
@@ -163,9 +184,8 @@ namespace CroustiPizz.Mobile.ViewModels
                 {"ShopId", ShopId}
             });
         }
-        
-        
-        public void BackAction()
+
+        private void BackAction()
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();

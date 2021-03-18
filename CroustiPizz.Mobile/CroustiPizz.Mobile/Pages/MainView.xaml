@@ -3,23 +3,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="CroustiPizz.Mobile.Pages.MainView"
              NavigationPage.HasNavigationBar="false">
     <StackLayout Orientation="Vertical" BackgroundColor="#EBEFF5">
-        <tabs:ViewSwitcher x:Name="Switcher"
-                           Animate="True"
-                           SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
-                           xmlns:tabs="http://sharpnado.com"
-                           VerticalOptions="FillAndExpand">
-            <pages:ShopMapPage />
-            <pages:ShopListPage />
-            <pages:OrdersPage />
-            <pages:ProfilePage />
-        </tabs:ViewSwitcher>
-
-        <tabs:TabHostView forms:Grid.Row="2"
-                          SelectedIndex="{Binding Source={Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
+        <pancakeView:PancakeView CornerRadius="0,0,50,50">
+            <tabs:ViewSwitcher x:Name="Switcher"
+                               Animate="True"
+                               SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
+                               xmlns:tabs="http://sharpnado.com">
+                <pages:ShopMapPage HeightRequest="575"/>
+                <pages:ShopListPage HeightRequest="575"/>
+                <pages:OrdersPage HeightRequest="575"/>
+                <pages:ProfilePage HeightRequest="575"/>
+            </tabs:ViewSwitcher>
+        </pancakeView:PancakeView>
+        <tabs:TabHostView SelectedIndex="{Binding Source={Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
                           TabType="Fixed"
+                          HeightRequest="80"
+                          VerticalOptions="EndAndExpand"
                           xmlns:tabs="http://sharpnado.com"
                           xmlns:forms="http://xamarin.com/schemas/2014/forms"
                           xmlns:mobile="clr-namespace:CroustiPizz.Mobile;assembly=CroustiPizz.Mobile">

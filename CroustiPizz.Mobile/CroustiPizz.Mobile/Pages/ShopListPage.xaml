@@ -10,7 +10,7 @@
              x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
              x:DataType="viewModels:ShopListViewModel" BackgroundColor="White">
     <ContentView.Content>
-        <StackLayout Orientation="Vertical" Padding="30">
+        <StackLayout Orientation="Vertical" Padding="20">
             <Label Text="Pizzerias" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
             <ListView ItemsSource="{Binding Shops}"
                       SelectionMode="None"

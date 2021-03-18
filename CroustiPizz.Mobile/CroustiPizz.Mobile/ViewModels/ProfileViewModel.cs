@@ -23,6 +23,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public ICommand SaveProfileInformationCommand { get; }
         public ICommand LogoutCommand { get; }
         public ICommand CloseProfileCommand { get; }
+        public ICommand EditNameCommand { get; }
 
         private string _currentPassword;
 
@@ -55,7 +56,23 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _newPhoneNumber;
             set => SetProperty(ref _newPhoneNumber, value);
         }
+        
+        private string _newFirstName;
 
+        public string NewFirstName
+        {
+            get => _newFirstName;
+            set => SetProperty(ref _newFirstName, value);
+        }
+        
+        private string _newLastName;
+
+        public string NewLastName
+        {
+            get => _newLastName;
+            set => SetProperty(ref _newLastName, value);
+        }
+        
         private UserProfileResponse _user;
 
         public UserProfileResponse User
@@ -72,24 +89,13 @@ namespace CroustiPizz.Mobile.ViewModels
             SaveProfileInformationCommand = new Command(SaveProfileInformationAction);
             LogoutCommand = new Command(LogoutAction);
             CloseProfileCommand = new Command(CloseProfileAction);
-
-            // supprimer ça et decommenter le bas
-            _user = new UserProfileResponse
-            {
-                Email = "samir.toularhmine@etu.univ-orleans.fr", FirstName = "Samir", LastName = "Toularhmine",
-                PhoneNumber = "0769303486"
-            };
-
-            NewPassword = "************";
-            NewMail = _user.Email;
-            NewPhoneNumber = _user.PhoneNumber;
+            EditNameCommand = new Command(EditNameAction);
         }
 
         public override async Task OnResume()
         {
             await base.OnResume();
-
-            /*
+            
             IUserApiService service = DependencyService.Get<IUserApiService>();
             Response<UserProfileResponse> response = await service.GetUser();
 
@@ -101,12 +107,16 @@ namespace CroustiPizz.Mobile.ViewModels
                     PhoneNumber = response.Data.PhoneNumber
                 };
                 User = response.Data;
+                NewFirstName = User.FirstName;
+                NewLastName = User.LastName;
+                NewMail = User.Email;
+                NewPassword = "***************";
+                NewPhoneNumber = User.PhoneNumber;
             }
             else
             {
                 //@TODO gestion d'erreur
             }
-            */
         }
 
         private async void EditPasswordAction()
@@ -152,29 +162,33 @@ namespace CroustiPizz.Mobile.ViewModels
         private async void SaveProfileInformationAction()
         {
             IUserApiService service = DependencyService.Get<IUserApiService>();
-            SetPasswordRequest passwordRequest = new SetPasswordRequest
+            
+            if (CurrentPassword != null && NewPassword != null)
             {
-                OldPassword = CurrentPassword,
-                NewPassword = NewPassword
-            };
-            Response reponsePassword = await service.ChangePassword(passwordRequest);
-
+                SetPasswordRequest passwordRequest = new SetPasswordRequest
+                {
+                    OldPassword = CurrentPassword,
+                    NewPassword = NewPassword
+                };
+                Response reponsePassword = await service.ChangePassword(passwordRequest);
+                
+                if (!reponsePassword.IsSuccess)
+                {
+                    /* @TODO: Implémenter un message d'erreur */
+                    throw new NotImplementedException();
+                }
+            }
             
             SetUserProfileRequest userProfileRequest =  new SetUserProfileRequest
             {
                 Email = NewMail,
                 PhoneNumber = NewPhoneNumber,
-                FirstName = User.FirstName,
-                LastName = User.LastName
+                FirstName = NewFirstName,
+                LastName = NewLastName
             };
             
             
             Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
-            if (!reponsePassword.IsSuccess)
-            {
-                /* @TODO: Implémenter un message d'erreur */
-                throw new NotImplementedException();
-            }
 
             if (!reponseUser.IsSuccess)
             {
@@ -194,6 +208,20 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();
+        }
+        
+        private async void EditNameAction()
+        {
+            PopupPage popup = new EditNamePopup();
+
+            MessagingCenter.Subscribe<IdentityPayload>(this, "EditNamePopup", (value) =>
+            {
+                NewFirstName = value.CurrentFirstName;
+                NewLastName = value.CurrentLastName;
+                MessagingCenter.Unsubscribe<IdentityPayload>(this, "EditNamePopup");
+            });
+
+            await PopupNavigation.Instance.PushAsync(popup);
         }
     }
 }

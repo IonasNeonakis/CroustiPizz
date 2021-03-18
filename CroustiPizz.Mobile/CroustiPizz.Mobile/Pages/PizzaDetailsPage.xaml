@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms:BaseContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+	xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
+	xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+	xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
+                       x:Class="CroustiPizz.Mobile.Pages.PizzaDetailsPage"
+                       NavigationPage.HasNavigationBar="False "
+                       BackgroundColor="White">
+	<forms:BaseContentPage.Resources>
+		<x:String x:Key="Grey">#EBEFF5</x:String>
+		<x:String x:Key="Red">#FA130B</x:String>
+	</forms:BaseContentPage.Resources>
+	<forms:BaseContentPage.Content>
+		<pancakeView:PancakeView BackgroundColor="#EBEFF5">
+        <StackLayout Orientation="Vertical">
+            <pancakeView:PancakeView CornerRadius="0,0,50,50" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" Padding="20">
+                    <StackLayout Orientation="Horizontal" HeightRequest="70">
+                        <pancakeView:PancakeView VerticalOptions="CenterAndExpand"
+                                                 Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="20"
+                                                 WidthRequest="50" HorizontalOptions="StartAndExpand">
+                            <ImageButton Source="back.png" BackgroundColor="White" HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="CenterAndExpand" Padding="15"
+                                         Command="{Binding BackCommand}" />
+                        </pancakeView:PancakeView>
+                        <Label Text="{Binding PizzaName}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Large" />
+                        <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                        <Image Source="{Binding PizzaPhoto}"></Image>
+                    </StackLayout>
+	                <StackLayout Orientation="Horizontal">
+		                <Button Text="-" Command="{Binding LessCommand}"/>
+		                <Label Text="{Binding ItemQuantity}" FontSize="Subtitle"></Label>
+		                <Button Text="+" Command="{Binding MoreCommand}"/>
+	                </StackLayout>
+	                <Label Text="Description" FontAttributes="Bold"/>
+	                <Label Text="{Binding PizzaDescription}"/>
+                </StackLayout>
+            </pancakeView:PancakeView>
+            <StackLayout Orientation="Horizontal" Margin="0,30,0,30" Padding="30,0,30,0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="{Binding PizzaPrice}" FontSize="Large" TextColor="Black" />
+                    <Label Text="€" FontSize="Large" TextColor="Black"/>
+                </StackLayout>
+                <Button BackgroundColor="#FA130B" TextColor="White" CornerRadius="20" Padding="50,0,50,0"
+                        Text="AJOUTER AU PANIER" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </pancakeView:PancakeView>
+	</forms:BaseContentPage.Content>
+</forms:BaseContentPage>

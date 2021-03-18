@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Newtonsoft.Json;
 using Storm.Mvvm;
 
@@ -26,5 +25,8 @@ namespace CroustiPizz.Mobile.Dtos.Pizzas
             get => _quantite;
             set => SetProperty(ref _quantite, value);
         }
+        
+        public string Url { get; set; }
+
     }
 }
