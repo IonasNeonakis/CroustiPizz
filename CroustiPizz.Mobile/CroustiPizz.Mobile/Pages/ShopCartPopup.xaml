@@ -34,6 +34,7 @@
                         </yummy:PancakeView>
                         <Label Text="Mon Panier" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                                FontSize="Large" />
+                        <Button Text="VIDER" Command="{Binding ViderCorbeilleCommand}"/>
                         <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
@@ -63,8 +64,6 @@
                                                                 CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                                 BackgroundColor="#EBEFF5"/>
                                                         
-                                                        <!-- 
--->
                                                     </yummy:PancakeView>
                                                 </StackLayout>
                                             </StackLayout>

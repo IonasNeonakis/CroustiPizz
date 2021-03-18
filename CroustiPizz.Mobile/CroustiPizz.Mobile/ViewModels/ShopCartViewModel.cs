@@ -14,8 +14,10 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopCartViewModel : ViewModelBase
     {
         public ICommand CloseShopCartPopupCommand { get; }
-
+        
         public ICommand CommanderCommand { get; }
+
+        public ICommand ViderCorbeilleCommand { get; }
 
         public ICommand SupprimerPizzas
         {
@@ -74,6 +76,18 @@ namespace CroustiPizz.Mobile.ViewModels
             ShopName = dico["ShopName"] as string;
             ShopId = (long) dico["ShopId"];
             CommanderCommand = new Command(Commander);
+            ViderCorbeilleCommand = new Command(ViderPanier);
+        }
+
+        private void ViderPanier()
+        {
+            CartService service = DependencyService.Get<CartService>();
+
+            Total = 0;
+
+            service.EmptyCart(ShopId);
+
+            Cart = new ObservableCollection<PizzaItem>();
         }
 
         private void CloseShopCartPopupAction()
