@@ -6,20 +6,20 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Converters
 {
-    public class PizzaToPictureConverter : IValueConverter
+    public class DistanceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            PizzaItem pizzaId = (PizzaItem) value;
-            VisualElement sender = parameter as VisualElement;
-            PizzaListShopViewModel viewModel = sender?.BindingContext as PizzaListShopViewModel;
+            double distance = (double) value;
 
-            if (viewModel != null)
+            if (distance > 1000)
             {
-                return "https://pizza.julienmialon.ovh/api/v1/shops/" + viewModel.ShopId + "/pizzas/" + pizzaId.Id + "/image";
+                distance = distance / 1000;
+                return distance.ToString("0.0") + " km";
             }
 
-            return "";
+            return distance.ToString("0") +" m";
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

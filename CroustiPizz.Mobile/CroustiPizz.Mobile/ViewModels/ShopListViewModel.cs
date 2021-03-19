@@ -60,6 +60,11 @@ namespace CroustiPizz.Mobile.ViewModels
 		        list.Sort(DistancePoint);
 		        
 				Shops = new ObservableCollection<ShopItem>(list);
+				
+				foreach (ShopItem shopItem in Shops)
+				{
+					shopItem.Distance = GetDistance(shopItem.Longitude, shopItem.Latitude, _userLocation.Longitude, _userLocation.Latitude);
+				}
 	        }
         }
 

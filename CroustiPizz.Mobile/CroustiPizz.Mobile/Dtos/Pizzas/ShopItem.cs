@@ -21,5 +21,7 @@ namespace CroustiPizz.Mobile.Dtos.Pizzas
         
         [JsonProperty("minutes_per_kilometer")]
         public double MinutesPerKilometer { get; set; }
+        
+        public double Distance { get; set; }
     }
 }

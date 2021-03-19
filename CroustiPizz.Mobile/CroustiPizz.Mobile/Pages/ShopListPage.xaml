@@ -7,8 +7,12 @@
              xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
              xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
              xmlns:extensions="clr-namespace:CroustiPizz.Mobile.Extensions;assembly=CroustiPizz.Mobile"
+             xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
              x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
              x:DataType="viewModels:ShopListViewModel" BackgroundColor="White">
+    <ContentView.Resources>
+        <converters:DistanceConverter x:Key="DistanceConverter" />
+    </ContentView.Resources>
     <ContentView.Content>
         <StackLayout Orientation="Vertical" Padding="20">
             <Label Text="Pizzerias" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
@@ -22,13 +26,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell x:DataType="pizzas:ShopItem">
-                            <yummy:PancakeView BackgroundColor="#EBEFF5" Margin="10" CornerRadius="30" Padding="30,20,10,20">
+                            <yummy:PancakeView BackgroundColor="#EBEFF5" Margin="10" CornerRadius="30"
+                                               Padding="30,20,10,20">
                                 <StackLayout Orientation="Horizontal">
-                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
+                                                 HorizontalOptions="StartAndExpand">
                                         <Label Text="{Binding Name}" TextColor="Black" FontSize="Medium" />
+                                        <Label TextColor="#FA130B"
+                                               Text="{Binding Distance, Converter={StaticResource DistanceConverter}}"
+                                               FontSize="Small" />
+
                                         <Label Text="{Binding Address}" FontSize="Small" />
                                     </StackLayout>
-                                    <Image Source="back.png" BackgroundColor="Transparent" Scale="0.3" Rotation="180"/>
+                                    <Image Source="back.png" BackgroundColor="Transparent" Scale="0.3" Rotation="180" />
                                 </StackLayout>
                             </yummy:PancakeView>
                         </ViewCell>
