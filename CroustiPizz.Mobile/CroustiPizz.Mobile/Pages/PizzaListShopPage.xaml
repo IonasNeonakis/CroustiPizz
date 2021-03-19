@@ -61,7 +61,8 @@
                                TranslationY="2"
                                FontSize="20"
                                Text="{Binding Filter}"
-                               ReturnCommand="{Binding FilterReturnCommand}"/>
+                               ReturnCommand="{Binding FilterReturnCommand}"
+                               />
                     </Frame>
                     <CarouselView ItemsSource="{Binding DisplayedPizzas}"
                                   PeekAreaInsets="20"
@@ -141,7 +142,7 @@
                                             </Frame>
                                         </FlexLayout>
                                         <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                                            <Button BackgroundColor="#FA130B" 
+                                            <Button BackgroundColor="#FA130B"
                                                     TextColor="White" 
                                                     CornerRadius="20"
                                                     Text="AJOUTER AU PANIER" 

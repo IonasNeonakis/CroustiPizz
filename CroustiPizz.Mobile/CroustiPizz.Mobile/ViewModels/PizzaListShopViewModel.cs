@@ -80,11 +80,18 @@ namespace CroustiPizz.Mobile.ViewModels
 
                     var service = DependencyService.Get<CartService>();
 
-
-                    service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                    if (!pizza.OutOfStock)
+                    {
+                        service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                    }
+                }, e =>
+                {
+                    PizzaItem pizza = e as PizzaItem;
+                    return pizza != null && !pizza.OutOfStock;
                 });
             }
         }
+        
 
         public ICommand IncrementerQuantite
         {
@@ -105,7 +112,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 return new Command(e =>
                 {
                     PizzaItem pizza = e as PizzaItem;
-                    if (pizza.Quantite > 0)
+                    if (pizza.Quantite > 1)
                     {
                         pizza.Quantite--;
                     }
@@ -197,7 +204,6 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             if (Filter == "")
             {
-                Console.WriteLine("Filter vide");
                 DisplayedPizzas = Pizzas;
             }
             else
