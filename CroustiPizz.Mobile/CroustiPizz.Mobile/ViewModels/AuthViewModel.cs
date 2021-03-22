@@ -4,6 +4,7 @@ using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -172,7 +173,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 IsLoading = true;
                 IsSubmitEnabled = false;
 
-                Response<LoginResponse> response = await this.UserApiService.RegisterUser(utilisateur);
+                Response<LoginResponse> response = await UserApiService.RegisterUser(utilisateur);
 
                 if (response.IsSuccess)
                 {
@@ -182,13 +183,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 else
                 {
                     ResetActivityIndicatorAndSubmitButton();
-                    //@TODO afficher un message d'erreur
+                    DependencyService.Get<IMessage>().LongAlert( "Erreur dans le formulaire" );
+
                 }
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO Message d'erruer quand les mdp ne sont pas pareils
+                DependencyService.Get<IMessage>().LongAlert( "Les deux mots de passes ne sont pas identiques" );
             }
         }
 
@@ -211,12 +213,11 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 AllerPageAccueil();
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO Se déplacer vers la page d'accueil
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO afficher un message d'erreur
+                DependencyService.Get<IMessage>().LongAlert( "Erreur de login et ou mot de passe" );
             }
         }
 

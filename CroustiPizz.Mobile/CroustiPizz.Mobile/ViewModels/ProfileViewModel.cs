@@ -5,6 +5,7 @@ using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
 using CroustiPizz.Mobile.Extensions;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -115,7 +116,8 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                //@TODO gestion d'erreur
+                DependencyService.Get<IMessage>().LongAlert( "Erreur dans les nouveaux champs entrés" );
+
             }
         }
 
@@ -174,8 +176,8 @@ namespace CroustiPizz.Mobile.ViewModels
                 
                 if (!reponsePassword.IsSuccess)
                 {
-                    /* @TODO: Implémenter un message d'erreur */
-                    throw new NotImplementedException();
+                    DependencyService.Get<IMessage>().LongAlert( "Probleme dans la sauvegarde de vos informations" );
+
                 }
             }
             

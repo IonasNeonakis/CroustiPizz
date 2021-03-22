@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -31,6 +32,11 @@ namespace CroustiPizz.Mobile.ViewModels
             if (response.IsSuccess)
             {
                 Orders = new ObservableCollection<OrderItem>(response.Data);
+            }
+            else
+            {
+                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à vos commandes" );
+
             }
             
         }

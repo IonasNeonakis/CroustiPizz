@@ -5,6 +5,7 @@ using System.Windows.Input;
 using CroustiPizz.Mobile.Controls;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -119,6 +120,14 @@ namespace CroustiPizz.Mobile.ViewModels
                     MaMap.Pins.Add(pin);
                     MaMap.MapClicked += (s, e) => { Visible = false; };
                 }
+            }
+            else
+            {
+                Position position = new Position(46.4547, 2.2529);
+                MapSpan mapSpan = new MapSpan(position, 12, 12);
+                MaMap = new Map(mapSpan);
+                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+
             }
         }
 

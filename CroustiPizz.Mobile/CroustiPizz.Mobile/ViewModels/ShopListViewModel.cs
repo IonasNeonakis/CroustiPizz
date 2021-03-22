@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -75,7 +76,12 @@ namespace CroustiPizz.Mobile.ViewModels
 					}
 				}
 				
-				
+	        }
+	        else
+	        {
+		        Shops = new ObservableCollection<ShopItem>();
+		        DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+
 	        }
         }
 

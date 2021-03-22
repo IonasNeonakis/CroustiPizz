@@ -183,6 +183,11 @@ namespace CroustiPizz.Mobile.ViewModels
                 });
                 DisplayedPizzas = Pizzas;
             }
+            else
+            {
+                Pizzas = new ObservableCollection<PizzaItem>();
+                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+            }
         }
 
         public void GoToCartAction()
