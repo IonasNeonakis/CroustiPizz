@@ -11,7 +11,10 @@ namespace CroustiPizz.Mobile.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double distance = (double) value;
-
+            if (double.IsNegativeInfinity(distance)) // si la geoloc n'est pas donnée
+            {
+                return "";
+            }
             if (distance > 1000)
             {
                 distance = distance / 1000;

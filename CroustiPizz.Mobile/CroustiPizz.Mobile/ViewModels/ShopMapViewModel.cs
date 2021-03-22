@@ -70,7 +70,13 @@ namespace CroustiPizz.Mobile.ViewModels
                 Shops = new ObservableCollection<ShopItem>(response.Data);
                 Position position;
                 MapSpan mapSpan;
-                Location location = await Geolocation.GetLastKnownLocationAsync();
+                Location location;
+                
+                try {
+                    location = await Geolocation.GetLastKnownLocationAsync();
+                }catch (PermissionException) {
+                    location = null;
+                }
                 
                 if (location != null)
                 {
@@ -83,9 +89,11 @@ namespace CroustiPizz.Mobile.ViewModels
                     mapSpan = new MapSpan(position, 12, 12);
                 }
 
+                bool showUser = location != null;
+                
                 MaMap = new Map(mapSpan)
                 {
-                    IsShowingUser = true
+                    IsShowingUser = showUser
                 };
 
                 foreach (ShopItem unShop in Shops)
