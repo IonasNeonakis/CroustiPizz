@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Rg.Plugins.Popup.Services;
@@ -82,6 +83,8 @@ namespace CroustiPizz.Mobile.ViewModels
 
                     if (!pizza.OutOfStock)
                     {
+
+                        DependencyService.Get<IMessage>().LongAlert( "Ajout de " + pizza.Quantite + " " + pizza.Name );
                         service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
                     }
                 }, e =>
@@ -101,6 +104,10 @@ namespace CroustiPizz.Mobile.ViewModels
                 {
                     PizzaItem pizza = e as PizzaItem;
                     pizza.Quantite++;
+                }, e =>
+                {
+                    PizzaItem pizza = e as PizzaItem;
+                    return pizza != null && !pizza.OutOfStock;
                 });
             }
         }
@@ -116,6 +123,10 @@ namespace CroustiPizz.Mobile.ViewModels
                     {
                         pizza.Quantite--;
                     }
+                },e =>
+                {
+                    PizzaItem pizza = e as PizzaItem;
+                    return pizza != null && !pizza.OutOfStock;
                 });
             }
         }
@@ -168,7 +179,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 Pizzas.ForEach(el =>
                 {
                     el.Url = "https://pizza.julienmialon.ovh/api/v1/shops/" + ShopId + "/pizzas/" + el.Id + "/image";
-                    el.Quantite = 1;
+                    el.Quantite = el.OutOfStock ? 0 : 1;
                 });
                 DisplayedPizzas = Pizzas;
             }
@@ -181,17 +192,6 @@ namespace CroustiPizz.Mobile.ViewModels
                 {"ShopName", ShopName},
                 {"ShopId", ShopId}
             }));
-
-            /*
-            
-            INavigationService service = DependencyService.Get<INavigationService>();
-
-            service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
-            {
-                {"ShopName", ShopName},
-                {"ShopId", ShopId}
-            });
-            */
         }
 
         private void BackAction()
