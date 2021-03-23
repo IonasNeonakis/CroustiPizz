@@ -40,8 +40,8 @@
                                            WidthRequest="70" HorizontalOptions="EndAndExpand">
                             <Button Text="Vider" BackgroundColor="#EBEFF5" HorizontalOptions="CenterAndExpand"
                                     VerticalOptions="CenterAndExpand"
-                                    Padding="15"
                                     TextColor="#FA130B"
+                                    CornerRadius="20"
                                     Command="{Binding ViderCorbeilleCommand}" />
                         </yummy:PancakeView>
                     </StackLayout>

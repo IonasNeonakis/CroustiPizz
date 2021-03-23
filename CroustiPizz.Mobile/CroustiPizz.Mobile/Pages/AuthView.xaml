@@ -67,35 +67,35 @@
                     <StackLayout Orientation="Vertical">
                         <Label Text="Nom" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
-                            <controls:CroustiEntry Text="{Binding Nom}" FontSize="20" />
+                            <controls:CroustiEntry Text="{Binding Nom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
                         <Label Text="Prenom" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
-                            <controls:CroustiEntry Text="{Binding Prenom}" FontSize="20" />
+                            <controls:CroustiEntry Text="{Binding Prenom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
                         <Label Text="E-mail" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
-                            <controls:CroustiEntry Text="{Binding EmailRegister}" FontSize="20" />
+                            <controls:CroustiEntry Text="{Binding EmailRegister}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
                         <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
-                            <controls:CroustiEntry Text="{Binding Mdp1}" IsPassword="True" FontSize="20" />
+                            <controls:CroustiEntry Text="{Binding Mdp1}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
                         <Label Text="Confirmer le mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
-                            <controls:CroustiEntry Text="{Binding Mdp2}" IsPassword="True" FontSize="20" />
+                            <controls:CroustiEntry Text="{Binding Mdp2}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
