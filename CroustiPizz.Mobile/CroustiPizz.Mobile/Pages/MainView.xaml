@@ -1,6 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:appCompat="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;assembly=Xamarin.Forms.Core"
+            x:Class="CroustiPizz.Mobile.Pages.MainView"
+            NavigationPage.HasNavigationBar="False"
+            appCompat:NavigationPage.BarHeight="450"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="#EBEFF5"
+            SelectedTabColor="#FA130B"
+            BarTextColor="Black">
+    
+    <pages:ShopMapPage Title="Carte" IconImageSource="map.png"/>
+    <pages:ShopListPage Title="Liste" IconImageSource="list.png"/>
+    <pages:OrdersPage Title="Commandes" IconImageSource="pizza.png"/>
+    <pages:ProfilePage Title="Profil" IconImageSource="person.png"/>
+</TabbedPage>
+
+<!--<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -41,4 +60,4 @@
             </tabs:TabHostView.Tabs>
         </tabs:TabHostView>
     </StackLayout>
-</ContentPage>
+</ContentPage>-->

@@ -15,7 +15,7 @@ using Map = Xamarin.Forms.Maps.Map;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShopMapPage : ContentView
+    public partial class ShopMapPage : ContentPage
     {
         public ShopMapPage()
         {
