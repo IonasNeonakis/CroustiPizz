@@ -20,7 +20,7 @@
                                      VerticalOptions="FillAndExpand">
                 <StackLayout Spacing="15">
                     <FlexLayout
-                        Margin="0,0,0,50"
+                        Margin="0,0,0,25"
                         Direction="Row"
                         JustifyContent="SpaceBetween">
                         <Frame CornerRadius="15"
