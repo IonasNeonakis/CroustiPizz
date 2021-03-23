@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                       xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
-                       xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
-                       x:Class="CroustiPizz.Mobile.Pages.AuthView"
-                       x:DataType="viewModels:AuthViewModel"
-                       NavigationPage.HasNavigationBar="false">
-    <ContentPage.Content>
+<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                 xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
+                 x:Class="CroustiPizz.Mobile.Pages.AuthView"
+                 x:DataType="viewModels:AuthViewModel"
+                 NavigationPage.HasNavigationBar="false">
+    <forms:BaseContentPage.Content>
         <StackLayout Orientation="Vertical" BackgroundColor="White">
             <yummy:PancakeView BackgroundColor="#EBEFF5" CornerRadius="0,0,40,40" HorizontalOptions="FillAndExpand"
                                Padding="0,50,0,0">
@@ -126,5 +126,5 @@
                 </ScrollView>
             </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </forms:BaseContentPage.Content>
+</forms:BaseContentPage>

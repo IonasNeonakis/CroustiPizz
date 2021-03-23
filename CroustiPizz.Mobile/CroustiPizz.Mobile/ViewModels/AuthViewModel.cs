@@ -250,6 +250,15 @@ namespace CroustiPizz.Mobile.ViewModels
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PushAsync<MainView>();
         }
-        
+
+        public override async Task OnResume()
+        {
+            await base.OnResume();
+            string accessToken = await SecureStorage.GetAsync(Constantes.ACCESS_TOKEN);
+            string refreshToken = await SecureStorage.GetAsync(Constantes.REFRESH_TOKEN);
+            if (accessToken != null && refreshToken != null){
+                AllerPageAccueil();
+            }
+        }
     }
 }
