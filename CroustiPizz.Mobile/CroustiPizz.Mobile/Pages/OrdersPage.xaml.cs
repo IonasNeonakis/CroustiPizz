@@ -1,12 +1,13 @@
 ﻿
 using CroustiPizz.Mobile.ViewModels;
+using Storm.Mvvm.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrdersPage : ContentPage
+    public partial class OrdersPage : BaseContentPage
     {
         public OrdersPage()
         {
@@ -14,7 +15,7 @@ namespace CroustiPizz.Mobile.Pages
             InitializeComponent();
         }
 
-
+/*
         protected override async void OnParentSet()
         {
             base.OnParentSet();
@@ -24,5 +25,6 @@ namespace CroustiPizz.Mobile.Pages
                 await ordersViewModel.OnResume();
             }
         }
+        */
     }
 }

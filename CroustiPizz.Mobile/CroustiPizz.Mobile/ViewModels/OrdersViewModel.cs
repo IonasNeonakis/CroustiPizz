@@ -25,11 +25,6 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
-            UpdateOrdersList();
-        }
-
-        private async void UpdateOrdersList()
-        {
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
             Response<List<OrderItem>> response = await service.ListOrders();
 
@@ -38,5 +33,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 Orders = new ObservableCollection<OrderItem>(response.Data);
             }
         }
+
+
     }
 }

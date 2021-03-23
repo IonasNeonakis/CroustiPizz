@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
-             x:Class="CroustiPizz.Mobile.Pages.OrdersPage"
-             x:DataType="viewModels:OrdersViewModel"
-             NavigationPage.HasNavigationBar="False"
-             Padding="0,0,0,50"
-             BackgroundColor="#EBEFF5">
-    <ContentPage.Content>
+<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
+                 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
+                 xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                 x:Class="CroustiPizz.Mobile.Pages.OrdersPage"
+                 x:DataType="viewModels:OrdersViewModel"
+                 NavigationPage.HasNavigationBar="False"
+                 Padding="0,0,0,50"
+                 BackgroundColor="#EBEFF5">
+    <forms:BaseContentPage.Content>
         <yummy:PancakeView CornerRadius="0,0,50,50" BackgroundColor="White">
             <StackLayout Orientation="Vertical" Padding="20,30,20,0">
                 <Label FontSize="Large" TextColor="Black" Text="Mes anciennes commandes" HorizontalTextAlignment="Center"/>
@@ -45,5 +46,5 @@
                 </RefreshView>
             </StackLayout>
         </yummy:PancakeView>
-    </ContentPage.Content>
-</ContentPage>
+    </forms:BaseContentPage.Content>
+</forms:BaseContentPage>
