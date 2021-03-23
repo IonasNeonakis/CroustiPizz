@@ -89,7 +89,7 @@ namespace CroustiPizz.Mobile.ViewModels
 	    {
 		    if (_userLocation == null) // si la position de l'utilisateur n'est pas donnée alors on laisse la liste tel quelle
 		    {
-			    return 0;
+			    return String.Compare(item1.Name, item2.Name, StringComparison.Ordinal);
 		    }
 		    
 		    double distanceX = GetDistance(item1.Longitude, item1.Latitude, _userLocation.Longitude, _userLocation.Latitude);
