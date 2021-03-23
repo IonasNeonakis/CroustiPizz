@@ -62,8 +62,8 @@
 
         <StackLayout IsVisible="{Binding ShowingSignup}" VerticalOptions="FillAndExpand" Orientation="Vertical"
                      Spacing="20">
-            <ScrollView Orientation="Vertical" Padding="20">
-                <StackLayout Orientation="Vertical" Spacing="20">
+            <ScrollView Orientation="Vertical" >
+                <StackLayout Orientation="Vertical" Spacing="20" Padding="20" >
                     <StackLayout Orientation="Vertical">
                         <Label Text="Nom" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
