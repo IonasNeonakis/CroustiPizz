@@ -11,22 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class ProfilePage : BaseContentPage
     {
         public ProfilePage()
         {
             InitializeComponent();
             BindingContext = new ProfileViewModel();
-        }
-
-        protected override async void OnParentSet()
-        {
-            base.OnParentSet();
-
-            if (BindingContext is ProfileViewModel profileViewModel)
-            {
-                await profileViewModel.OnResume();
-            }
         }
     }
 }

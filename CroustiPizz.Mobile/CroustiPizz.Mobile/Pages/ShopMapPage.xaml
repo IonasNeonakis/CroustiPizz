@@ -1,67 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="CroustiPizz.Mobile.Pages.ShopMapPage"
-             x:DataType="viewModels:ShopMapViewModel"
-             NavigationPage.HasNavigationBar="False"
-             Padding="0,0,0,50"
-             BackgroundColor="#EBEFF5">
-    <ContentPage.Content>
-         <yummy:PancakeView CornerRadius="0,0,50,50">
-             <AbsoluteLayout>
-                     <ContentView
-                         AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1"
-                         Content="{Binding MaMap}" />
-                     <yummy:PancakeView
-                         AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1.75"
-                         Opacity="0.90"
-                         IsVisible="{Binding Visible}"
-                         BackgroundColor="#EBEFF5"
-                         CornerRadius="30"
-                         Margin="10 ,10 ,10 ,30"
-                         HorizontalOptions="FillAndExpand"
-                         VerticalOptions="Center"
-                         Padding="0,0,0,0">
-                         <yummy:PancakeView.Shadow>
-                             <yummy:DropShadow Color="#000000" Offset="10,10" />
-                         </yummy:PancakeView.Shadow>
-                         <StackLayout HeightRequest="125"
-                                      BackgroundColor="White"
-                                      Orientation="Vertical"
-                                      VerticalOptions="Start"
-                                      HorizontalOptions="Fill"
-                                      Padding="0,10,0,0">
-                             <Label Text="{Binding Pizzeria.Name}"
-                                    VerticalOptions="StartAndExpand"
-                                    HorizontalTextAlignment="Center"
-                                    TextColor="Black"
-                                    FontFamily="GilroyBold" FontSize="40" />
-                             <StackLayout Orientation="Horizontal"
-                                          VerticalOptions="CenterAndExpand"
-                                          HorizontalOptions="FillAndExpand"
-                                          Padding="0,0,10,10">
-                                 <Label Text="{Binding Pizzeria.Address}"
-                                        HorizontalOptions="StartAndExpand"
-                                        VerticalOptions="CenterAndExpand"
-                                        HorizontalTextAlignment="Center"
-                                        FontFamily="GilroyBold" />
-                                 <Button BackgroundColor="#FA130B"
-                                         CornerRadius="15"
-                                         TextColor="White"
-                                         Text="Commander"
-                                         HorizontalOptions="End"
-                                         FontFamily="GilroyBold"
-                                         FontSize="Large"
-                                         Command="{Binding ClickPizzeria}" />
-                             </StackLayout>
-                         </StackLayout>
-                     </yummy:PancakeView>
-                 </AbsoluteLayout>
-         </yummy:PancakeView>
-    </ContentPage.Content>
-</ContentPage>
+<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
+                       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                       xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                       x:Class="CroustiPizz.Mobile.Pages.ShopMapPage"
+                       x:DataType="viewModels:ShopMapViewModel"
+                       NavigationPage.HasNavigationBar="False"
+                       Padding="0,0,0,15"
+                       BackgroundColor="#EBEFF5">
+    <yummy:PancakeView CornerRadius="0,0,50,50">
+        <AbsoluteLayout>
+            <ContentView
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                Content="{Binding MaMap}" />
+            <yummy:PancakeView
+                AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1.75"
+                Opacity="0.90"
+                IsVisible="{Binding Visible}"
+                BackgroundColor="#EBEFF5"
+                CornerRadius="30"
+                Margin="10 ,10 ,10 ,30"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                Padding="0,0,0,0">
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow Color="#000000" Offset="10,10" />
+                </yummy:PancakeView.Shadow>
+                <StackLayout HeightRequest="125"
+                             BackgroundColor="White"
+                             Orientation="Vertical"
+                             VerticalOptions="Start"
+                             HorizontalOptions="Fill"
+                             Padding="0,10,0,0">
+                    <Label Text="{Binding Pizzeria.Name}"
+                           VerticalOptions="StartAndExpand"
+                           HorizontalTextAlignment="Center"
+                           TextColor="Black"
+                           FontFamily="GilroyBold" FontSize="40" />
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="FillAndExpand"
+                                 Padding="0,0,10,10">
+                        <Label Text="{Binding Pizzeria.Address}"
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalTextAlignment="Center"
+                               FontFamily="GilroyBold" />
+                        <Button BackgroundColor="#FA130B"
+                                CornerRadius="15"
+                                TextColor="White"
+                                Text="Commander"
+                                HorizontalOptions="End"
+                                FontFamily="GilroyBold"
+                                FontSize="Large"
+                                Command="{Binding ClickPizzeria}" />
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+        </AbsoluteLayout>
+    </yummy:PancakeView>
+</forms:BaseContentPage>

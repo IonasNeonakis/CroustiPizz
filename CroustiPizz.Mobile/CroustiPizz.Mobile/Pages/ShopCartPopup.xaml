@@ -32,38 +32,54 @@
                                          VerticalOptions="CenterAndExpand" Padding="15"
                                          Command="{Binding CloseShopCartPopupCommand}" />
                         </yummy:PancakeView>
-                        <Label Text="Mon Panier" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                               FontSize="Large" />
-                        <Button Text="VIDER" Command="{Binding ViderCorbeilleCommand}"/>
-                        <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" />
+                        <Label Text="Mon Panier" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                               FontSize="Large" Margin="15,0,0,0"/>
+                        <yummy:PancakeView VerticalOptions="CenterAndExpand"
+                                           Border="{yummy:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="20"
+                                           WidthRequest="70" HorizontalOptions="EndAndExpand">
+                            <Button Text="Vider" BackgroundColor="White" HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand" Padding="15"
+                                    TextColor="#FA130B"
+                                    Command="{Binding ViderCorbeilleCommand}" />
+                        </yummy:PancakeView>
                     </StackLayout>
-                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                         <ListView ItemsSource="{Binding Cart}" x:Name="LesPizzas" RowHeight="150">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <ViewCell  >
+                                    <ViewCell>
                                         <yummy:PancakeView x:Name="Item">
                                             <StackLayout Orientation="Horizontal">
-                                                <yummy:PancakeView Padding="0" CornerRadius="30" Margin="10,30,0,30" WidthRequest="100" HeightRequest="100">
-                                                    <Image Source="{Binding Url}" Aspect="AspectFit"/>
+                                                <yummy:PancakeView Padding="0" CornerRadius="30" Margin="10,30,0,30"
+                                                                   WidthRequest="100" HeightRequest="100">
+                                                    <Image Source="{Binding Url}" Aspect="AspectFit" />
                                                 </yummy:PancakeView>
-                                                <Label Text="{Binding Quantite, StringFormat='{0} x'}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="30"/>
-                                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" WidthRequest="200">
-                                                    <Label Text="{Binding Name}" FontSize="17" TextColor="Black" VerticalTextAlignment="Center"/>
-                                                    <Label Text="{Binding Description}" FontSize="13" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Quantite, StringFormat='{0} x'}"
+                                                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                                       WidthRequest="30" />
+                                                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
+                                                             WidthRequest="200">
+                                                    <Label Text="{Binding Name}" FontSize="17" TextColor="Black"
+                                                           VerticalTextAlignment="Center" />
+                                                    <Label Text="{Binding Description}" FontSize="13"
+                                                           VerticalTextAlignment="Center" />
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding Price}" FontSize="Medium" TextColor="#FA130B" VerticalTextAlignment="Center"/>
-                                                        <Label Text="€" FontSize="Medium" TextColor="#FA130B" VerticalTextAlignment="Center"></Label>
+                                                        <Label Text="{Binding Price}" FontSize="Medium"
+                                                               TextColor="#FA130B" VerticalTextAlignment="Center" />
+                                                        <Label Text="€" FontSize="Medium" TextColor="#FA130B"
+                                                               VerticalTextAlignment="Center" />
                                                     </StackLayout>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Vertical">
-                                                    <yummy:PancakeView CornerRadius="60" WidthRequest="40" VerticalOptions="CenterAndExpand" BackgroundColor="#EBEFF5">
+                                                    <yummy:PancakeView CornerRadius="60" WidthRequest="40"
+                                                                       VerticalOptions="CenterAndExpand"
+                                                                       BackgroundColor="#EBEFF5">
                                                         <Button Text="X"
                                                                 Command="{Binding SupprimerPizzas}"
                                                                 BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                                 CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                                BackgroundColor="#EBEFF5"/>
-                                                        
+                                                                BackgroundColor="#EBEFF5" />
+
                                                     </yummy:PancakeView>
                                                 </StackLayout>
                                             </StackLayout>

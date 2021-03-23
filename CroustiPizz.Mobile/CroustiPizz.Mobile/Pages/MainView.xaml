@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<controls:CroustiTabs xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:appCompat="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;assembly=Xamarin.Forms.Core"
+            xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
             x:Class="CroustiPizz.Mobile.Pages.MainView"
             NavigationPage.HasNavigationBar="False"
-            appCompat:NavigationPage.BarHeight="450"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            BarBackgroundColor="#EBEFF5"
             SelectedTabColor="#FA130B"
             BarTextColor="Black">
     
@@ -17,47 +16,4 @@
     <pages:ShopListPage Title="Liste" IconImageSource="list.png"/>
     <pages:OrdersPage Title="Commandes" IconImageSource="pizza.png"/>
     <pages:ProfilePage Title="Profil" IconImageSource="person.png"/>
-</TabbedPage>
-
-<!--<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
-             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="CroustiPizz.Mobile.Pages.MainView"
-             NavigationPage.HasNavigationBar="false">
-    <StackLayout Orientation="Vertical" BackgroundColor="#EBEFF5">
-        <pancakeView:PancakeView CornerRadius="0,0,50,50" VerticalOptions="FillAndExpand">
-            <tabs:ViewSwitcher x:Name="Switcher"
-                               Animate="True"
-                               SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
-                               xmlns:tabs="http://sharpnado.com">
-                <pages:ShopMapPage />
-                <pages:ShopListPage />
-                <pages:OrdersPage />
-                <pages:ProfilePage />
-            </tabs:ViewSwitcher>
-        </pancakeView:PancakeView>
-        <tabs:TabHostView SelectedIndex="{Binding Source={Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
-                          TabType="Fixed"
-                          HeightRequest="100"
-                          xmlns:tabs="http://sharpnado.com"
-                          xmlns:forms="http://xamarin.com/schemas/2014/forms"
-                          xmlns:mobile="clr-namespace:CroustiPizz.Mobile;assembly=CroustiPizz.Mobile">
-            <tabs:TabHostView.Tabs>
-                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="map.png"
-                                    Label="Map" />
-                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="list.png"
-                                    Label="Liste" />
-
-                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="pizza.png"
-                                    Label="Commandes" />
-                <tabs:BottomTabItem Style="{StaticResource BottomTabStyle}"
-                                    IconImageSource="person.png"
-                                    Label="Profil" />
-            </tabs:TabHostView.Tabs>
-        </tabs:TabHostView>
-    </StackLayout>
-</ContentPage>-->
+</controls:CroustiTabs>

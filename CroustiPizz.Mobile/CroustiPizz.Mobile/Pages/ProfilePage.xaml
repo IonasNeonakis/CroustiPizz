@@ -1,156 +1,165 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-             x:Class="CroustiPizz.Mobile.Pages.ProfilePage"
-             Padding="0"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#EBEFF5">
-    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0" >
-            <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="Black" Margin="70,0,0,0"/>
-            <yummy:PancakeView Padding="0" BackgroundColor="#EBEFF5" WidthRequest="40" HeightRequest="40" CornerRadius="20">
-                <ImageButton Source="logout.png" BackgroundColor="#EBEFF5" Padding="8" WidthRequest="20" HeightRequest="20" Command="{Binding CloseProfileCommand}"/>
-            </yummy:PancakeView>
-        </StackLayout>
+<forms:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                       xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
+                       x:Class="CroustiPizz.Mobile.Pages.ProfilePage"
+                       Padding="0,0,0,15"
+                       NavigationPage.HasNavigationBar="False"
+                       BackgroundColor="#EBEFF5">
+    <yummy:PancakeView CornerRadius="0,0,50,50">
+        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0">
+                <Label Text="Mon profil" FontSize="25" HorizontalOptions="CenterAndExpand" TextColor="Black"
+                       Margin="70,0,0,0" />
+                <yummy:PancakeView Padding="0" BackgroundColor="#EBEFF5" WidthRequest="40" HeightRequest="40"
+                                   CornerRadius="20">
+                    <ImageButton Source="logout.png" BackgroundColor="#EBEFF5" Padding="8" WidthRequest="20"
+                                 HeightRequest="20" Command="{Binding CloseProfileCommand}" />
+                </yummy:PancakeView>
+            </StackLayout>
 
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <yummy:PancakeView
-                BackgroundColor="White"
-                AbsoluteLayout.LayoutFlags="All"
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                Margin="0,40,0,0"
-                CornerRadius="60,60,0,0"
-                Padding="0,0,0,10">
-                <StackLayout Orientation="Vertical" Padding="20,10,20,0">
-                    <StackLayout Orientation="Horizontal" Margin="0,60,0,0" HorizontalOptions="Center">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
-                            <Label Text="{Binding NewFirstName}" FontFamily="GilroyBold" TextColor="Black" />
-                            <Label Text="{Binding NewLastName}" FontFamily="GilroyBold" TextColor="Black"/>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <yummy:PancakeView
+                    BackgroundColor="White"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    Margin="0,40,0,0"
+                    CornerRadius="60,60,0,0"
+                    Padding="0,0,0,10">
+                    <StackLayout Orientation="Vertical" Padding="20,10,20,0">
+                        <StackLayout Orientation="Horizontal" Margin="0,60,0,0" HorizontalOptions="Center">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                <Label Text="{Binding NewFirstName}" FontFamily="GilroyBold" TextColor="Black" />
+                                <Label Text="{Binding NewLastName}" FontFamily="GilroyBold" TextColor="Black" />
+                            </StackLayout>
+                            <Button
+                                Text="✏️"
+                                BackgroundColor="#EBEFF5"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                FontSize="10"
+                                Padding="0"
+                                CornerRadius="20"
+                                Command="{Binding EditNameCommand}" />
                         </StackLayout>
-                        <Button
-                            Text="✏️"
-                            BackgroundColor="#EBEFF5"
-                            WidthRequest="20"
-                            HeightRequest="20"
-                            FontSize="10"
-                            Padding="0"
-                            CornerRadius="20"
-                            Command="{Binding EditNameCommand}"/>
+                        <ScrollView Orientation="Vertical" Margin="0,10,0,0">
+                            <StackLayout Orientation="Vertical">
+                                <yummy:PancakeView HeightRequest="90" CornerRadius="20">
+                                    <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
+                                        <yummy:PancakeView
+                                            CornerRadius="20"
+                                            WidthRequest="70"
+                                            HeightRequest="30"
+                                            BackgroundColor="White">
+                                            <yummy:PancakeView.Border>
+                                                <yummy:Border Color="#EBEFF5" Thickness="2" />
+                                            </yummy:PancakeView.Border>
+                                            <Label Text="🔑" FontSize="20" TextColor="#FA130B"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   HorizontalOptions="CenterAndExpand" />
+                                        </yummy:PancakeView>
+                                        <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
+                                            <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#BAC5DB" />
+                                            <Label Text="{Binding NewPassword}" FontFamily="GilroyBold"
+                                                   TextColor="Black"
+                                                   VerticalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                        <Button
+                                            Text="✏️"
+                                            VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            BackgroundColor="#EBEFF5"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Margin="0,10,10,0"
+                                            Padding="0"
+                                            CornerRadius="20"
+                                            Command="{Binding EditPasswordCommand}" />
+                                    </StackLayout>
+                                </yummy:PancakeView>
+                                <yummy:PancakeView HeightRequest="90" CornerRadius="20">
+                                    <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
+                                        <yummy:PancakeView
+                                            CornerRadius="20"
+                                            WidthRequest="70"
+                                            HeightRequest="30"
+                                            BackgroundColor="White">
+                                            <yummy:PancakeView.Border>
+                                                <yummy:Border Color="#EBEFF5" Thickness="3" />
+                                            </yummy:PancakeView.Border>
+                                            <Label Text="📧" FontSize="20" TextColor="#FA130B"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   HorizontalOptions="CenterAndExpand" />
+                                        </yummy:PancakeView>
+                                        <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
+                                            <Label Text="Adresse mail" FontFamily="GilroyBold" TextColor="#BAC5DB" />
+                                            <Label Text="{Binding NewMail}" FontFamily="GilroyBold" TextColor="Black"
+                                                   VerticalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                        <Button
+                                            Text="✏️"
+                                            VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            BackgroundColor="#EBEFF5"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Margin="0,10,10,0"
+                                            Padding="0"
+                                            CornerRadius="20"
+                                            Command="{Binding EditMailCommand}" />
+                                    </StackLayout>
+                                </yummy:PancakeView>
+                                <yummy:PancakeView HeightRequest="90" CornerRadius="20">
+                                    <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
+                                        <yummy:PancakeView
+                                            CornerRadius="20"
+                                            WidthRequest="70"
+                                            HeightRequest="30"
+                                            BackgroundColor="White">
+                                            <yummy:PancakeView.Border>
+                                                <yummy:Border Color="#EBEFF5" Thickness="2" />
+                                            </yummy:PancakeView.Border>
+                                            <Label Text="📞" FontSize="20" TextColor="#FA130B"
+                                                   VerticalOptions="CenterAndExpand"
+                                                   HorizontalOptions="CenterAndExpand" />
+                                        </yummy:PancakeView>
+                                        <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
+                                            <Label Text="Numéro de téléphone" FontFamily="GilroyBold"
+                                                   TextColor="#BAC5DB" />
+                                            <Label Text="{Binding NewPhoneNumber}" FontFamily="GilroyBold"
+                                                   TextColor="Black" VerticalOptions="EndAndExpand" />
+                                        </StackLayout>
+                                        <Button
+                                            Text="✏️"
+                                            VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="EndAndExpand"
+                                            BackgroundColor="#EBEFF5"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Margin="0,10,10,0"
+                                            Padding="0"
+                                            CornerRadius="20"
+                                            Command="{Binding EditPhoneNumberCommand}" />
+                                    </StackLayout>
+                                </yummy:PancakeView>
+                            </StackLayout>
+                        </ScrollView>
+                        <Button Text="Sauvegarder" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="15"
+                                Margin="0,10,0,10"
+                                VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
+                                Command="{Binding SaveProfileInformationCommand}" />
                     </StackLayout>
-                    <ScrollView Orientation="Vertical" Margin="0,10,0,0">
-                        <StackLayout Orientation="Vertical">
-                            <yummy:PancakeView HeightRequest="90" CornerRadius="20">
-                                <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
-                                    <yummy:PancakeView
-                                        CornerRadius="20"
-                                        WidthRequest="70"
-                                        HeightRequest="30"
-                                        BackgroundColor="White">
-                                        <yummy:PancakeView.Border>
-                                            <yummy:Border Color="#EBEFF5" Thickness="2" />
-                                        </yummy:PancakeView.Border>
-                                        <Label Text="🔑" FontSize="20" TextColor="#FA130B"
-                                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                                    </yummy:PancakeView>
-                                    <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
-                                        <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#BAC5DB" />
-                                        <Label Text="{Binding NewPassword}" FontFamily="GilroyBold" TextColor="Black"
-                                               VerticalOptions="EndAndExpand" />
-                                    </StackLayout>
-                                    <Button
-                                        Text="✏️"
-                                        VerticalOptions="StartAndExpand"
-                                        HorizontalOptions="EndAndExpand"
-                                        BackgroundColor="#EBEFF5"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0,10,10,0"
-                                        Padding="0"
-                                        CornerRadius="20"
-                                        Command="{Binding EditPasswordCommand}" />
-                                </StackLayout>
-                            </yummy:PancakeView>
-                            <yummy:PancakeView HeightRequest="90" CornerRadius="20">
-                                <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
-                                    <yummy:PancakeView
-                                        CornerRadius="20"
-                                        WidthRequest="70"
-                                        HeightRequest="30"
-                                        BackgroundColor="White">
-                                        <yummy:PancakeView.Border>
-                                            <yummy:Border Color="#EBEFF5" Thickness="3" />
-                                        </yummy:PancakeView.Border>
-                                        <Label Text="📧" FontSize="20" TextColor="#FA130B"
-                                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                                    </yummy:PancakeView>
-                                    <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
-                                        <Label Text="Adresse mail" FontFamily="GilroyBold" TextColor="#BAC5DB" />
-                                        <Label Text="{Binding NewMail}" FontFamily="GilroyBold" TextColor="Black"
-                                               VerticalOptions="EndAndExpand" />
-                                    </StackLayout>
-                                    <Button
-                                        Text="✏️"
-                                        VerticalOptions="StartAndExpand"
-                                        HorizontalOptions="EndAndExpand"
-                                        BackgroundColor="#EBEFF5"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0,10,10,0"
-                                        Padding="0"
-                                        CornerRadius="20"
-                                        Command="{Binding EditMailCommand}"/>
-                                </StackLayout>
-                            </yummy:PancakeView>
-                            <yummy:PancakeView HeightRequest="90" CornerRadius="20">
-                                <StackLayout Orientation="Horizontal" Padding="10,5,0,5">
-                                    <yummy:PancakeView
-                                        CornerRadius="20"
-                                        WidthRequest="70"
-                                        HeightRequest="30"
-                                        BackgroundColor="White">
-                                        <yummy:PancakeView.Border>
-                                            <yummy:Border Color="#EBEFF5" Thickness="2" />
-                                        </yummy:PancakeView.Border>
-                                        <Label Text="📞" FontSize="20" TextColor="#FA130B"
-                                               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-                                    </yummy:PancakeView>
-                                    <StackLayout Orientation="Vertical" Margin="15,0,0,0" Padding="0,13,0,13">
-                                        <Label Text="Numéro de téléphone" FontFamily="GilroyBold" TextColor="#BAC5DB" />
-                                        <Label Text="{Binding NewPhoneNumber}" FontFamily="GilroyBold"
-                                               TextColor="Black" VerticalOptions="EndAndExpand" />
-                                    </StackLayout>
-                                    <Button
-                                        Text="✏️"
-                                        VerticalOptions="StartAndExpand"
-                                        HorizontalOptions="EndAndExpand"
-                                        BackgroundColor="#EBEFF5"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Margin="0,10,10,0"
-                                        Padding="0"
-                                        CornerRadius="20"
-                                        Command="{Binding EditPhoneNumberCommand}"/>
-                                </StackLayout>
-                            </yummy:PancakeView>
-                        </StackLayout>
-                    </ScrollView>
-                    <Button Text="Sauvegarder" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="15"
-                            Margin="0,10,0,10"
-                            VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold" 
-                            Command="{Binding SaveProfileInformationCommand}"/>
-                </StackLayout>
-            </yummy:PancakeView>
-            <yummy:PancakeView WidthRequest="100"
-                               HeightRequest="100"
-                               AbsoluteLayout.LayoutBounds="0.5, 0"
-                               AbsoluteLayout.LayoutFlags="PositionProportional"
-                               CornerRadius="30">
-                <Image Source="chien.jpg" Aspect="AspectFill"/>
-            </yummy:PancakeView>
-        </AbsoluteLayout>
-    </StackLayout>
-</ContentPage>
+                </yummy:PancakeView>
+                <yummy:PancakeView WidthRequest="100"
+                                   HeightRequest="100"
+                                   AbsoluteLayout.LayoutBounds="0.5, 0"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                                   CornerRadius="30">
+                    <Image Source="chien.jpg" Aspect="AspectFill" />
+                </yummy:PancakeView>
+            </AbsoluteLayout>
+        </StackLayout>
+    </yummy:PancakeView>
+</forms:BaseContentPage>

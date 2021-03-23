@@ -60,6 +60,8 @@
         <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Classes\CroustiEntryRenderer.cs" />
+        <Compile Include="Classes\CroustiTabsRenderer.cs" />
         <Compile Include="Classes\MessageAndroid.cs" />
         <Compile Include="MainActivity.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />

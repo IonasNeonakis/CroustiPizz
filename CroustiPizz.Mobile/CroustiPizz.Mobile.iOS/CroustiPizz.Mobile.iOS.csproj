@@ -87,6 +87,7 @@
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="Classes\CroustiEntryRenderer.cs" />
         <Compile Include="Classes\MessageIOS.cs" />
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
@@ -121,6 +122,17 @@
             <Project>{558A3445-4D36-4611-8820-2942A9C96AD8}</Project>
             <Name>CroustiPizz.Mobile</Name>
         </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Resources\back.png" />
+      <BundleResource Include="Resources\cart.png" />
+      <BundleResource Include="Resources\chien.jpg" />
+      <BundleResource Include="Resources\home.png" />
+      <BundleResource Include="Resources\list.png" />
+      <BundleResource Include="Resources\logout.png" />
+      <BundleResource Include="Resources\map.png" />
+      <BundleResource Include="Resources\person.png" />
+      <BundleResource Include="Resources\pizza.png" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

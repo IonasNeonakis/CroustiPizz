@@ -15,22 +15,12 @@ using Map = Xamarin.Forms.Maps.Map;
 namespace CroustiPizz.Mobile.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ShopMapPage : ContentPage
+    public partial class ShopMapPage : BaseContentPage
     {
         public ShopMapPage()
         {
             BindingContext = new ShopMapViewModel();
             InitializeComponent();
-        }
-
-        protected override async void OnParentSet()
-        {
-            base.OnParentSet();
-
-            if (BindingContext is ShopMapViewModel shopMapViewModel)
-            {
-                await shopMapViewModel.OnResume();
-            }
         }
     }
 }
