@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm.Services;
+using Xamarin.Essentials;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
@@ -212,8 +213,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void CloseProfileAction()
         {
+            SecureStorage.RemoveAll();
+            Environment.Exit(0);
+            /*          
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();
+            */
         }
         
         private async void EditNameAction()

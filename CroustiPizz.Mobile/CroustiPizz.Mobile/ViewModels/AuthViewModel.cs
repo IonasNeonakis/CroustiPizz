@@ -253,12 +253,13 @@ namespace CroustiPizz.Mobile.ViewModels
 
         public override async Task OnResume()
         {
-            await base.OnResume();
             string accessToken = await SecureStorage.GetAsync(Constantes.ACCESS_TOKEN);
             string refreshToken = await SecureStorage.GetAsync(Constantes.REFRESH_TOKEN);
             if (accessToken != null && refreshToken != null){
                 AllerPageAccueil();
             }
+            await base.OnResume();
+
         }
     }
 }
