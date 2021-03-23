@@ -62,13 +62,13 @@ namespace CroustiPizz.Mobile.Services
             return task;
         }
 
-        //@TODO verifier que ça marche
+
         public async Task<Response> ChangePassword(SetPasswordRequest data)
         {
             return await _apiService.Patch<Response, SetPasswordRequest>(Urls.SET_PASSWORD, data);
         }
 
-        //@TODO verifier que ça marche
+
         public async Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data)
         {
             return await _apiService.Patch<Response<SetUserProfileRequest>, SetUserProfileRequest>(Urls.SET_USER_PROFILE, data);

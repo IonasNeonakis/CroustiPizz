@@ -133,28 +133,32 @@ namespace CroustiPizz.Mobile.ViewModels
         
         public ICommand BackCommand { get; }
 
+        public ICommand DetailsCommand
+        {
+            get
+            {
+                return new Command(e =>
+                {
+                    PizzaItem pizzaItem = e as PizzaItem;
+                    PopupNavigation.Instance.PushAsync(new PizzaDetailsPopup(new Dictionary<string, object>()
+                    {
+                        {"PizzaName", pizzaItem.Name},
+                        {"PizzaDescription", pizzaItem.Description},
+                        {"PizzaPhoto", pizzaItem.Url},
+                        {"PizzaPrice", pizzaItem.Price}
+                    }));
+                });
+            }
+        }
+
         public PizzaListShopViewModel()
         {
-            SelectedCommand = new Command<PizzaItem>(SelectedAction);
             GoToCartCommand = new Command(GoToCartAction);
             BackCommand = new Command(BackAction);
             FilterReturnCommand = new Command(FilterReturnAction);
 
             Pizzas = new ObservableCollection<PizzaItem>();
             DisplayedPizzas = new ObservableCollection<PizzaItem>();
-        }
-
-        private void SelectedAction(PizzaItem obj)
-        {
-            INavigationService navigationService = DependencyService.Get<INavigationService>();
-            navigationService.PushAsync<PizzaDetailsPage>(new Dictionary<string, object>()
-            {
-                {"PizzaImage", ShopId},
-                {"PizzaId", obj.Id},
-                {"PizzaName", obj.Name},
-                {"PizzaDescription", obj.Description},
-                {"PizzaPrice", obj.Price}
-            });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -182,6 +186,11 @@ namespace CroustiPizz.Mobile.ViewModels
                     el.Quantite = el.OutOfStock ? 0 : 1;
                 });
                 DisplayedPizzas = Pizzas;
+            }
+            else
+            {
+                Pizzas = new ObservableCollection<PizzaItem>();
+                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
             }
         }
 

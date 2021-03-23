@@ -17,10 +17,6 @@ namespace CroustiPizz.Mobile.ViewModels
         public MainViewModel()
         {
         }
-
-        public override async Task OnResume()
-        {
-            await base.OnResume();
-        }
+        
     }
 }

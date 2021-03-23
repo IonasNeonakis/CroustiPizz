@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -46,9 +47,12 @@ namespace CroustiPizz.Mobile.ViewModels
 	    public override async Task OnResume()
         {
 	        await base.OnResume();
+	        try {
+		        _userLocation = await Geolocation.GetLastKnownLocationAsync();
+	        }catch (PermissionException) {
+		        _userLocation = null;
+	        }
 	        
-	        _userLocation = await Geolocation.GetLastKnownLocationAsync();
-
 	        IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
 	        Response<List<ShopItem>> response = await service.ListShops();
@@ -58,18 +62,36 @@ namespace CroustiPizz.Mobile.ViewModels
 		        List<ShopItem> list = response.Data;
 		        
 		        list.Sort(DistancePoint);
-		        
-				Shops = new ObservableCollection<ShopItem>(list);
+
+
+		        Shops = new ObservableCollection<ShopItem>(list);
 				
 				foreach (ShopItem shopItem in Shops)
 				{
-					shopItem.Distance = GetDistance(shopItem.Longitude, shopItem.Latitude, _userLocation.Longitude, _userLocation.Latitude);
+					if (_userLocation == null) // si la position n'est pas donnée alors on met la distance a -oo
+					{
+						shopItem.Distance = Double.NegativeInfinity;
+					}else{
+						shopItem.Distance = GetDistance(shopItem.Longitude, shopItem.Latitude, _userLocation.Longitude, _userLocation.Latitude);
+					}
 				}
+				
+	        }
+	        else
+	        {
+		        Shops = new ObservableCollection<ShopItem>();
+		        DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+
 	        }
         }
 
 	    private int DistancePoint(ShopItem item1, ShopItem item2)
 	    {
+		    if (_userLocation == null) // si la position de l'utilisateur n'est pas donnée alors on laisse la liste tel quelle
+		    {
+			    return String.Compare(item1.Name, item2.Name, StringComparison.Ordinal);
+		    }
+		    
 		    double distanceX = GetDistance(item1.Longitude, item1.Latitude, _userLocation.Longitude, _userLocation.Latitude);
 		    double distanceY = GetDistance(item2.Longitude, item2.Latitude, _userLocation.Longitude, _userLocation.Latitude);
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Pizzas;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Services;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
@@ -117,12 +118,12 @@ namespace CroustiPizz.Mobile.ViewModels
             Dictionary<long, int> idPizQuantite =
                 cartDur.ContainsKey(ShopId) ? cartDur[ShopId] : new Dictionary<long, int>();
 
-            Response<List<PizzaItem>> toutesPizzas = await apiService.ListPizzas(ShopId);
+            Response<List<PizzaItem>> response = await apiService.ListPizzas(ShopId);
             Cart = new ObservableCollection<PizzaItem>();
 
-            if (toutesPizzas.IsSuccess)
+            if (response.IsSuccess)
             {
-                foreach (PizzaItem pizzaItem in toutesPizzas.Data)
+                foreach (PizzaItem pizzaItem in response.Data)
                 {
                     if (idPizQuantite.ContainsKey(pizzaItem.Id))
                     {
@@ -137,7 +138,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                //@TODO message erreur probleme requete api
+                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à votre panier" );
             }
         }
 
@@ -158,11 +159,13 @@ namespace CroustiPizz.Mobile.ViewModels
             if (response.IsSuccess)
             {
                 cartService.EmptyCart(ShopId);
-                CloseShopCartPopupAction(); //@TODO mettre qui dit que la commande a été passée
+                CloseShopCartPopupAction();
+                DependencyService.Get<IMessage>().LongAlert( "Commande passée avec succès" );
+
             }
             else
             {
-                //@TODO erreur
+                DependencyService.Get<IMessage>().LongAlert( "Erreur dans la commande" );
             }
         }
     }

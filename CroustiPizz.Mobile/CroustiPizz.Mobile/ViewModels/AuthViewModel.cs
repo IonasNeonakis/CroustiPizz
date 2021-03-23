@@ -1,12 +1,15 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
 using Storm.Mvvm.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
@@ -170,7 +173,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 IsLoading = true;
                 IsSubmitEnabled = false;
 
-                Response<LoginResponse> response = await this.UserApiService.RegisterUser(utilisateur);
+                Response<LoginResponse> response = await UserApiService.RegisterUser(utilisateur);
 
                 if (response.IsSuccess)
                 {
@@ -180,13 +183,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 else
                 {
                     ResetActivityIndicatorAndSubmitButton();
-                    //@TODO afficher un message d'erreur
+                    DependencyService.Get<IMessage>().LongAlert( "Erreur dans le formulaire" );
+
                 }
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO Message d'erruer quand les mdp ne sont pas pareils
+                DependencyService.Get<IMessage>().LongAlert( "Les deux mots de passes ne sont pas identiques" );
             }
         }
 
@@ -209,12 +213,11 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 AllerPageAccueil();
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO Se déplacer vers la page d'accueil
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                //@TODO afficher un message d'erreur
+                DependencyService.Get<IMessage>().LongAlert( "Erreur de login et ou mot de passe" );
             }
         }
 
@@ -246,6 +249,17 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PushAsync<MainView>();
+        }
+
+        public override async Task OnResume()
+        {
+            string accessToken = await SecureStorage.GetAsync(Constantes.ACCESS_TOKEN);
+            string refreshToken = await SecureStorage.GetAsync(Constantes.REFRESH_TOKEN);
+            if (accessToken != null && refreshToken != null){
+                AllerPageAccueil();
+            }
+            await base.OnResume();
+
         }
     }
 }

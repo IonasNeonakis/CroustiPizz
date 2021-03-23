@@ -5,6 +5,7 @@ using CroustiPizz.Mobile.Dtos;
 using CroustiPizz.Mobile.Dtos.Accounts;
 using CroustiPizz.Mobile.Dtos.Authentications.Credentials;
 using CroustiPizz.Mobile.Extensions;
+using CroustiPizz.Mobile.Interfaces;
 using CroustiPizz.Mobile.Pages;
 using CroustiPizz.Mobile.Services;
 using Storm.Mvvm;
@@ -12,6 +13,7 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm.Services;
+using Xamarin.Essentials;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
@@ -115,7 +117,8 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                //@TODO gestion d'erreur
+                DependencyService.Get<IMessage>().LongAlert( "Erreur dans les nouveaux champs entrés" );
+
             }
         }
 
@@ -174,8 +177,8 @@ namespace CroustiPizz.Mobile.ViewModels
                 
                 if (!reponsePassword.IsSuccess)
                 {
-                    /* @TODO: Implémenter un message d'erreur */
-                    throw new NotImplementedException();
+                    DependencyService.Get<IMessage>().LongAlert( "Probleme du changement de mot de passe" );
+
                 }
             }
             
@@ -192,8 +195,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
             if (!reponseUser.IsSuccess)
             {
-                /* @TODO: Implémenter un message d'erreur */
-                throw new NotImplementedException();
+                DependencyService.Get<IMessage>().LongAlert( "Problème lors de la mise à jour de vos données" );
+
+            }
+            else
+            {
+                DependencyService.Get<IMessage>().LongAlert( "Données Sauvegardées" );
             }
         }
 
@@ -206,8 +213,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void CloseProfileAction()
         {
+            SecureStorage.RemoveAll();
+            Environment.Exit(0);
+            /*          
             INavigationService navigationService = DependencyService.Get<INavigationService>();
             navigationService.PopAsync();
+            */
         }
         
         private async void EditNameAction()

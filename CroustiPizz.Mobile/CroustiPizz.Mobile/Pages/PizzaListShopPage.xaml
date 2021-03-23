@@ -136,7 +136,10 @@
                                                         Text="Détails"
                                                         BackgroundColor="#FA130B"
                                                         CornerRadius="1000"
-                                                        TextColor="White" />
+                                                        TextColor="White"
+                                                        BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
+                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
+                                                        Command="{Binding DetailsCommand}"/>
                                             </Frame>
                                         </FlexLayout>
                                         <StackLayout Orientation="Horizontal" VerticalOptions="End">
