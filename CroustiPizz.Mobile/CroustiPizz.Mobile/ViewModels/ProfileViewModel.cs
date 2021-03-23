@@ -176,7 +176,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 
                 if (!reponsePassword.IsSuccess)
                 {
-                    DependencyService.Get<IMessage>().LongAlert( "Probleme dans la sauvegarde de vos informations" );
+                    DependencyService.Get<IMessage>().LongAlert( "Probleme du changement de mot de passe" );
 
                 }
             }
@@ -194,8 +194,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
             if (!reponseUser.IsSuccess)
             {
-                /* @TODO: Implémenter un message d'erreur */
-                throw new NotImplementedException();
+                DependencyService.Get<IMessage>().LongAlert( "Problème lors de la mise à jour de vos données" );
+
+            }
+            else
+            {
+                DependencyService.Get<IMessage>().LongAlert( "Données Sauvegardées" );
             }
         }
 

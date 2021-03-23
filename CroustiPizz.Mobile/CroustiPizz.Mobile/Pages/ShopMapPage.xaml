@@ -49,7 +49,7 @@
                     <Button BackgroundColor="#FA130B" 
                             CornerRadius="15" 
                             TextColor="White" 
-                            Text="Commander"
+                            Text="VOIR"
                             HorizontalOptions="End"
                             FontFamily="GilroyBold"
                             FontSize="Large"
