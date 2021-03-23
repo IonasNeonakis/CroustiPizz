@@ -96,14 +96,6 @@ namespace CroustiPizz.Mobile.ViewModels
             PopupNavigation.Instance.PopAsync();
         }
 
-        public override void Initialize(Dictionary<string, object> navigationParameters)
-        {
-            base.Initialize(navigationParameters);
-
-            ShopName = GetNavigationParameter<string>("ShopName");
-            ShopId = GetNavigationParameter<long>("ShopId");
-        }
-
 
         public override async Task OnResume()
         {

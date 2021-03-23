@@ -16,5 +16,15 @@ namespace CroustiPizz.Mobile.Pages
             InitializeComponent();
             BindingContext = new ShopCartViewModel(dico);
         }
+        
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (BindingContext is ShopCartViewModel shopCartViewModel)
+            {
+                await shopCartViewModel.OnResume();
+            }
+        }
     }
 }
