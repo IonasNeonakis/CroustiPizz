@@ -7,6 +7,7 @@
 	xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
 	x:Class="CroustiPizz.Mobile.Pages.PizzaDetailsPopup"
     NavigationPage.HasNavigationBar="False"
+	Padding="20"
     >
 	<pages:PopupPage.Animation>
 		<animations:ScaleAnimation
