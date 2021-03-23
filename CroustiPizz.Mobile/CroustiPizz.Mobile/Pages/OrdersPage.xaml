@@ -11,27 +11,35 @@
     <ContentView.Content>
         <StackLayout Orientation="Vertical" Padding="20,30,20,0">
             <Label FontSize="Large" TextColor="Black" Text="Mes anciennes commandes" HorizontalTextAlignment="Center"/>
-            <ListView ItemsSource="{Binding Orders}"
-                      SelectionMode="None"
-                      Margin="0,30,0,0"
-                      RowHeight="120"
-                      SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell x:DataType="pizzas:OrderItem" IsEnabled="False">
-                            <yummy:PancakeView BackgroundColor="#EBEFF5" Margin="10" CornerRadius="30" Padding="30,20,30,20">
-                                <StackLayout Orientation="Horizontal">
-                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
-                                        <Label MaxLines="1" LineBreakMode="TailTruncation" Text="{Binding Shop.Name}" TextColor="Black" FontSize="Medium"/>
-                                        <Label Text="{Binding Date}"/>
+            <RefreshView>
+                <ListView 
+                    ItemsSource="{Binding Orders}"
+                    SelectionMode="None"
+                    RowHeight="120"
+                    IsPullToRefreshEnabled="True"
+                    Margin="0,30,0,0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell x:DataType="pizzas:OrderItem" IsEnabled="False" >
+                                <yummy:PancakeView BackgroundColor="#EBEFF5" Margin="10" CornerRadius="30" Padding="30,20,30,20">
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                            <Label WidthRequest="200" LineBreakMode="TailTruncation" Text="{Binding Shop.Name}" TextColor="Black" FontSize="Medium"/>
+                                            <Label Text="{Binding Date}"/>
+                                        </StackLayout>
+                                        <Label
+                                            Text="{Binding Amount, StringFormat='{0} €'}"
+                                            TextColor="#FA130B" 
+                                            FontSize="Large"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"/>
                                     </StackLayout>
-                                    <Label  WidthRequest="50" Text="{Binding Amount, StringFormat='{0}€'}" TextColor="#FA130B" FontSize="Large" VerticalOptions="CenterAndExpand"/>
-                                </StackLayout>
-                            </yummy:PancakeView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                </yummy:PancakeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

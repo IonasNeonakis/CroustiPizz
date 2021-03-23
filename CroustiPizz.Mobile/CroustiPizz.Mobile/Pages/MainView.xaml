@@ -7,21 +7,20 @@
              x:Class="CroustiPizz.Mobile.Pages.MainView"
              NavigationPage.HasNavigationBar="false">
     <StackLayout Orientation="Vertical" BackgroundColor="#EBEFF5">
-        <pancakeView:PancakeView CornerRadius="0,0,50,50">
+        <pancakeView:PancakeView CornerRadius="0,0,50,50" VerticalOptions="FillAndExpand">
             <tabs:ViewSwitcher x:Name="Switcher"
                                Animate="True"
                                SelectedIndex="{Binding SelectedViewModelIndex, Mode=TwoWay}"
                                xmlns:tabs="http://sharpnado.com">
-                <pages:ShopMapPage HeightRequest="575"/>
-                <pages:ShopListPage HeightRequest="575"/>
-                <pages:OrdersPage HeightRequest="575"/>
-                <pages:ProfilePage HeightRequest="575"/>
+                <pages:ShopMapPage />
+                <pages:ShopListPage />
+                <pages:OrdersPage />
+                <pages:ProfilePage />
             </tabs:ViewSwitcher>
         </pancakeView:PancakeView>
         <tabs:TabHostView SelectedIndex="{Binding Source={Reference Switcher}, Path=SelectedIndex, Mode=TwoWay}"
                           TabType="Fixed"
-                          HeightRequest="80"
-                          VerticalOptions="EndAndExpand"
+                          HeightRequest="100"
                           xmlns:tabs="http://sharpnado.com"
                           xmlns:forms="http://xamarin.com/schemas/2014/forms"
                           xmlns:mobile="clr-namespace:CroustiPizz.Mobile;assembly=CroustiPizz.Mobile">
