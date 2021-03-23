@@ -28,7 +28,9 @@
 		CornerRadius="30"
 		>
 		<StackLayout Orientation="Vertical">
-			<Image Source="{Binding PizzaPhoto}" />
+			<yummy:PancakeView CornerRadius="24">
+				<Image Source="{Binding PizzaPhoto}" Aspect="AspectFill" />
+			</yummy:PancakeView>
 			<Label Text="{Binding PizzaName}" 
 			       FontSize="Title" 
 			       TextColor="Black"
