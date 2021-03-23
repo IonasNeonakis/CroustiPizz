@@ -37,6 +37,7 @@
                              HorizontalOptions="Fill"
                              Padding="0,10,0,0">
                     <Label Text="{Binding Pizzeria.Name}"
+                           MaxLines="1" LineBreakMode="TailTruncation"
                            VerticalOptions="StartAndExpand"
                            HorizontalTextAlignment="Center"
                            TextColor="Black"
@@ -46,6 +47,7 @@
                                  HorizontalOptions="FillAndExpand"
                                  Padding="0,0,10,10">
                         <Label Text="{Binding Pizzeria.Address}"
+                               MaxLines="1" LineBreakMode="TailTruncation"
                                HorizontalOptions="StartAndExpand"
                                VerticalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
@@ -53,7 +55,7 @@
                         <Button BackgroundColor="#FA130B"
                                 CornerRadius="15"
                                 TextColor="White"
-                                Text="Commander"
+                                Text="VOIR"
                                 HorizontalOptions="End"
                                 FontFamily="GilroyBold"
                                 FontSize="Large"
