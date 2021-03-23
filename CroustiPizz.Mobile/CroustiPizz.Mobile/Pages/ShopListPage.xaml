@@ -35,12 +35,14 @@
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
                                                  HorizontalOptions="StartAndExpand">
-                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="Medium" />
+                                        <Label MaxLines="1" LineBreakMode="TailTruncation" Text="{Binding Name}"
+                                               TextColor="Black" FontSize="Medium" />
                                         <Label TextColor="#FA130B"
                                                Text="{Binding Distance, Converter={StaticResource DistanceConverter}}"
                                                FontSize="Small" />
 
-                                        <Label Text="{Binding Address}" FontSize="Small" />
+                                        <Label MaxLines="1" LineBreakMode="TailTruncation" Text="{Binding Address}"
+                                               FontSize="Small" />
                                     </StackLayout>
                                     <Image Source="back.png" BackgroundColor="Transparent" Scale="0.3" Rotation="180" />
                                 </StackLayout>
