@@ -11,10 +11,11 @@
                        NavigationPage.HasNavigationBar="false">
     <StackLayout Orientation="Vertical" BackgroundColor="White">
         <yummy:PancakeView BackgroundColor="#EBEFF5" CornerRadius="0,0,40,40" HorizontalOptions="FillAndExpand"
-                           Padding="0,50,0,0">
+                           Padding="0,30,0,0">
             <StackLayout Orientation="Vertical" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Image Source="logo.png" VerticalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="100" />
                 <Label Text="Crous'Ti Pizz'" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
-                       FontFamily="GilroyBold" FontSize="60" />
+                       FontFamily="GilroyBold" FontSize="40" />
                 <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
                     <StackLayout Orientation="Vertical">
