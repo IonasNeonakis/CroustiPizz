@@ -87,6 +87,7 @@
                                                                      HeightRequest="30">
                                                 <Button Text="-" BackgroundColor="White"
                                                         Padding="0"
+                                                        CornerRadius="10"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         Command="{Binding DecrementerQuantite}" />
@@ -102,6 +103,7 @@
                                                 WidthRequest="30"
                                                 HeightRequest="30">
                                                 <Button Text="+" BackgroundColor="White"
+                                                        CornerRadius="10"
                                                         Padding="0"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
