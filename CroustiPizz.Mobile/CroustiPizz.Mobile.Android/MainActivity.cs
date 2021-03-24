@@ -12,7 +12,7 @@ using Android.OS;
 
 namespace CroustiPizz.Mobile.Android
 {
-    [Activity(Label = "CroustiPizz.Mobile", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Crous'ti Pizz'", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
