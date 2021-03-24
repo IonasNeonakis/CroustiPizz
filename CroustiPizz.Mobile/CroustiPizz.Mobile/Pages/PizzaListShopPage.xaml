@@ -10,10 +10,6 @@
     NavigationPage.HasNavigationBar="False "
     BackgroundColor="White"
     Padding="20">
-    <forms:BaseContentPage.Resources>
-        <x:String x:Key="Grey">#EBEFF5</x:String>
-        <x:String x:Key="Red">#FA130B</x:String>
-    </forms:BaseContentPage.Resources>
     <forms:BaseContentPage.Content>
         <StackLayout BackgroundColor="#EBEFF5">
             <pancakeView:PancakeView BackgroundColor="White"
@@ -52,16 +48,18 @@
                                          Command="{Binding GoToCartCommand}" />
                         </Frame>
                     </FlexLayout>
-                    <Frame Padding="0"
-                           CornerRadius="15"
-                           BackgroundColor="#EBEFF5"
-                           HorizontalOptions="FillAndExpand">
-                        <controls:CroustiEntry Placeholder="Rechercher une Pizz'..."
-                               FontSize="20"
-                               Text="{Binding Filter}"
-                               ReturnCommand="{Binding FilterReturnCommand}"
-                               />
-                    </Frame>
+                    <StackLayout Orientation="Vertical" Padding="2,0,2,0">
+
+                        <Frame Padding="0"
+                               CornerRadius="15"
+                               BackgroundColor="#EBEFF5"
+                               HorizontalOptions="FillAndExpand">
+                            <controls:CroustiEntry Placeholder="Rechercher une Pizz'..."
+                                                   FontSize="20"
+                                                   Text="{Binding Filter}"
+                                                   ReturnCommand="{Binding FilterReturnCommand}" />
+                        </Frame>
+                    </StackLayout>
                     <CarouselView ItemsSource="{Binding DisplayedPizzas}"
                                   PeekAreaInsets="20"
                                   Margin="0,8,0,0"
@@ -80,26 +78,29 @@
                                         <pancakeView:PancakeView CornerRadius="24" HorizontalOptions="CenterAndExpand">
                                             <Image Source="{Binding Url}" HeightRequest="200" />
                                         </pancakeView:PancakeView>
-                                        <StackLayout Orientation="Horizontal" TranslationY="-20" HorizontalOptions="CenterAndExpand" Spacing="5">
+                                        <StackLayout Orientation="Horizontal" TranslationY="-20"
+                                                     HorizontalOptions="CenterAndExpand" Spacing="5">
                                             <pancakeView:PancakeView VerticalOptions="CenterAndExpand"
                                                                      Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
                                                                      CornerRadius="10"
                                                                      WidthRequest="30"
                                                                      HeightRequest="30">
-                                                <Button Text="-" BackgroundColor="White" 
+                                                <Button Text="-" BackgroundColor="White"
                                                         Padding="0"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        Command="{Binding DecrementerQuantite}"/>
+                                                        Command="{Binding DecrementerQuantite}" />
                                             </pancakeView:PancakeView>
-                                            <pancakeView:PancakeView Padding="0" 
+                                            <pancakeView:PancakeView Padding="0"
                                                                      CornerRadius="10">
-                                                <Label Text="{Binding Quantite}" FontSize="Medium" Padding="5,0,5,0" BackgroundColor="White" VerticalTextAlignment="Center"/>
+                                                <Label Text="{Binding Quantite}" FontSize="Medium" Padding="5,0,5,0"
+                                                       BackgroundColor="White" VerticalTextAlignment="Center" />
                                             </pancakeView:PancakeView>
-                                            <pancakeView:PancakeView Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
-                                                                     CornerRadius="10"
-                                                                     WidthRequest="30"
-                                                                     HeightRequest="30">
+                                            <pancakeView:PancakeView
+                                                Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
+                                                CornerRadius="10"
+                                                WidthRequest="30"
+                                                HeightRequest="30">
                                                 <Button Text="+" BackgroundColor="White"
                                                         Padding="0"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
@@ -113,7 +114,7 @@
                                                    TextColor="Black"
                                                    FontSize="Title"
                                                    MaxLines="1"
-                                                   LineBreakMode="TailTruncation"/>
+                                                   LineBreakMode="TailTruncation" />
                                             <Label Text="{Binding Description}" FontSize="Subtitle"
                                                    VerticalOptions="FillAndExpand" MaxLines="1"
                                                    LineBreakMode="TailTruncation" />
@@ -139,18 +140,18 @@
                                                         TextColor="White"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        Command="{Binding DetailsCommand}"/>
+                                                        Command="{Binding DetailsCommand}" />
                                             </Frame>
                                         </FlexLayout>
                                         <StackLayout Orientation="Horizontal" VerticalOptions="End">
                                             <Button BackgroundColor="#FA130B"
-                                                    TextColor="White" 
+                                                    TextColor="White"
                                                     CornerRadius="20"
-                                                    Text="AJOUTER AU PANIER" 
+                                                    Text="AJOUTER AU PANIER"
                                                     HorizontalOptions="FillAndExpand"
                                                     BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                     CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                    Command="{Binding CommandeAjoutPanier}"/>
+                                                    Command="{Binding CommandeAjoutPanier}" />
                                         </StackLayout>
                                     </StackLayout>
                                 </pancakeView:PancakeView>
