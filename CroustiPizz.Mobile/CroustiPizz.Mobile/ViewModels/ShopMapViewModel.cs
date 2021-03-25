@@ -62,6 +62,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
+            Visible = false;
             
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
             Response<List<ShopItem>> response = await service.ListShops();
