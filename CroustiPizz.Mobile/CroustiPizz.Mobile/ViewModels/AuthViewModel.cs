@@ -183,7 +183,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 else
                 {
                     ResetActivityIndicatorAndSubmitButton();
-                    DependencyService.Get<IMessage>().LongAlert( "Erreur dans le formulaire" );
+                    DependencyService.Get<IMessage>().LongAlert( "Erreur dans le formulaire " + response.ErrorMessage );
 
                 }
             }

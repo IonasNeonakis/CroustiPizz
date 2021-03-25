@@ -134,7 +134,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès à votre panier");
+                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès à votre panier " + response.ErrorMessage);
             }
         }
 
@@ -160,7 +160,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().LongAlert("Erreur dans la commande");
+                    DependencyService.Get<IMessage>().LongAlert("Erreur dans la commande " + response.ErrorMessage);
                 }
             }
             else

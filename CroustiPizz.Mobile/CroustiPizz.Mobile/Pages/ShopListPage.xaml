@@ -14,7 +14,9 @@
                        NavigationPage.HasNavigationBar="False"
                        Padding="0,0,0,15"
                        BackgroundColor="#EBEFF5"
-                       x:Name="ShopListViewModel">
+                       x:Name="ShopListViewModel"
+                       xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                       iOS:Page.UseSafeArea="true">
     <forms:BaseContentPage.Resources>
         <converters:DistanceConverter x:Key="DistanceConverter" />
     </forms:BaseContentPage.Resources>

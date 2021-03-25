@@ -7,7 +7,9 @@
                        x:Class="CroustiPizz.Mobile.Pages.ProfilePage"
                        Padding="0,0,0,15"
                        NavigationPage.HasNavigationBar="False"
-                       BackgroundColor="#EBEFF5">
+                       BackgroundColor="#EBEFF5"
+                       xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                       iOS:Page.UseSafeArea="true">
     <yummy:PancakeView CornerRadius="0,0,50,50">
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0,20,20,0">

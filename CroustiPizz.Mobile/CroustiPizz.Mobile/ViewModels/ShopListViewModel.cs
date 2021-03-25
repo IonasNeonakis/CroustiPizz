@@ -90,7 +90,7 @@ namespace CroustiPizz.Mobile.ViewModels
 	        else
 	        {
 		        Shops = new ObservableCollection<ShopItem>();
-		        DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+		        DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias " + response.ErrorMessage );
 
 	        }
         }
