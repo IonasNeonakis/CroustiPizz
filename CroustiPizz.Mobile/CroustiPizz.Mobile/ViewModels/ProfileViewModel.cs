@@ -58,7 +58,7 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _newPhoneNumber;
             set => SetProperty(ref _newPhoneNumber, value);
         }
-        
+
         private string _newFirstName;
 
         public string NewFirstName
@@ -66,7 +66,7 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _newFirstName;
             set => SetProperty(ref _newFirstName, value);
         }
-        
+
         private string _newLastName;
 
         public string NewLastName
@@ -74,7 +74,7 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _newLastName;
             set => SetProperty(ref _newLastName, value);
         }
-        
+
         private UserProfileResponse _user;
 
         public UserProfileResponse User
@@ -97,7 +97,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
-            
+
             IUserApiService service = DependencyService.Get<IUserApiService>();
             Response<UserProfileResponse> response = await service.GetUser();
 
@@ -117,55 +117,65 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Erreur dans les nouveaux champs entrés" );
-
+                DependencyService.Get<IMessage>().LongAlert("Erreur dans les nouveaux champs entrés");
             }
         }
 
         private async void EditPasswordAction()
         {
-            PopupPage popup = new EditPasswordPopup();
-
-            MessagingCenter.Subscribe<PasswordPayload>(this, "EditPasswordPopup", (value) =>
+            if (PopupNavigation.Instance.PopupStack.Count == 0)
             {
-                CurrentPassword = value.CurrentPassword;
-                NewPassword = value.NewPassword;
-                MessagingCenter.Unsubscribe<PasswordPayload>(this, "EditPasswordPopup");
-            });
+                PopupPage popup = new EditPasswordPopup();
 
-            await PopupNavigation.Instance.PushAsync(popup);
+                MessagingCenter.Subscribe<PasswordPayload>(this, "EditPasswordPopup", (value) =>
+                {
+                    CurrentPassword = value.CurrentPassword;
+                    NewPassword = value.NewPassword;
+                    MessagingCenter.Unsubscribe<PasswordPayload>(this, "EditPasswordPopup");
+                });
+
+                await PopupNavigation.Instance.PushAsync(popup);
+            }
         }
 
         private async void EditMailAction()
         {
-            PopupPage popup = new EditMailPopup();
-
-            MessagingCenter.Subscribe<String>(this, "EditMailPopup", (value) =>
+            if (PopupNavigation.Instance.PopupStack.Count == 0)
             {
-                NewMail = value;
-                MessagingCenter.Unsubscribe<String>(this, "EditMailPopup");
-            });
+                PopupPage popup = new EditMailPopup();
 
-            await PopupNavigation.Instance.PushAsync(popup);
+                MessagingCenter.Subscribe<String>(this, "EditMailPopup", (value) =>
+                {
+                    NewMail = value;
+                    MessagingCenter.Unsubscribe<String>(this, "EditMailPopup");
+                });
+
+                await PopupNavigation.Instance.PushAsync(popup);
+            }
         }
 
         private async void EditPhoneNumberAction()
         {
-            PopupPage popup = new EditPhoneNumberPopup();
-
-            MessagingCenter.Subscribe<String>(this, "EditPhoneNumberPopup", (value) =>
+            if (PopupNavigation.Instance.PopupStack.Count == 0)
             {
-                NewPhoneNumber = value;
-                MessagingCenter.Unsubscribe<String>(this, "EditPhoneNumberPopup");
-            });
+                PopupPage popup = new EditPhoneNumberPopup();
 
-            await PopupNavigation.Instance.PushAsync(popup);
+                MessagingCenter.Subscribe<String>(this, "EditPhoneNumberPopup", (value) =>
+                {
+                    NewPhoneNumber = value;
+
+                    MessagingCenter.Unsubscribe<String>(this, "EditPhoneNumberPopup");
+                });
+
+
+                await PopupNavigation.Instance.PushAsync(popup);
+            }
         }
 
         private async void SaveProfileInformationAction()
         {
             IUserApiService service = DependencyService.Get<IUserApiService>();
-            
+
             if (CurrentPassword != null && NewPassword != null)
             {
                 SetPasswordRequest passwordRequest = new SetPasswordRequest
@@ -174,33 +184,31 @@ namespace CroustiPizz.Mobile.ViewModels
                     NewPassword = NewPassword
                 };
                 Response reponsePassword = await service.ChangePassword(passwordRequest);
-                
+
                 if (!reponsePassword.IsSuccess)
                 {
-                    DependencyService.Get<IMessage>().LongAlert( "Probleme du changement de mot de passe" );
-
+                    DependencyService.Get<IMessage>().LongAlert("Probleme du changement de mot de passe");
                 }
             }
-            
-            SetUserProfileRequest userProfileRequest =  new SetUserProfileRequest
+
+            SetUserProfileRequest userProfileRequest = new SetUserProfileRequest
             {
                 Email = NewMail,
                 PhoneNumber = NewPhoneNumber,
                 FirstName = NewFirstName,
                 LastName = NewLastName
             };
-            
-            
+
+
             Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
 
             if (!reponseUser.IsSuccess)
             {
-                DependencyService.Get<IMessage>().LongAlert( "Problème lors de la mise à jour de vos données" );
-
+                DependencyService.Get<IMessage>().LongAlert("Problème lors de la mise à jour de vos données");
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Données Sauvegardées" );
+                DependencyService.Get<IMessage>().LongAlert("Données Sauvegardées");
             }
         }
 
@@ -220,7 +228,7 @@ namespace CroustiPizz.Mobile.ViewModels
             navigationService.PopAsync();
             */
         }
-        
+
         private async void EditNameAction()
         {
             PopupPage popup = new EditNamePopup();
@@ -232,7 +240,10 @@ namespace CroustiPizz.Mobile.ViewModels
                 MessagingCenter.Unsubscribe<IdentityPayload>(this, "EditNamePopup");
             });
 
-            await PopupNavigation.Instance.PushAsync(popup);
+            if (PopupNavigation.Instance.PopupStack.Count == 0)
+            {
+                await PopupNavigation.Instance.PushAsync(popup);
+            }
         }
     }
 }

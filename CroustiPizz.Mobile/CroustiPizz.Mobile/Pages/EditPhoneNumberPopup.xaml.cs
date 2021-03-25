@@ -16,7 +16,10 @@ namespace CroustiPizz.Mobile.Pages
         
         private async void OnConfirmClicked(object sender, EventArgs args)
         {
-            MessagingCenter.Send(NewPhoneNumber.Text, "EditPhoneNumberPopup");
+            if (NewPhoneNumber.Text != null)
+            {
+                MessagingCenter.Send(NewPhoneNumber.Text, "EditPhoneNumberPopup");
+            }
             await PopupNavigation.Instance.PopAsync();
         }
 

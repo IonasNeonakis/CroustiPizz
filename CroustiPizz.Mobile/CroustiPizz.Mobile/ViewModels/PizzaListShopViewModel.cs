@@ -144,14 +144,18 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 return new Command(e =>
                 {
-                    PizzaItem pizzaItem = e as PizzaItem;
-                    PopupNavigation.Instance.PushAsync(new PizzaDetailsPopup(new Dictionary<string, object>()
+
+                    if (PopupNavigation.Instance.PopupStack.Count == 0)
                     {
-                        {"PizzaName", pizzaItem.Name},
-                        {"PizzaDescription", pizzaItem.Description},
-                        {"PizzaPhoto", pizzaItem.Url},
-                        {"PizzaPrice", pizzaItem.Price}
-                    }));
+                        PizzaItem pizzaItem = e as PizzaItem;
+                        PopupNavigation.Instance.PushAsync(new PizzaDetailsPopup(new Dictionary<string, object>()
+                        {
+                            {"PizzaName", pizzaItem.Name},
+                            {"PizzaDescription", pizzaItem.Description},
+                            {"PizzaPhoto", pizzaItem.Url},
+                            {"PizzaPrice", pizzaItem.Price}
+                        }));
+                    }
                 });
             }
         }

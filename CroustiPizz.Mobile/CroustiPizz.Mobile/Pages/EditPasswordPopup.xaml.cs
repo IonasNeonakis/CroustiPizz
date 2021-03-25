@@ -22,7 +22,10 @@ namespace CroustiPizz.Mobile.Pages
 
         private async void OnConfirmClicked(object sender, EventArgs args)
         {
-            MessagingCenter.Send<PasswordPayload>(new PasswordPayload(AncienMotDePasse.Text, NouveauMotDePasse.Text), "EditPasswordPopup");
+            if (AncienMotDePasse.Text != null && NouveauMotDePasse.Text!= null)
+            {
+                MessagingCenter.Send<PasswordPayload>(new PasswordPayload(AncienMotDePasse.Text, NouveauMotDePasse.Text), "EditPasswordPopup");
+            }
             await PopupNavigation.Instance.PopAsync();
         }
 
