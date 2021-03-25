@@ -69,7 +69,7 @@
                     </StackLayout>
                     <StackLayout Padding="0,0,0,20">
                         <CarouselView ItemsSource="{Binding DisplayedPizzas}"
-                                      PeekAreaInsets="20"
+                                      PeekAreaInsets="40"
                                       Margin="0,8,0,0"
                                       x:Name="LesPizzas">
                             <CarouselView.ItemsLayout>
