@@ -20,6 +20,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class PizzaListShopViewModel : ViewModelBase
     {
+        private bool _backButtonPressed;
+
         private ObservableCollection<PizzaItem> _pizzas;
 
         public ObservableCollection<PizzaItem> Pizzas
@@ -86,8 +88,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
                     if (!pizza.OutOfStock)
                     {
-
-                        DependencyService.Get<IMessage>().LongAlert( "Ajout de " + pizza.Quantite + " " + pizza.Name );
+                        DependencyService.Get<IMessage>().LongAlert("Ajout de " + pizza.Quantite + " " + pizza.Name);
                         CartService.AddToCart(ShopId, pizza.Id, pizza.Quantite);
                         CartQuantity = CartService.NumberOfItems(ShopId);
                     }
@@ -163,11 +164,9 @@ namespace CroustiPizz.Mobile.ViewModels
 
             Pizzas = new ObservableCollection<PizzaItem>();
             DisplayedPizzas = new ObservableCollection<PizzaItem>();
-            
-            MessagingCenter.Subscribe<ShopCartViewModel> (this, "CartUpdated", (sender) =>
-            {
-                CartQuantity = CartService.NumberOfItems(ShopId);
-            });
+
+            MessagingCenter.Subscribe<ShopCartViewModel>(this, "CartUpdated",
+                (sender) => { CartQuantity = CartService.NumberOfItems(ShopId); });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -181,11 +180,11 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
-            
+            _backButtonPressed = false;
             CartService = DependencyService.Get<ICartService>();
             CartQuantity = CartService.NumberOfItems(ShopId);
 
-            
+
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<PizzaItem>> response = await service.ListPizzas(ShopId);
@@ -221,8 +220,12 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void BackAction()
         {
-            INavigationService navigationService = DependencyService.Get<INavigationService>();
-            navigationService.PopAsync();
+            if (!_backButtonPressed)
+            {
+                _backButtonPressed = true;
+                INavigationService navigationService = DependencyService.Get<INavigationService>();
+                navigationService.PopAsync();
+            }
         }
 
         private void FilterReturnAction()

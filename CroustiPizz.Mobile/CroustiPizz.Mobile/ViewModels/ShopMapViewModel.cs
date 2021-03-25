@@ -19,6 +19,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class ShopMapViewModel : ViewModelBase
     {
+        private bool _selected;
+
         private ObservableCollection<ShopItem> _shops;
 
         public ObservableCollection<ShopItem> Shops
@@ -62,8 +64,9 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
+            _selected = false;
             Visible = false;
-            
+
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
             Response<List<ShopItem>> response = await service.ListShops();
 
@@ -73,13 +76,16 @@ namespace CroustiPizz.Mobile.ViewModels
                 Position position;
                 MapSpan mapSpan;
                 Location location;
-                
-                try {
+
+                try
+                {
                     location = await Geolocation.GetLastKnownLocationAsync();
-                }catch (PermissionException) {
+                }
+                catch (PermissionException)
+                {
                     location = null;
                 }
-                
+
                 if (location != null)
                 {
                     position = new Position(location.Latitude, location.Longitude);
@@ -92,7 +98,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 }
 
                 bool showUser = location != null;
-                
+
                 MaMap = new Map(mapSpan)
                 {
                     IsShowingUser = showUser
@@ -127,20 +133,23 @@ namespace CroustiPizz.Mobile.ViewModels
                 Position position = new Position(46.4547, 2.2529);
                 MapSpan mapSpan = new MapSpan(position, 12, 12);
                 MaMap = new Map(mapSpan);
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
-
+                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès aux pizzerias");
             }
         }
 
         private void SelectionPizzeria()
         {
-            INavigationService service = DependencyService.Get<INavigationService>();
-
-            service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+            if (!_selected)
             {
-                {"ShopName", Pizzeria.Name},
-                {"ShopId", Pizzeria.Id}
-            });
+                _selected = true;
+                INavigationService service = DependencyService.Get<INavigationService>();
+
+                service.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+                {
+                    {"ShopName", Pizzeria.Name},
+                    {"ShopId", Pizzeria.Id}
+                });
+            }
         }
     }
 }
