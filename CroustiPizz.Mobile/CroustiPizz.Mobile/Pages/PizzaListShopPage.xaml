@@ -63,12 +63,11 @@
                     </StackLayout>
                     <StackLayout Padding="0,0,0,20">
                         <CarouselView ItemsSource="{Binding DisplayedPizzas}"
-                                      PeekAreaInsets="50"
+                                      PeekAreaInsets="20"
                                       Margin="0,8,0,0"
-                                      x:Name="LesPizzas"
-                                      >
+                                      x:Name="LesPizzas">
                             <CarouselView.ItemsLayout>
-                                <LinearItemsLayout Orientation="Horizontal"  ItemSpacing="20" />
+                                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
                             </CarouselView.ItemsLayout>
                             <CarouselView.ItemTemplate>
                                 <DataTemplate>
@@ -89,9 +88,12 @@
                                                                          CornerRadius="10"
                                                                          WidthRequest="30"
                                                                          HeightRequest="30">
-                                                    <Button Text="-" BackgroundColor="White"
+                                                    <Button Text="-" CornerRadius="10"
+                                                            WidthRequest="30"
+                                                            HeightRequest="30"
                                                             Padding="0"
-                                                            CornerRadius="10"
+                                                            BackgroundColor="White"
+                                                            TextColor="Black"
                                                             BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                             CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                             Command="{Binding DecrementerQuantite}" />
@@ -106,10 +108,14 @@
                                                     Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
                                                     CornerRadius="10"
                                                     WidthRequest="30"
-                                                    HeightRequest="30">
-                                                    <Button Text="+" BackgroundColor="White"
+                                                    HeightRequest="30"
+                                                    BackgroundColor="White">
+                                                    <Button Text="+"
                                                             CornerRadius="10"
+                                                            WidthRequest="30"
+                                                            HeightRequest="30"
                                                             Padding="0"
+                                                            BackgroundColor="White"
                                                             BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                             CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                             Command="{Binding IncrementerQuantite}" />
@@ -166,113 +172,6 @@
                             </CarouselView.ItemTemplate>
                         </CarouselView>
                     </StackLayout>
-                    <CarouselView ItemsSource="{Binding DisplayedPizzas}"
-                                  PeekAreaInsets="20"
-                                  Margin="0,8,0,0"
-                                  x:Name="LesPizzas">
-                        <CarouselView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="20" />
-                        </CarouselView.ItemsLayout>
-                        <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <pancakeView:PancakeView
-                                    CornerRadius="24"
-                                    BackgroundColor="#EBEFF5"
-                                    Padding="20,20,20,20"
-                                    x:Name="Item">
-                                    <StackLayout>
-                                        <pancakeView:PancakeView CornerRadius="24" HorizontalOptions="CenterAndExpand">
-                                            <Image Source="{Binding Url}" HeightRequest="200" />
-                                        </pancakeView:PancakeView>
-                                        <StackLayout Orientation="Horizontal" TranslationY="-20"
-                                                     HorizontalOptions="CenterAndExpand" Spacing="5">
-                                            <pancakeView:PancakeView VerticalOptions="CenterAndExpand"
-                                                                     Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
-                                                                     CornerRadius="10"
-                                                                     WidthRequest="30"
-                                                                     HeightRequest="30">
-                                                <Button Text="-" CornerRadius="10"
-                                                        WidthRequest="30"
-                                                        HeightRequest="30"
-                                                        Padding="0"
-                                                        BackgroundColor="White"
-                                                        TextColor="Black"
-                                                        BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
-                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        Command="{Binding DecrementerQuantite}" />
-                                            </pancakeView:PancakeView>
-                                            <pancakeView:PancakeView Padding="0"
-                                                                     CornerRadius="10">
-                                                <Label Text="{Binding Quantite}" FontSize="Medium" Padding="5,0,5,0"
-                                                       BackgroundColor="White" VerticalTextAlignment="Center" />
-                                            </pancakeView:PancakeView>
-                                            <pancakeView:PancakeView
-                                                Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
-                                                CornerRadius="10"
-                                                WidthRequest="30"
-                                                HeightRequest="30"
-                                                BackgroundColor="White">
-                                                <Button Text="+"
-                                                        CornerRadius="10"
-                                                        WidthRequest="30"
-                                                        HeightRequest="30"
-                                                        Padding="0"
-                                                        BackgroundColor="White"
-                                                        BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
-                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        Command="{Binding IncrementerQuantite}" />
-                                            </pancakeView:PancakeView>
-                                        </StackLayout>
-                                        <StackLayout VerticalOptions="StartAndExpand">
-                                            <Label FontAttributes="Bold"
-                                                   Text="{Binding Name}"
-                                                   TextColor="Black"
-                                                   FontSize="Title"
-                                                   MaxLines="1"
-                                                   LineBreakMode="TailTruncation" />
-                                            <Label Text="{Binding Description}" FontSize="Subtitle"
-                                                   VerticalOptions="FillAndExpand" MaxLines="1"
-                                                   LineBreakMode="TailTruncation" />
-                                        </StackLayout>
-                                        <FlexLayout Direction="Row"
-                                                    AlignItems="Center"
-                                                    JustifyContent="SpaceBetween">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label
-                                                    Text="{Binding Price, StringFormat='{0:0.00} €'}"
-                                                    TextColor="#FA130B"
-                                                    FontAttributes="Bold"
-                                                    FontSize="Title" />
-                                            </StackLayout>
-                                            <Frame CornerRadius="60"
-                                                   IsClippedToBounds="True"
-                                                   Padding="0"
-                                                   HeightRequest="40">
-                                                <Button FontAttributes="Bold"
-                                                        Text="Détails"
-                                                        BackgroundColor="#FA130B"
-                                                        CornerRadius="1000"
-                                                        TextColor="White"
-                                                        BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
-                                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                        Command="{Binding DetailsCommand}" />
-                                            </Frame>
-                                        </FlexLayout>
-                                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                                            <Button BackgroundColor="#FA130B"
-                                                    TextColor="White"
-                                                    CornerRadius="20"
-                                                    Text="AJOUTER AU PANIER"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
-                                                    CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                                    Command="{Binding CommandeAjoutPanier}" />
-                                        </StackLayout>
-                                    </StackLayout>
-                                </pancakeView:PancakeView>
-                            </DataTemplate>
-                        </CarouselView.ItemTemplate>
-                    </CarouselView>
                 </StackLayout>
             </pancakeView:PancakeView>
         </StackLayout>
