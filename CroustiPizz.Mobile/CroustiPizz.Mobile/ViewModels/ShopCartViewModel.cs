@@ -15,10 +15,12 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopCartViewModel : ViewModelBase
     {
         public ICommand CloseShopCartPopupCommand { get; }
-        
+
         public ICommand CommanderCommand { get; }
 
         public ICommand ViderCorbeilleCommand { get; }
+
+        private ICartService CartService { get; set; }
 
         public ICommand SupprimerPizzas
         {
@@ -27,13 +29,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 return new Command(e =>
                 {
                     PizzaItem pizza = e as PizzaItem;
-                    CartService service = DependencyService.Get<CartService>();
 
                     Total = Total - pizza.Price * pizza.Quantite;
 
-                    service.RemoveAllFromCart(ShopId, pizza.Id);
+                    CartService.RemoveAllFromCart(ShopId, pizza.Id);
 
                     Cart.Remove(pizza);
+
+                    MessagingCenter.Send(this, "CartUpdated");
                 });
             }
         }
@@ -82,17 +85,18 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private void ViderPanier()
         {
-            CartService service = DependencyService.Get<CartService>();
-
             Total = 0;
 
-            service.EmptyCart(ShopId);
+            CartService.EmptyCart(ShopId);
 
             Cart = new ObservableCollection<PizzaItem>();
+
+            MessagingCenter.Send(this, "CartUpdated");
         }
 
         private void CloseShopCartPopupAction()
         {
+            MessagingCenter.Send(this, "CartUpdated");
             PopupNavigation.Instance.PopAsync();
         }
 
@@ -102,10 +106,10 @@ namespace CroustiPizz.Mobile.ViewModels
             await base.OnResume();
 
 
-            CartService cartService = DependencyService.Get<CartService>();
+            CartService = DependencyService.Get<ICartService>();
             IPizzaApiService apiService = DependencyService.Get<IPizzaApiService>();
 
-            Dictionary<long, Dictionary<long, int>> cartDur = cartService.Cart;
+            Dictionary<long, Dictionary<long, int>> cartDur = CartService.GetCart();
 
             Dictionary<long, int> idPizQuantite =
                 cartDur.ContainsKey(ShopId) ? cartDur[ShopId] : new Dictionary<long, int>();
@@ -130,7 +134,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à votre panier" );
+                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès à votre panier");
             }
         }
 
@@ -138,26 +142,30 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
-            CartService cartService = DependencyService.Get<CartService>();
-
-            List<long> listID = cartService.GetListId(ShopId);
-
-            CreateOrderRequest body = new CreateOrderRequest();
-            body.PizzaIds = listID;
-
-            Response<OrderItem> response = await service.OrderPizzas(ShopId, body);
-
-
-            if (response.IsSuccess)
+            if (CartService.GetCart().ContainsKey(ShopId))
             {
-                cartService.EmptyCart(ShopId);
-                CloseShopCartPopupAction();
-                DependencyService.Get<IMessage>().LongAlert( "Commande passée avec succès" );
+                List<long> listID = CartService.GetListId(ShopId);
 
+                CreateOrderRequest body = new CreateOrderRequest();
+                body.PizzaIds = listID;
+
+                Response<OrderItem> response = await service.OrderPizzas(ShopId, body);
+
+
+                if (response.IsSuccess)
+                {
+                    CartService.EmptyCart(ShopId);
+                    CloseShopCartPopupAction();
+                    DependencyService.Get<IMessage>().LongAlert("Commande passée avec succès");
+                }
+                else
+                {
+                    DependencyService.Get<IMessage>().LongAlert("Erreur dans la commande");
+                }
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Erreur dans la commande" );
+                DependencyService.Get<IMessage>().LongAlert("Le panier est vide");
             }
         }
     }

@@ -43,6 +43,12 @@
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                TextColor="Black" />
+                        <Label Text="{Binding CartQuantity}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black" />
                         <Frame CornerRadius="15"
                                IsClippedToBounds="True"
                                Padding="0"
@@ -66,7 +72,7 @@
                     </StackLayout>
                     <StackLayout Padding="0,0,0,20">
                         <CarouselView ItemsSource="{Binding DisplayedPizzas}"
-                                      PeekAreaInsets="20"
+                                      PeekAreaInsets="40"
                                       Margin="0,8,0,0"
                                       x:Name="LesPizzas">
                             <CarouselView.ItemsLayout>

@@ -17,6 +17,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class ShopListViewModel : ViewModelBase
     {
+	    private bool _selected;
+	    
 	    private ObservableCollection<ShopItem> _shops;
 
 	    private Location _userLocation;
@@ -36,17 +38,25 @@ namespace CroustiPizz.Mobile.ViewModels
 
 		private void SelectedAction(ShopItem obj)
 		{
-		    INavigationService navigationService = DependencyService.Get<INavigationService>();
-		    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>()
+			
+		    if (!_selected)
 		    {
-			    {"ShopName", obj.Name},
-			    {"ShopId", obj.Id}
-		    });
+			    _selected = true;
+			    INavigationService navigationService = DependencyService.Get<INavigationService>();
+			    navigationService.PushAsync<PizzaListShopPage>(new Dictionary<string, object>
+			    {
+				    {"ShopName", obj.Name},
+				    {"ShopId", obj.Id}
+			    });
+		    }
+
 		}
 
 	    public override async Task OnResume()
         {
 	        await base.OnResume();
+	        _selected = false;
+	        
 	        try {
 		        _userLocation = await Geolocation.GetLastKnownLocationAsync();
 	        }catch (PermissionException) {

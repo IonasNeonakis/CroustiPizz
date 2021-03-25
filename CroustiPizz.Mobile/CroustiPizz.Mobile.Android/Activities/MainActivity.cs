@@ -15,7 +15,7 @@ using TouchEffect.Android;
 
 namespace CroustiPizz.Mobile.Android
 {
-    [Activity(Label = "Crous'Ti Pizz'", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Crous'Ti Pizz'", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

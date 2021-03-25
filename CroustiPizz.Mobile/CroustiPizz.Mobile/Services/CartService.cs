@@ -1,46 +1,65 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Xml.Schema;
 using CroustiPizz.Mobile.Dtos.Authentications;
 
 namespace CroustiPizz.Mobile.Services
 {
-    public class CartService
+
+
+    public interface ICartService
+    {
+        Dictionary<long, Dictionary<long, int>> GetCart();
+
+        void AddToCart(long shopId, long pizzaId, int quantity);
+        void UpdateFromCart(long shopId, long pizzaId, int quantity);
+        void RemoveAllFromCart(long shopId, long pizzaId);
+        void EmptyCart(long shopId);
+        List<long> GetListId(long shopId);
+        int NumberOfItems(long shopId);
+
+
+
+
+    }
+    public class CartService : ICartService
     {
         private Dictionary<long, Dictionary<long, int>> _cart;
-        public Dictionary<long, Dictionary<long, int>> Cart
-        {
-            get => _cart;
-            set => _cart = value;
-        }
+
 
         public CartService()
         {
-            Cart = new Dictionary<long, Dictionary<long, int>>();
+            _cart = new Dictionary<long, Dictionary<long, int>>();
         }
 
         
 
         // A appeler uniquement depuis la liste des pizzas !!!
+        public Dictionary<long, Dictionary<long, int>> GetCart()
+        {
+            return _cart;
+        }
+
         public void AddToCart(long shopId, long pizzaId, int quantity)
         {
-            if (Cart.ContainsKey(shopId)) // le panier pour ce restaurant existe
+            if (_cart.ContainsKey(shopId)) // le panier pour ce restaurant existe
             {
-                if (Cart[shopId].ContainsKey(pizzaId)) // il y'a déjà cette pizza dans le panier
+                if (_cart[shopId].ContainsKey(pizzaId)) // il y'a déjà cette pizza dans le panier
                 {
-                    Cart[shopId][pizzaId] += quantity;
+                    _cart[shopId][pizzaId] += quantity;
                 }
                 else // aucune pizza avec cet id dans le panier
                 {
                     if (quantity > 0)
                     {
-                        Cart[shopId][pizzaId] = quantity;
+                        _cart[shopId][pizzaId] = quantity;
                     }
                 }
             }
             else // le panier pour ce restaurant n'existe pas
             {
-                Cart[shopId] = new Dictionary<long, int>();
-                Cart[shopId][pizzaId] = quantity;
+                _cart[shopId] = new Dictionary<long, int>();
+                _cart[shopId][pizzaId] = quantity;
             }
         }
 
@@ -53,27 +72,27 @@ namespace CroustiPizz.Mobile.Services
             }
             else
             {
-                Cart[shopId][pizzaId] = quantity;
+                _cart[shopId][pizzaId] = quantity;
             }
         }
 
         // croix à côté d'une pizza dans le panier
         public void RemoveAllFromCart(long shopId, long pizzaId)
         {
-            Cart[shopId].Remove(pizzaId);
+            _cart[shopId].Remove(pizzaId);
         }
 
         // Vider tout le panier !!!
         public void EmptyCart(long shopId)
         {
-            Cart.Remove(shopId);
+            _cart.Remove(shopId);
         }
 
         public List<long> GetListId(long shopId)
         {
             List<long> list = new List<long>();
 
-            foreach (KeyValuePair<long,int> keyValuePair in Cart[shopId])
+            foreach (KeyValuePair<long,int> keyValuePair in _cart[shopId])
             {
                 for (int i = 0; i < keyValuePair.Value; i++)
                 {
@@ -83,8 +102,20 @@ namespace CroustiPizz.Mobile.Services
 
             return list;
         }
-        
-        
-        
+
+        public int NumberOfItems(long shopId)
+        {
+            int total = 0;
+            if (_cart.ContainsKey(shopId))
+            {
+                foreach (KeyValuePair<long,int> keyValuePair in _cart[shopId])
+                {
+                    total += keyValuePair.Value;
+                }
+            }
+            
+
+            return total;
+        }
     }
 }

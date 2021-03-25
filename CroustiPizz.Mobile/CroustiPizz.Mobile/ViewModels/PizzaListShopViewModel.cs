@@ -20,6 +20,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class PizzaListShopViewModel : ViewModelBase
     {
+        private bool _backButtonPressed;
+
         private ObservableCollection<PizzaItem> _pizzas;
 
         public ObservableCollection<PizzaItem> Pizzas
@@ -29,6 +31,7 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private ObservableCollection<PizzaItem> _displayedPizzas;
+
         public ObservableCollection<PizzaItem> DisplayedPizzas
         {
             get => _displayedPizzas;
@@ -51,20 +54,23 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shopId, value);
         }
 
-        private long _itemQuantity;
+        private long _cartQuantity;
 
-        public long ItemQuantity
+        public long CartQuantity
         {
-            get => _itemQuantity;
-            set => SetProperty(ref _itemQuantity, value);
+            get => _cartQuantity;
+            set => SetProperty(ref _cartQuantity, value);
         }
 
         private string _filter;
+
         public string Filter
         {
             get => _filter;
             set => SetProperty(ref _filter, value);
         }
+
+        private ICartService CartService { get; set; }
 
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
@@ -79,13 +85,12 @@ namespace CroustiPizz.Mobile.ViewModels
                 {
                     PizzaItem pizza = e as PizzaItem;
 
-                    var service = DependencyService.Get<CartService>();
 
                     if (!pizza.OutOfStock)
                     {
-
-                        DependencyService.Get<IMessage>().LongAlert( "Ajout de " + pizza.Quantite + " " + pizza.Name );
-                        service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                        DependencyService.Get<IMessage>().LongAlert("Ajout de " + pizza.Quantite + " " + pizza.Name);
+                        CartService.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                        CartQuantity = CartService.NumberOfItems(ShopId);
                     }
                 }, e =>
                 {
@@ -94,7 +99,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 });
             }
         }
-        
+
 
         public ICommand IncrementerQuantite
         {
@@ -123,14 +128,14 @@ namespace CroustiPizz.Mobile.ViewModels
                     {
                         pizza.Quantite--;
                     }
-                },e =>
+                }, e =>
                 {
                     PizzaItem pizza = e as PizzaItem;
                     return pizza != null && !pizza.OutOfStock;
                 });
             }
         }
-        
+
         public ICommand BackCommand { get; }
 
         public ICommand DetailsCommand
@@ -139,14 +144,18 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 return new Command(e =>
                 {
-                    PizzaItem pizzaItem = e as PizzaItem;
-                    PopupNavigation.Instance.PushAsync(new PizzaDetailsPopup(new Dictionary<string, object>()
+
+                    if (PopupNavigation.Instance.PopupStack.Count == 0)
                     {
-                        {"PizzaName", pizzaItem.Name},
-                        {"PizzaDescription", pizzaItem.Description},
-                        {"PizzaPhoto", pizzaItem.Url},
-                        {"PizzaPrice", pizzaItem.Price}
-                    }));
+                        PizzaItem pizzaItem = e as PizzaItem;
+                        PopupNavigation.Instance.PushAsync(new PizzaDetailsPopup(new Dictionary<string, object>()
+                        {
+                            {"PizzaName", pizzaItem.Name},
+                            {"PizzaDescription", pizzaItem.Description},
+                            {"PizzaPhoto", pizzaItem.Url},
+                            {"PizzaPrice", pizzaItem.Price}
+                        }));
+                    }
                 });
             }
         }
@@ -159,6 +168,9 @@ namespace CroustiPizz.Mobile.ViewModels
 
             Pizzas = new ObservableCollection<PizzaItem>();
             DisplayedPizzas = new ObservableCollection<PizzaItem>();
+
+            MessagingCenter.Subscribe<ShopCartViewModel>(this, "CartUpdated",
+                (sender) => { CartQuantity = CartService.NumberOfItems(ShopId); });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -172,6 +184,10 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
+            _backButtonPressed = false;
+            CartService = DependencyService.Get<ICartService>();
+            CartQuantity = CartService.NumberOfItems(ShopId);
+
 
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
@@ -190,23 +206,30 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 Pizzas = new ObservableCollection<PizzaItem>();
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès aux pizzerias" );
+                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès aux pizzerias");
             }
         }
 
         public void GoToCartAction()
         {
-            PopupNavigation.Instance.PushAsync(new ShopCartPopup(new Dictionary<string, object>()
+            if (PopupNavigation.Instance.PopupStack.Count == 0)
             {
-                {"ShopName", ShopName},
-                {"ShopId", ShopId}
-            }));
+                PopupNavigation.Instance.PushAsync(new ShopCartPopup(new Dictionary<string, object>()
+                {
+                    {"ShopName", ShopName},
+                    {"ShopId", ShopId}
+                }));
+            }
         }
 
         private void BackAction()
         {
-            INavigationService navigationService = DependencyService.Get<INavigationService>();
-            navigationService.PopAsync();
+            if (!_backButtonPressed)
+            {
+                _backButtonPressed = true;
+                INavigationService navigationService = DependencyService.Get<INavigationService>();
+                navigationService.PopAsync();
+            }
         }
 
         private void FilterReturnAction()
@@ -218,7 +241,9 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 DisplayedPizzas = Pizzas;
-                DisplayedPizzas = new ObservableCollection<PizzaItem>(DisplayedPizzas.Where(el => el.Name.ToLower().Contains(Filter.ToLower())));
+                DisplayedPizzas =
+                    new ObservableCollection<PizzaItem>(DisplayedPizzas.Where(el =>
+                        el.Name.ToLower().Contains(Filter.ToLower())));
             }
         }
     }
