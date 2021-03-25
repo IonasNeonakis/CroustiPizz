@@ -52,12 +52,12 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shopId, value);
         }
 
-        private long _itemQuantity;
+        private long _cartQuantity;
 
-        public long ItemQuantity
+        public long CartQuantity
         {
-            get => _itemQuantity;
-            set => SetProperty(ref _itemQuantity, value);
+            get => _cartQuantity;
+            set => SetProperty(ref _cartQuantity, value);
         }
 
         private string _filter;
@@ -67,6 +67,8 @@ namespace CroustiPizz.Mobile.ViewModels
             get => _filter;
             set => SetProperty(ref _filter, value);
         }
+
+        private ICartService CartService { get; set; }
 
         public ICommand SelectedCommand { get; }
         public ICommand GoToCartCommand { get; }
@@ -81,12 +83,13 @@ namespace CroustiPizz.Mobile.ViewModels
                 {
                     PizzaItem pizza = e as PizzaItem;
 
-                    var service = DependencyService.Get<CartService>();
 
                     if (!pizza.OutOfStock)
                     {
-                        DependencyService.Get<IMessage>().LongAlert("Ajout de " + pizza.Quantite + " " + pizza.Name);
+
+                        DependencyService.Get<IMessage>().LongAlert( "Ajout de " + pizza.Quantite + " " + pizza.Name );
                         service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                        CartQuantity = CartService.NumberOfItems(ShopId);
                     }
                 }, e =>
                 {
@@ -160,6 +163,11 @@ namespace CroustiPizz.Mobile.ViewModels
 
             Pizzas = new ObservableCollection<PizzaItem>();
             DisplayedPizzas = new ObservableCollection<PizzaItem>();
+            
+            MessagingCenter.Subscribe<ShopCartViewModel> (this, "CartUpdated", (sender) =>
+            {
+                CartQuantity = CartService.NumberOfItems(ShopId);
+            });
         }
 
         public override void Initialize(Dictionary<string, object> navigationParameters)
@@ -173,7 +181,11 @@ namespace CroustiPizz.Mobile.ViewModels
         public override async Task OnResume()
         {
             await base.OnResume();
+            
+            CartService = DependencyService.Get<ICartService>();
+            CartQuantity = CartService.NumberOfItems(ShopId);
 
+            
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
             Response<List<PizzaItem>> response = await service.ListPizzas(ShopId);
