@@ -15,7 +15,7 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopCartViewModel : ViewModelBase
     {
         public ICommand CloseShopCartPopupCommand { get; }
-        
+
         public ICommand CommanderCommand { get; }
 
         public ICommand ViderCorbeilleCommand { get; }
@@ -31,13 +31,12 @@ namespace CroustiPizz.Mobile.ViewModels
                     PizzaItem pizza = e as PizzaItem;
 
                     Total = Total - pizza.Price * pizza.Quantite;
-                    
+
                     CartService.RemoveAllFromCart(ShopId, pizza.Id);
 
                     Cart.Remove(pizza);
-                    
-                    MessagingCenter.Send(this, "CartUpdated");
 
+                    MessagingCenter.Send(this, "CartUpdated");
                 });
             }
         }
@@ -82,25 +81,22 @@ namespace CroustiPizz.Mobile.ViewModels
             ShopId = (long) dico["ShopId"];
             CommanderCommand = new Command(Commander);
             ViderCorbeilleCommand = new Command(ViderPanier);
-            
-
         }
 
         private void ViderPanier()
         {
-
             Total = 0;
-        
+
             CartService.EmptyCart(ShopId);
 
             Cart = new ObservableCollection<PizzaItem>();
-            
-            MessagingCenter.Send(this, "CartUpdated");
 
+            MessagingCenter.Send(this, "CartUpdated");
         }
 
         private void CloseShopCartPopupAction()
         {
+            MessagingCenter.Send(this, "CartUpdated");
             PopupNavigation.Instance.PopAsync();
         }
 
@@ -138,7 +134,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à votre panier" );
+                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès à votre panier");
             }
         }
 
@@ -146,25 +142,30 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
-
-            List<long> listID = CartService.GetListId(ShopId);
-
-            CreateOrderRequest body = new CreateOrderRequest();
-            body.PizzaIds = listID;
-
-            Response<OrderItem> response = await service.OrderPizzas(ShopId, body);
-
-
-            if (response.IsSuccess)
+            if (CartService.GetCart().ContainsKey(ShopId))
             {
-                CartService.EmptyCart(ShopId);
-                CloseShopCartPopupAction();
-                DependencyService.Get<IMessage>().LongAlert( "Commande passée avec succès" );
+                List<long> listID = CartService.GetListId(ShopId);
 
+                CreateOrderRequest body = new CreateOrderRequest();
+                body.PizzaIds = listID;
+
+                Response<OrderItem> response = await service.OrderPizzas(ShopId, body);
+
+
+                if (response.IsSuccess)
+                {
+                    CartService.EmptyCart(ShopId);
+                    CloseShopCartPopupAction();
+                    DependencyService.Get<IMessage>().LongAlert("Commande passée avec succès");
+                }
+                else
+                {
+                    DependencyService.Get<IMessage>().LongAlert("Erreur dans la commande");
+                }
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Erreur dans la commande" );
+                DependencyService.Get<IMessage>().LongAlert("Le panier est vide");
             }
         }
     }

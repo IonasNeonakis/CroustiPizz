@@ -88,7 +88,7 @@ namespace CroustiPizz.Mobile.ViewModels
                     {
 
                         DependencyService.Get<IMessage>().LongAlert( "Ajout de " + pizza.Quantite + " " + pizza.Name );
-                        service.AddToCart(ShopId, pizza.Id, pizza.Quantite);
+                        CartService.AddToCart(ShopId, pizza.Id, pizza.Quantite);
                         CartQuantity = CartService.NumberOfItems(ShopId);
                     }
                 }, e =>
