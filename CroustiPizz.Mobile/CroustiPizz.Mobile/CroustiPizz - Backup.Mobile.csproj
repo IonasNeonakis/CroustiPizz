@@ -15,7 +15,6 @@
         <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
         <PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
         <PackageReference Include="Storm.Mvvm.Forms" Version="2.4.0" />
-        <PackageReference Include="TouchView" Version="4.1.100" />
         <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
         <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1821" />
@@ -39,21 +38,6 @@
         <DependentUpon>EditNamePopup.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Resources\AppResources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\AppResources.fr.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.fr.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Resources\AppResources.fr.Designer.cs">
-        <AutoGen>True</AutoGen>
-        <DependentUpon>AppResources.fr.resx</DependentUpon>
-        <DesignTime>True</DesignTime>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -62,16 +46,5 @@
 
     <ItemGroup>
       <None Remove="Resources\Images\person.png" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Resources\AppResources.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Resources\AppResources.fr.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>AppResources.fr.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
     </ItemGroup>
 </Project>

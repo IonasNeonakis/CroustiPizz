@@ -6,6 +6,7 @@
                        xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
                        xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
                        xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
+                       xmlns:resources="clr-namespace:CroustiPizz.Mobile.Resources;assembly=CroustiPizz.Mobile"
                        x:Class="CroustiPizz.Mobile.Pages.AuthView"
                        x:DataType="viewModels:AuthViewModel"
                        NavigationPage.HasNavigationBar="false">
@@ -19,13 +20,13 @@
                 <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
                     <StackLayout Orientation="Vertical">
-                        <Button BackgroundColor="#EBEFF5" Text="Se connecter" FontFamily="GilroyBold"
+                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Login}" FontFamily="GilroyBold"
                                 TextColor="{Binding LoginTextColor}" Command="{Binding ShowLoginCommand}" />
                         <BoxView IsVisible="{Binding ShowingLogin}" BackgroundColor="#FA130B" CornerRadius="20"
                                  HeightRequest="4" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical">
-                        <Button BackgroundColor="#EBEFF5" Text="S'inscrire" FontFamily="GilroyBold"
+                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Register}" FontFamily="GilroyBold"
                                 TextColor="{Binding SignUpTextColor}" Command="{Binding ShowSignUpCommand}" />
                         <BoxView IsVisible="{Binding ShowingSignup}" BackgroundColor="#FA130B" CornerRadius="20"
                                  HeightRequest="4" />
@@ -37,25 +38,25 @@
         <StackLayout IsVisible="{Binding ShowingLogin}" VerticalOptions="FillAndExpand" Orientation="Vertical"
                      Padding="20" Spacing="20">
             <StackLayout Orientation="Vertical">
-                <Label Text="E-mail" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                <Label Text="{x:Static resources:AppResources.MailAddress}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                 <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                     <controls:CroustiEntry Text="{Binding Email}" />
                 </Frame>
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
-                <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                <Label Text="{x:Static resources:AppResources.Password}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                 <Frame Padding="0" CornerRadius="15" BackgroundColor="#EBEFF5">
                     <controls:CroustiEntry Text="{Binding Mdp}" IsPassword="True" FontSize="20" />
                 </Frame>
             </StackLayout>
 
-            <Button Text="J'ai oublié mon mot de passe" BackgroundColor="White" FontFamily="GilroyBold"
+            <Button Text="{x:Static resources:AppResources.ForgotPassword}" BackgroundColor="White" FontFamily="GilroyBold"
                     TextColor="#4C4E52" CornerRadius="50" />
 
             <ActivityIndicator IsRunning="{Binding IsLoading}" />
 
-            <Button Text="Se connecter" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+            <Button Text="{x:Static resources:AppResources.Login}" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
                     VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsSubmitEnabled}" />
@@ -66,48 +67,48 @@
             <ScrollView Orientation="Vertical" >
                 <StackLayout Orientation="Vertical" Spacing="20" Padding="20" >
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Nom" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.LastName}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Nom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Prenom" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.FirstName}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Prenom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="E-mail" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.MailAddress}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding EmailRegister}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.Password}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Mdp1}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Confirmer le mot de passe" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.PasswordConfirmation}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Mdp2}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="Numéro de téléphone" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.PhoneNumber}" FontFamily="GilroyBold" TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Numero}" FontSize="20" />
                         </Frame>
                     </StackLayout>
 
-                    <Button Text="S'inscrire" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+                    <Button Text="{x:Static resources:AppResources.Register}" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
                             Margin="0,50,0,0"
                             VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
                             Command="{Binding SignUpCommand}"
