@@ -14,11 +14,10 @@
         <StackLayout BackgroundColor="#EBEFF5">
             <pancakeView:PancakeView BackgroundColor="White"
                                      VerticalOptions="FillAndExpand">
-                <StackLayout Spacing="15">
-                    <FlexLayout
-                        Margin="0,0,0,25"
-                        Direction="Row"
-                        JustifyContent="SpaceBetween"
+                <StackLayout Spacing="0"> 
+                    <StackLayout
+                        Margin="0,0,0,0"
+                        Orientation="Horizontal"
                         Padding="20,20,20,0">
                         <Frame CornerRadius="15"
                                HasShadow="False"
@@ -37,12 +36,7 @@
                         <Label Text="{Binding ShopName}"
                                FontAttributes="Bold"
                                FontSize="Large"
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"
-                               TextColor="Black" />
-                        <Label Text="{Binding CartQuantity}"
-                               FontAttributes="Bold"
-                               FontSize="Large"
+                               HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                TextColor="Black" />
@@ -51,12 +45,29 @@
                                Padding="0"
                                WidthRequest="40"
                                HeightRequest="40">
-                            <ImageButton BackgroundColor="Bisque" Source="cart.png" Padding="10"
-                                         Command="{Binding GoToCartCommand}" />
+                            <StackLayout Orientation="Vertical">
+                                <ImageButton BackgroundColor="#EBEFF5" Source="cart.png" Padding="10"
+                                             Command="{Binding GoToCartCommand}" />
+                            </StackLayout>
                         </Frame>
-                    </FlexLayout>
+                    </StackLayout>
+                    <pancakeView:PancakeView
+                        CornerRadius="10"
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        HorizontalOptions="EndAndExpand"
+                        BackgroundColor="#FA130B"
+                        Margin="0,0,10,0"
+                        TranslationY="-45"
+                        TranslationX="0">
+                        <Label Text="{Binding CartQuantity}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="White"
+                               WidthRequest="30"
+                               HeightRequest="30"
+                               Padding="0"/>
+                    </pancakeView:PancakeView>
                     <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-
                         <Frame Padding="0"
                                CornerRadius="15"
                                BackgroundColor="#EBEFF5"
