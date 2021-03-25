@@ -85,9 +85,12 @@
                                                                      CornerRadius="10"
                                                                      WidthRequest="30"
                                                                      HeightRequest="30">
-                                                <Button Text="-" BackgroundColor="White"
+                                                <Button Text="-" CornerRadius="10"
+                                                        WidthRequest="30"
+                                                        HeightRequest="30"
                                                         Padding="0"
-                                                        CornerRadius="10"
+                                                        BackgroundColor="White"
+                                                        TextColor="Black"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         Command="{Binding DecrementerQuantite}" />
@@ -101,10 +104,14 @@
                                                 Border="{pancakeView:BorderMarkup Color=#EBEFF5, Thickness='2'}"
                                                 CornerRadius="10"
                                                 WidthRequest="30"
-                                                HeightRequest="30">
-                                                <Button Text="+" BackgroundColor="White"
+                                                HeightRequest="30"
+                                                BackgroundColor="White">
+                                                <Button Text="+"
                                                         CornerRadius="10"
+                                                        WidthRequest="30"
+                                                        HeightRequest="30"
                                                         Padding="0"
+                                                        BackgroundColor="White"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
                                                         Command="{Binding IncrementerQuantite}" />

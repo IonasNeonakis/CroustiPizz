@@ -6,32 +6,42 @@
                        xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                        xmlns:viewModels="clr-namespace:CroustiPizz.Mobile.ViewModels;assembly=CroustiPizz.Mobile"
                        xmlns:pizzas="clr-namespace:CroustiPizz.Mobile.Dtos.Pizzas;assembly=CroustiPizz.Mobile"
-                       xmlns:extensions="clr-namespace:CroustiPizz.Mobile.Extensions;assembly=CroustiPizz.Mobile"
                        xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
+                       xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+                       xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
                        x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
                        x:DataType="viewModels:ShopListViewModel"
                        NavigationPage.HasNavigationBar="False"
                        Padding="0,0,0,15"
-                       BackgroundColor="#EBEFF5">
+                       BackgroundColor="#EBEFF5"
+                       x:Name="ShopListViewModel">
     <forms:BaseContentPage.Resources>
         <converters:DistanceConverter x:Key="DistanceConverter" />
     </forms:BaseContentPage.Resources>
     <yummy:PancakeView BackgroundColor="White" CornerRadius="0,0,50,50">
         <StackLayout Orientation="Vertical" Padding="20,20,20,0">
             <Label Text="Pizzerias" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
-            <ListView ItemsSource="{Binding Shops}"
+            <controls:CroustiList ItemsSource="{Binding Shops}"
                       SelectionMode="None"
                       RowHeight="150"
                       Margin="0,20,0,0"
                       SeparatorVisibility="None">
-                <ListView.Behaviors>
-                    <extensions:ListViewItemTappedBehavior Command="{Binding SelectedCommand}" />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
+                <controls:CroustiList.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell x:DataType="pizzas:ShopItem">
-                            <yummy:PancakeView BackgroundColor="#EBEFF5" Margin="10" CornerRadius="30"
-                                               Padding="30,20,10,20">
+                        <ViewCell x:DataType="pizzas:ShopItem" >
+                            <yummy:PancakeView
+                                Margin="10" 
+                                CornerRadius="30"
+                                Padding="30,20,10,20"
+
+                                touch:TouchEff.RegularBackgroundColor="#EBEFF5"
+                                touch:TouchEff.PressedBackgroundColor="#AAAEB4"
+                                touch:TouchEff.PressedOpacity="1"
+
+                                touch:TouchEff.PressedAnimationDuration="100"
+                                touch:TouchEff.RegularAnimationDuration="100"
+                                touch:TouchEff.CommandParameter="{Binding .}"
+                                touch:TouchEff.Command="{Binding BindingContext.SelectedCommand, Source={x:Reference Name=ShopListViewModel}}">
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
                                                  HorizontalOptions="StartAndExpand">
@@ -49,8 +59,8 @@
                             </yummy:PancakeView>
                         </ViewCell>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </controls:CroustiList.ItemTemplate>
+            </controls:CroustiList>
         </StackLayout>
     </yummy:PancakeView>
 </forms:BaseContentPage>

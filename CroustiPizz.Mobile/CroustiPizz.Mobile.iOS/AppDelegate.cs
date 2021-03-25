@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using TouchEffect.iOS;
 using UIKit;
 
 namespace CroustiPizz.Mobile.iOS
@@ -28,6 +29,7 @@ namespace CroustiPizz.Mobile.iOS
             LoadApplication(new App());
             
             Sharpnado.Tabs.iOS.Preserver.Preserve();
+            TouchEffectPreserver.Preserve();
 
             return base.FinishedLaunching(app, options);
         }

@@ -27,7 +27,7 @@ namespace CroustiPizz.Mobile.ViewModels
 		    set => SetProperty(ref _shops, value);
 	    }
 
-		public ICommand SelectedCommand { get; }
+	    public ICommand SelectedCommand { get; }
 
 		public ShopListViewModel()
 		{

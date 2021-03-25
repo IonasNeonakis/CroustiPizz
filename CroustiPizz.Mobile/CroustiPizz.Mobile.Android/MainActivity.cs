@@ -2,7 +2,10 @@
 using Android;
 using Android.App;
 using Android.Content.PM;
+using Android.Graphics;
 using Android.OS;
+using Android.Views;
+using TouchEffect.Android;
 
 [assembly: UsesPermission(Android.Manifest.Permission.AccessCoarseLocation)]
 [assembly: UsesPermission(Android.Manifest.Permission.AccessFineLocation)]
@@ -30,8 +33,11 @@ namespace CroustiPizz.Mobile.Android
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            
+            TransparentStatusBar();
 
             Rg.Plugins.Popup.Popup.Init(this);
+            TouchEffectPreserver.Preserve();
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.FormsMaps.Init(this, savedInstanceState);
@@ -67,6 +73,27 @@ namespace CroustiPizz.Mobile.Android
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
+        }
+        
+        private void TransparentStatusBar()
+        {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
+            {
+                // for covering the full screen in android..
+                //Window.SetFlags(WindowManagerFlags.LayoutNoLimits, WindowManagerFlags.LayoutNoLimits);
+
+                // clear FLAG_TRANSLUCENT_STATUS flag:
+                Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+
+                // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
+                Window.DecorView.SystemUiVisibility = 0;
+
+                Window.SetStatusBarColor(Color.Transparent);
+
+            }
+
         }
     }
 }
