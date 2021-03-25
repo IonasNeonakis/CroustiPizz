@@ -20,6 +20,8 @@ namespace CroustiPizz.Mobile.ViewModels
 
         public ICommand ViderCorbeilleCommand { get; }
 
+        private ICartService CartService { get; set; }
+
         public ICommand SupprimerPizzas
         {
             get
@@ -27,13 +29,15 @@ namespace CroustiPizz.Mobile.ViewModels
                 return new Command(e =>
                 {
                     PizzaItem pizza = e as PizzaItem;
-                    CartService service = DependencyService.Get<CartService>();
 
                     Total = Total - pizza.Price * pizza.Quantite;
-
-                    service.RemoveAllFromCart(ShopId, pizza.Id);
+                    
+                    CartService.RemoveAllFromCart(ShopId, pizza.Id);
 
                     Cart.Remove(pizza);
+                    
+                    MessagingCenter.Send(this, "CartUpdated");
+
                 });
             }
         }
@@ -78,17 +82,21 @@ namespace CroustiPizz.Mobile.ViewModels
             ShopId = (long) dico["ShopId"];
             CommanderCommand = new Command(Commander);
             ViderCorbeilleCommand = new Command(ViderPanier);
+            
+
         }
 
         private void ViderPanier()
         {
-            CartService service = DependencyService.Get<CartService>();
 
             Total = 0;
-
-            service.EmptyCart(ShopId);
+        
+            CartService.EmptyCart(ShopId);
 
             Cart = new ObservableCollection<PizzaItem>();
+            
+            MessagingCenter.Send(this, "CartUpdated");
+
         }
 
         private void CloseShopCartPopupAction()
@@ -102,10 +110,10 @@ namespace CroustiPizz.Mobile.ViewModels
             await base.OnResume();
 
 
-            CartService cartService = DependencyService.Get<CartService>();
+            CartService = DependencyService.Get<ICartService>();
             IPizzaApiService apiService = DependencyService.Get<IPizzaApiService>();
 
-            Dictionary<long, Dictionary<long, int>> cartDur = cartService.Cart;
+            Dictionary<long, Dictionary<long, int>> cartDur = CartService.GetCart();
 
             Dictionary<long, int> idPizQuantite =
                 cartDur.ContainsKey(ShopId) ? cartDur[ShopId] : new Dictionary<long, int>();
@@ -138,9 +146,8 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
 
-            CartService cartService = DependencyService.Get<CartService>();
 
-            List<long> listID = cartService.GetListId(ShopId);
+            List<long> listID = CartService.GetListId(ShopId);
 
             CreateOrderRequest body = new CreateOrderRequest();
             body.PizzaIds = listID;
@@ -150,7 +157,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
             if (response.IsSuccess)
             {
-                cartService.EmptyCart(ShopId);
+                CartService.EmptyCart(ShopId);
                 CloseShopCartPopupAction();
                 DependencyService.Get<IMessage>().LongAlert( "Commande passée avec succès" );
 

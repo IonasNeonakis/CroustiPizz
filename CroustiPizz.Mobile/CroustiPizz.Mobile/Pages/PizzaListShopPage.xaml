@@ -40,6 +40,12 @@
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
                                TextColor="Black" />
+                        <Label Text="{Binding CartQuantity}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black" />
                         <Frame CornerRadius="15"
                                IsClippedToBounds="True"
                                Padding="0"
