@@ -6,14 +6,15 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:appCompat="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific.AppCompat;assembly=Xamarin.Forms.Core"
             xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
+            xmlns:resources="clr-namespace:CroustiPizz.Mobile.Resources;assembly=CroustiPizz.Mobile"
             x:Class="CroustiPizz.Mobile.Pages.MainView"
             NavigationPage.HasNavigationBar="False"
             android:TabbedPage.ToolbarPlacement="Bottom"
             SelectedTabColor="#FA130B"
             BarTextColor="Black">
     
-    <pages:ShopMapPage Title="Carte" IconImageSource="map.png"/>
-    <pages:ShopListPage Title="Liste" IconImageSource="list.png"/>
-    <pages:OrdersPage Title="Commandes" IconImageSource="pizza.png"/>
-    <pages:ProfilePage Title="Profil" IconImageSource="person.png"/>
+    <pages:ShopMapPage Title="{x:Static resources:AppResources.MapTab}" IconImageSource="map.png"/>
+    <pages:ShopListPage Title="{x:Static resources:AppResources.ListTab}" IconImageSource="list.png"/>
+    <pages:OrdersPage Title="{x:Static resources:AppResources.OrdersTab}" IconImageSource="pizza.png"/>
+    <pages:ProfilePage Title="{x:Static resources:AppResources.ProfileTab}" IconImageSource="person.png"/>
 </controls:CroustiTabs>
