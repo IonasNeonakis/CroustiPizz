@@ -11,8 +11,13 @@
     BackgroundColor="White"
     Padding="0"
     xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
     iOS:Page.UseSafeArea="true">
 
+    <forms:BaseContentPage.Resources>
+        <converters:QuantityConverter x:Key="QuantityConverter" />
+    </forms:BaseContentPage.Resources>
+    
     <forms:BaseContentPage.Content>
         <StackLayout BackgroundColor="#EBEFF5">
             <pancakeView:PancakeView BackgroundColor="White"
@@ -63,7 +68,7 @@
                         Margin="0,0,10,0"
                         TranslationY="-45"
                         TranslationX="0">
-                        <Label Text="{Binding CartQuantity}"
+                        <Label Text="{Binding CartQuantity, Converter={StaticResource QuantityConverter}}"
                                HorizontalTextAlignment="Center"
                                TextColor="White"
                                WidthRequest="30"
