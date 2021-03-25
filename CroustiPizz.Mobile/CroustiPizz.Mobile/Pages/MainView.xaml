@@ -5,12 +5,12 @@
             xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
-            xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
             x:Class="CroustiPizz.Mobile.Pages.MainView"
             NavigationPage.HasNavigationBar="False"
             android:TabbedPage.ToolbarPlacement="Bottom"
             SelectedTabColor="#FA130B"
             BarTextColor="Black"
+            xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
             iOS:Page.UseSafeArea="true">
     
     <pages:ShopMapPage Title="Carte" IconImageSource="map.png"/>

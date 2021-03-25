@@ -9,7 +9,9 @@
                        x:DataType="viewModels:ShopMapViewModel"
                        NavigationPage.HasNavigationBar="False"
                        Padding="0,0,0,15"
-                       BackgroundColor="#EBEFF5">
+                       BackgroundColor="#EBEFF5"
+                       xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                       iOS:Page.UseSafeArea="true">
     <yummy:PancakeView CornerRadius="0,0,50,50">
         <AbsoluteLayout>
             <ContentView
