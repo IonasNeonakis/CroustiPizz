@@ -175,7 +175,7 @@ namespace CroustiPizz.Mobile.ViewModels
         private async void SaveProfileInformationAction()
         {
             IUserApiService service = DependencyService.Get<IUserApiService>();
-
+            Response reponsePassword = null;
             if (CurrentPassword != null && NewPassword != null)
             {
                 SetPasswordRequest passwordRequest = new SetPasswordRequest
@@ -183,12 +183,8 @@ namespace CroustiPizz.Mobile.ViewModels
                     OldPassword = CurrentPassword,
                     NewPassword = NewPassword
                 };
-                Response reponsePassword = await service.ChangePassword(passwordRequest);
-
-                if (!reponsePassword.IsSuccess)
-                {
-                    DependencyService.Get<IMessage>().LongAlert("Probleme du changement de mot de passe");
-                }
+                 reponsePassword = await service.ChangePassword(passwordRequest);
+                 
             }
 
             SetUserProfileRequest userProfileRequest = new SetUserProfileRequest
@@ -201,15 +197,27 @@ namespace CroustiPizz.Mobile.ViewModels
 
 
             Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
+            
 
-            if (!reponseUser.IsSuccess)
+            if (reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
             {
-                DependencyService.Get<IMessage>().LongAlert("Problème lors de la mise à jour de vos données");
-            }
-            else
+                DependencyService.Get<IMessage>().LongAlert("Données et mot de passe sauvegardées");
+            }else if (reponseUser.IsSuccess && reponsePassword == null)
             {
-                DependencyService.Get<IMessage>().LongAlert("Données Sauvegardées");
+                DependencyService.Get<IMessage>().LongAlert("Données sauvegardées");
+            }else if (reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert("Données changés mais erreur mot de passe :" + reponsePassword.ErrorMessage);
+            }else if (!reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert("Mot de passe changé mais erreur sauvegarde données : " + reponseUser.ErrorMessage);
+            }else if (!reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert("Erreur mot de passe :"+ reponsePassword.ErrorMessage +"et erreur sauvegarde donénes : " + reponseUser.ErrorMessage);
             }
+
+
+
         }
 
         private void LogoutAction()
