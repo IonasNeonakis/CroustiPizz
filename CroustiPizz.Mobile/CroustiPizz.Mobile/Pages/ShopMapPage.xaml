@@ -21,12 +21,12 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1.75"
                 Opacity="0.90"
                 IsVisible="{Binding Visible}"
-                BackgroundColor="#EBEFF5"
+                BackgroundColor="White"
                 CornerRadius="30"
                 Margin="10 ,10 ,10 ,30"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Center"
-                Padding="0,0,0,0">
+                Padding="20,0,10,0">
                 <yummy:PancakeView.Shadow>
                     <yummy:DropShadow Color="#000000" Offset="10,10" />
                 </yummy:PancakeView.Shadow>
@@ -43,7 +43,7 @@
                            TextColor="Black"
                            FontFamily="GilroyBold" FontSize="40" />
                     <StackLayout Orientation="Horizontal"
-                                 VerticalOptions="CenterAndExpand"
+                                 VerticalOptions="EndAndExpand"
                                  HorizontalOptions="FillAndExpand"
                                  Padding="0,0,10,10">
                         <Label Text="{Binding Pizzeria.Address}"
