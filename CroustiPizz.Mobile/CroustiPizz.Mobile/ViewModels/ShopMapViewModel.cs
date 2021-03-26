@@ -20,6 +20,7 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopMapViewModel : ViewModelBase
     {
         private bool _selected;
+        private bool _locationAsked;
 
         private ObservableCollection<ShopItem> _shops;
 
@@ -57,6 +58,7 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             Visible = false;
             ClickPizzeria = new Command(SelectionPizzeria);
+            _locationAsked = false;
         }
 
         public ICommand ClickPizzeria { get; }
@@ -75,15 +77,18 @@ namespace CroustiPizz.Mobile.ViewModels
                 Shops = new ObservableCollection<ShopItem>(response.Data);
                 Position position;
                 MapSpan mapSpan;
-                Location location;
-
-                try
+                Location location = null;
+                if (!_locationAsked)
                 {
-                    location = await Geolocation.GetLastKnownLocationAsync();
-                }
-                catch (PermissionException)
-                {
-                    location = null;
+                    try
+                    {
+                        _locationAsked = true;
+                        location = await Geolocation.GetLastKnownLocationAsync();
+                    }
+                    catch (PermissionException)
+                    {
+                        location = null;
+                    }
                 }
 
                 if (location != null)

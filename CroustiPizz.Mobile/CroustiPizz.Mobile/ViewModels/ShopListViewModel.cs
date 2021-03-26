@@ -18,6 +18,8 @@ namespace CroustiPizz.Mobile.ViewModels
     public class ShopListViewModel : ViewModelBase
     {
         private bool _selected;
+        private bool _locationAsked;
+
 
         private ObservableCollection<ShopItem> _shops;
 
@@ -34,6 +36,7 @@ namespace CroustiPizz.Mobile.ViewModels
         public ShopListViewModel()
         {
             SelectedCommand = new Command<ShopItem>(SelectedAction);
+            _locationAsked = false;
         }
 
         private void SelectedAction(ShopItem obj)
@@ -55,13 +58,17 @@ namespace CroustiPizz.Mobile.ViewModels
             await base.OnResume();
             _selected = false;
 
-            try
+            if (!_locationAsked)
             {
-                _userLocation = await Geolocation.GetLastKnownLocationAsync();
-            }
-            catch (PermissionException)
-            {
-                _userLocation = null;
+                try
+                {
+                    _locationAsked = true;
+                    _userLocation = await Geolocation.GetLastKnownLocationAsync();
+                }
+                catch (PermissionException)
+                {
+                    _userLocation = null;
+                }
             }
 
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();
