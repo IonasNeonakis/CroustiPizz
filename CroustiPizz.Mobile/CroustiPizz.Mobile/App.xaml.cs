@@ -16,23 +16,22 @@ namespace CroustiPizz.Mobile
 #if DEBUG
             Log.Listeners.Add(new DelegateLogListener((arg1, arg2) => Debug.WriteLine($"{arg1} : {arg2}")));
 #endif
-            
+
             Sharpnado.Tabs.Initializer.Initialize(false, false);
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
-            
+
             InitializeComponent();
         }
 
         private static void RegisterServices()
         {
             DependencyService.RegisterSingleton<IApiService>(new ApiService());
-            
+
             DependencyService.RegisterSingleton<IPizzaApiService>(new PizzaApiService());
-            
+
             DependencyService.RegisterSingleton<IUserApiService>(new UserApiService());
 
             DependencyService.RegisterSingleton<ICartService>(new CartService());
-
         }
     }
 }

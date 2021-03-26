@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <controls:CroustiTabs xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
-            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
-            x:Class="CroustiPizz.Mobile.Pages.MainView"
-            NavigationPage.HasNavigationBar="False"
-            android:TabbedPage.ToolbarPlacement="Bottom"
-            SelectedTabColor="#FA130B"
-            BarTextColor="Black"
-            xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-            iOS:Page.UseSafeArea="true">
-    
-    <pages:ShopMapPage Title="Carte" IconImageSource="map.png"/>
-    <pages:ShopListPage Title="Liste" IconImageSource="list.png"/>
-    <pages:OrdersPage Title="Commandes" IconImageSource="pizza.png"/>
-    <pages:ProfilePage Title="Profil" IconImageSource="person.png"/>
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:pages="clr-namespace:CroustiPizz.Mobile.Pages;assembly=CroustiPizz.Mobile"
+                      xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+                      xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
+                      xmlns:resources="clr-namespace:CroustiPizz.Mobile.Resources;assembly=CroustiPizz.Mobile"
+                      x:Class="CroustiPizz.Mobile.Pages.MainView"
+                      NavigationPage.HasNavigationBar="False"
+                      android:TabbedPage.ToolbarPlacement="Bottom"
+                      SelectedTabColor="#FA130B"
+                      BarTextColor="Black"
+                      xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                      iOS:Page.UseSafeArea="true">
+
+    <pages:ShopMapPage Title="{x:Static resources:AppResources.MapTab}" IconImageSource="map.png" />
+    <pages:ShopListPage Title="{x:Static resources:AppResources.ListTab}" IconImageSource="list.png" />
+    <pages:OrdersPage Title="{x:Static resources:AppResources.OrdersTab}" IconImageSource="pizza.png" />
+    <pages:ProfilePage Title="{x:Static resources:AppResources.ProfileTab}" IconImageSource="person.png" />
 </controls:CroustiTabs>

@@ -13,12 +13,13 @@ namespace CroustiPizz.Mobile.ViewModels
     public class OrdersViewModel : ViewModelBase
     {
         private ObservableCollection<OrderItem> _orders;
+
         public ObservableCollection<OrderItem> Orders
         {
             get => _orders;
             set => SetProperty(ref _orders, value);
         }
-        
+
         public OrdersViewModel()
         {
         }
@@ -31,16 +32,14 @@ namespace CroustiPizz.Mobile.ViewModels
 
             if (response.IsSuccess)
             {
+                response.Data.Reverse();
                 Orders = new ObservableCollection<OrderItem>(response.Data);
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à vos commandes " + response.ErrorMessage );
-
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertOrdersAccessError + response.ErrorMessage);
             }
-            
         }
-
-
     }
 }

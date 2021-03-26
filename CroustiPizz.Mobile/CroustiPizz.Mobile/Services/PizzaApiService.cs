@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CroustiPizz.Mobile.Dtos;
@@ -14,11 +13,10 @@ namespace CroustiPizz.Mobile.Services
         Task<Response<List<PizzaItem>>> ListPizzas(long shopId);
 
         Task<Response<List<OrderItem>>> ListOrders();
-        
-        Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body);
 
+        Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body);
     }
-    
+
     public class PizzaApiService : IPizzaApiService
     {
         private readonly IApiService _apiService;
@@ -30,12 +28,13 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<List<ShopItem>>> ListShops()
         {
-	        return await _apiService.Get<Response<List<ShopItem>>>(Urls.LIST_SHOPS);
+            return await _apiService.Get<Response<List<ShopItem>>>(Urls.LIST_SHOPS);
         }
 
         public async Task<Response<List<PizzaItem>>> ListPizzas(long shopId)
         {
-            return await _apiService.Get<Response<List<PizzaItem>>>(Urls.LIST_PIZZA.Replace("{shopId}", shopId.ToString()));
+            return await _apiService.Get<Response<List<PizzaItem>>>(Urls.LIST_PIZZA.Replace("{shopId}",
+                shopId.ToString()));
         }
 
         public async Task<Response<List<OrderItem>>> ListOrders()
@@ -45,7 +44,8 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body)
         {
-            return await _apiService.Post<Response<OrderItem>, CreateOrderRequest>(Urls.DO_ORDER.Replace("{shopId}", shopId.ToString()), body);
+            return await _apiService.Post<Response<OrderItem>, CreateOrderRequest>(
+                Urls.DO_ORDER.Replace("{shopId}", shopId.ToString()), body);
         }
     }
 }

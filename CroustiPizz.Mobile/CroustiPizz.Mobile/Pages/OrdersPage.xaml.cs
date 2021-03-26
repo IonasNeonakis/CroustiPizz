@@ -1,5 +1,4 @@
-﻿
-using CroustiPizz.Mobile.ViewModels;
+﻿using CroustiPizz.Mobile.ViewModels;
 using Storm.Mvvm.Forms;
 using Xamarin.Forms.Xaml;
 

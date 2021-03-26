@@ -9,24 +9,20 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
 {
-
     public interface IUserApiService
     {
-        
         Task<Response<UserProfileResponse>> GetUser();
 
         Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest utilisateur);
-        
+
         Task<Response<LoginResponse>> RegisterUser(CreateUserRequest utilisateur);
 
         Task<Response> ChangePassword(SetPasswordRequest data);
 
         Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data);
-
-
     }
 
-    
+
     public class UserApiService : IUserApiService
     {
         private readonly IApiService _apiService;
@@ -43,7 +39,9 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest credentials)
         {
-            Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(Urls.LOGIN_WITH_CREDENTIALS, credentials);
+            Response<LoginResponse> task =
+                await _apiService.Post<Response<LoginResponse>, LoginWithCredentialsRequest>(
+                    Urls.LOGIN_WITH_CREDENTIALS, credentials);
             if (task.IsSuccess)
             {
                 saveLoginData(task);
@@ -54,11 +52,13 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<LoginResponse>> RegisterUser(CreateUserRequest credentials)
         {
-            Response<LoginResponse> task = await _apiService.Post<Response<LoginResponse>, CreateUserRequest>(Urls.CREATE_USER, credentials);
+            Response<LoginResponse> task =
+                await _apiService.Post<Response<LoginResponse>, CreateUserRequest>(Urls.CREATE_USER, credentials);
             if (task.IsSuccess)
             {
                 saveLoginData(task);
             }
+
             return task;
         }
 
@@ -71,17 +71,17 @@ namespace CroustiPizz.Mobile.Services
 
         public async Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data)
         {
-            return await _apiService.Patch<Response<SetUserProfileRequest>, SetUserProfileRequest>(Urls.SET_USER_PROFILE, data);
+            return await _apiService.Patch<Response<SetUserProfileRequest>, SetUserProfileRequest>(
+                Urls.SET_USER_PROFILE, data);
         }
 
         private async void saveLoginData(Response<LoginResponse> task)
         {
             TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
-            int tempsActuel = (int)t.TotalSeconds;
+            int tempsActuel = (int) t.TotalSeconds;
             await SecureStorage.SetAsync(Constantes.ACCESS_TOKEN, task.Data.AccessToken);
             await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, task.Data.RefreshToken);
             await SecureStorage.SetAsync(Constantes.EXPIRES_AT, (tempsActuel + task.Data.ExpiresIn).ToString());
-
         }
     }
 }

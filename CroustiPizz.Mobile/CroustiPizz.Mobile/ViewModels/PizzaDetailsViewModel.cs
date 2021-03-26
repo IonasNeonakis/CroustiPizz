@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CroustiPizz.Mobile.Dtos.Pizzas;
 using Rg.Plugins.Popup.Services;
 using Storm.Mvvm;
 using Xamarin.Forms;
@@ -10,8 +9,8 @@ namespace CroustiPizz.Mobile.ViewModels
 {
     public class PizzaDetailsViewModel : ViewModelBase
     {
-        
         private string _pizzaName;
+
         public string PizzaName
         {
             get => _pizzaName;
@@ -19,6 +18,7 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private string _pizzaDescription;
+
         public string PizzaDescription
         {
             get => _pizzaDescription;
@@ -26,6 +26,7 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private double _pizzaPrice;
+
         public double PizzaPrice
         {
             get => _pizzaPrice;
@@ -33,6 +34,7 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private string _pizzaPhoto;
+
         public string PizzaPhoto
         {
             get => _pizzaPhoto;

@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace CroustiPizz.Mobile.Controls
 {
-	public class BindablePin : Pin
-	{
-		public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(BindablePin));
+    public class BindablePin : Pin
+    {
+        public static readonly BindableProperty CommandProperty =
+            BindableProperty.Create("Command", typeof(ICommand), typeof(BindablePin));
 
-		public ICommand Command
-		{
-			get => (ICommand) GetValue(CommandProperty);
-			set => SetValue(CommandProperty, value);
-		}
+        public ICommand Command
+        {
+            get => (ICommand) GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
+        }
 
-		public BindablePin()
-		{
-			InfoWindowClicked += OnInfoWindowClicked;
-		}
+        public BindablePin()
+        {
+            InfoWindowClicked += OnInfoWindowClicked;
+        }
 
-		private void OnInfoWindowClicked(object sender, PinClickedEventArgs e)
-		{
-			Command?.Execute(null);
-		}
-	}
+        private void OnInfoWindowClicked(object sender, PinClickedEventArgs e)
+        {
+            Command?.Execute(null);
+        }
+    }
 }

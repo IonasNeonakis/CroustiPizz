@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using CroustiPizz.Mobile.ViewModels;
 using Rg.Plugins.Popup.Extensions;

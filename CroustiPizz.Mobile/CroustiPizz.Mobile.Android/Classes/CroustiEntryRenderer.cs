@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(CroustiEntry), typeof(CroustiEntryRenderer))]
+
 namespace CroustiPizz.Mobile.Android.Classes
 {
     public class CroustiEntryRenderer : EntryRenderer

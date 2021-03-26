@@ -6,18 +6,24 @@
     xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:forms="clr-namespace:Storm.Mvvm.Forms;assembly=Storm.Mvvm.Forms"
     xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
+    xmlns:resources="clr-namespace:CroustiPizz.Mobile.Resources;assembly=CroustiPizz.Mobile"
     x:Class="CroustiPizz.Mobile.Pages.PizzaListShopPage"
     NavigationPage.HasNavigationBar="False"
     BackgroundColor="White"
     Padding="0"
     xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
     iOS:Page.UseSafeArea="true">
+
+    <forms:BaseContentPage.Resources>
+        <converters:QuantityConverter x:Key="QuantityConverter" />
+    </forms:BaseContentPage.Resources>
 
     <forms:BaseContentPage.Content>
         <StackLayout BackgroundColor="#EBEFF5">
             <pancakeView:PancakeView BackgroundColor="White"
                                      VerticalOptions="FillAndExpand">
-                <StackLayout Spacing="0"> 
+                <StackLayout Spacing="0">
                     <StackLayout
                         Margin="0,0,0,0"
                         Orientation="Horizontal"
@@ -63,12 +69,12 @@
                         Margin="0,0,10,0"
                         TranslationY="-45"
                         TranslationX="0">
-                        <Label Text="{Binding CartQuantity}"
+                        <Label Text="{Binding CartQuantity, Converter={StaticResource QuantityConverter}}"
                                HorizontalTextAlignment="Center"
                                TextColor="White"
                                WidthRequest="30"
                                HeightRequest="30"
-                               Padding="0"/>
+                               Padding="0" />
                     </pancakeView:PancakeView>
                     <StackLayout Orientation="Vertical" Padding="20,0,20,0">
                         <Frame Padding="0"
@@ -167,7 +173,7 @@
                                                        Padding="0"
                                                        HeightRequest="40">
                                                     <Button FontAttributes="Bold"
-                                                            Text="Détails"
+                                                            Text="{x:Static resources:AppResources.Details}"
                                                             BackgroundColor="#FA130B"
                                                             CornerRadius="1000"
                                                             TextColor="White"
@@ -180,7 +186,7 @@
                                                 <Button BackgroundColor="#FA130B"
                                                         TextColor="White"
                                                         CornerRadius="20"
-                                                        Text="AJOUTER AU PANIER"
+                                                        Text="{x:Static resources:AppResources.AddToCart}"
                                                         HorizontalOptions="FillAndExpand"
                                                         BindingContext="{Binding Source={x:Reference LesPizzas}, Path=BindingContext}"
                                                         CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"

@@ -17,10 +17,11 @@ namespace CroustiPizz.Mobile.Pages
 
         private async void OnConfirmClicked(object sender, EventArgs args)
         {
-            if (NewFirstName.Text != null &&  NewLastName.Text != null)
+            if (NewFirstName.Text != null && NewLastName.Text != null)
             {
                 MessagingCenter.Send(new IdentityPayload(NewFirstName.Text, NewLastName.Text), "EditNamePopup");
             }
+
             await PopupNavigation.Instance.PopAsync();
         }
 

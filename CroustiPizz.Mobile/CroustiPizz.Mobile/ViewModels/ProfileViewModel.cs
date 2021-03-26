@@ -117,7 +117,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert("Erreur dans les nouveaux champs entrés");
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertNewlyFilledEntriesError);
             }
         }
 
@@ -183,8 +183,7 @@ namespace CroustiPizz.Mobile.ViewModels
                     OldPassword = CurrentPassword,
                     NewPassword = NewPassword
                 };
-                 reponsePassword = await service.ChangePassword(passwordRequest);
-                 
+                reponsePassword = await service.ChangePassword(passwordRequest);
             }
 
             SetUserProfileRequest userProfileRequest = new SetUserProfileRequest
@@ -197,27 +196,35 @@ namespace CroustiPizz.Mobile.ViewModels
 
 
             Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
-            
+
 
             if (reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
             {
-                DependencyService.Get<IMessage>().LongAlert("Données et mot de passe sauvegardées");
-            }else if (reponseUser.IsSuccess && reponsePassword == null)
-            {
-                DependencyService.Get<IMessage>().LongAlert("Données sauvegardées");
-            }else if (reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert("Données changés mais erreur mot de passe :" + reponsePassword.ErrorMessage);
-            }else if (!reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert("Mot de passe changé mais erreur sauvegarde données : " + reponseUser.ErrorMessage);
-            }else if (!reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert("Erreur mot de passe :"+ reponsePassword.ErrorMessage +"et erreur sauvegarde donénes : " + reponseUser.ErrorMessage);
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertProfileAndPasswordUpdateSuccess);
             }
-
-
-
+            else if (reponseUser.IsSuccess && reponsePassword == null)
+            {
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertProfileUpdateSuccess);
+            }
+            else if (reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertProfileUpdateSuccessButPasswordError +
+                               reponsePassword.ErrorMessage);
+            }
+            else if (!reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordUpdatedButProfileError +
+                                                            reponseUser.ErrorMessage);
+            }
+            else if (!reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordAndProfileErrorPart1 +
+                                                            reponsePassword.ErrorMessage +
+                                                            Resources.AppResources.AlertPasswordAndProfileErrorPart2 +
+                                                            reponseUser.ErrorMessage);
+            }
         }
 
         private void LogoutAction()

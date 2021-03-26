@@ -31,7 +31,7 @@ namespace CroustiPizz.Mobile.Pages
                 await pizzaDetailsViewModel.OnResume();
             }
         }
-        
+
         private async void OnCancelClicked(object sender, EventArgs args)
         {
             await PopupNavigation.Instance.PopAsync();

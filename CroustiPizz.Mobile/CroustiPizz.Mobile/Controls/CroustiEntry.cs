@@ -2,8 +2,7 @@
 
 namespace CroustiPizz.Mobile.Controls
 {
-    public class CroustiEntry : Entry 
+    public class CroustiEntry : Entry
     {
-        
     }
 }

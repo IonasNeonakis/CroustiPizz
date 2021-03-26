@@ -12,10 +12,5 @@ namespace CroustiPizz.Mobile.Android.Classes
         {
             Toast.MakeText(Application.Context, message, ToastLength.Long)?.Show();
         }
-
-        public void ShortAlert(string message)
-        {
-            Toast.MakeText(Application.Context, message, ToastLength.Short)?.Show();
-        }
     }
 }

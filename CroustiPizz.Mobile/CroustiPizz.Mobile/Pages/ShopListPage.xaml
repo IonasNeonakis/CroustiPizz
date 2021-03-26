@@ -9,6 +9,7 @@
                        xmlns:converters="clr-namespace:CroustiPizz.Mobile.Converters;assembly=CroustiPizz.Mobile"
                        xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
                        xmlns:controls="clr-namespace:CroustiPizz.Mobile.Controls;assembly=CroustiPizz.Mobile"
+                       xmlns:resources="clr-namespace:CroustiPizz.Mobile.Resources;assembly=CroustiPizz.Mobile"
                        x:Class="CroustiPizz.Mobile.Pages.ShopListPage"
                        x:DataType="viewModels:ShopListViewModel"
                        NavigationPage.HasNavigationBar="False"
@@ -22,17 +23,18 @@
     </forms:BaseContentPage.Resources>
     <yummy:PancakeView BackgroundColor="White" CornerRadius="0,0,50,50">
         <StackLayout Orientation="Vertical" Padding="20,20,20,0">
-            <Label Text="Pizzerias" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" />
+            <Label Text="{x:Static resources:AppResources.PizzaListPage}" TextColor="Black" FontSize="Large"
+                   HorizontalTextAlignment="Center" />
             <controls:CroustiList ItemsSource="{Binding Shops}"
-                      SelectionMode="None"
-                      RowHeight="150"
-                      Margin="0,20,0,0"
-                      SeparatorVisibility="None">
+                                  SelectionMode="None"
+                                  RowHeight="150"
+                                  Margin="0,20,0,0"
+                                  SeparatorVisibility="None">
                 <controls:CroustiList.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell x:DataType="pizzas:ShopItem" >
+                        <ViewCell x:DataType="pizzas:ShopItem">
                             <yummy:PancakeView
-                                Margin="10" 
+                                Margin="10"
                                 CornerRadius="30"
                                 Padding="30,20,10,20"
 

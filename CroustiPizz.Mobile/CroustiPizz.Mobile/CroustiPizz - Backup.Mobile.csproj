@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.10" />
+        <PackageReference Include="Sharpnado.Tabs" Version="2.1.0" />
+        <PackageReference Include="Storm.Mvvm.Forms" Version="2.4.0" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+        <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1821" />
+        <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\EditMailPopup.xaml.cs">
+        <DependentUpon>EditMailPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\EditPhoneNumberPopup.xaml.cs">
+        <DependentUpon>EditPhoneNumberPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\ShopCartPopup.xaml.cs">
+        <DependentUpon>ShopCartPopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Pages\EditNamePopup.xaml.cs">
+        <DependentUpon>EditNamePopup.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\home.svg" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\person.png" />
+    </ItemGroup>
+</Project>

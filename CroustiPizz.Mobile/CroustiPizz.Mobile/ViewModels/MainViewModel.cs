@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Storm.Mvvm;
+﻿using Storm.Mvvm;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
@@ -17,6 +15,5 @@ namespace CroustiPizz.Mobile.ViewModels
         public MainViewModel()
         {
         }
-        
     }
 }

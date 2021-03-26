@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -88,7 +86,8 @@ namespace CroustiPizz.Mobile.ViewModels
 
                     if (!pizza.OutOfStock)
                     {
-                        DependencyService.Get<IMessage>().LongAlert("Ajout de " + pizza.Quantite + " " + pizza.Name);
+                        DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertAddingToCart +
+                                                                    pizza.Quantite + " " + pizza.Name);
                         CartService.AddToCart(ShopId, pizza.Id, pizza.Quantite);
                         CartQuantity = CartService.NumberOfItems(ShopId);
                     }
@@ -144,7 +143,6 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 return new Command(e =>
                 {
-
                     if (PopupNavigation.Instance.PopupStack.Count == 0)
                     {
                         PizzaItem pizzaItem = e as PizzaItem;
@@ -206,7 +204,8 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 Pizzas = new ObservableCollection<PizzaItem>();
-                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès aux pizzerias " + response.ErrorMessage);
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertPizzaShopAccessError + response.ErrorMessage);
             }
         }
 
