@@ -1,0 +1,168 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="AddToCart" xml:space="preserve">
+        <value>Προσθέστε στο καλάθι</value>
+    </data>
+    <data name="AlertAddingToCart" xml:space="preserve">
+        <value>Πρόσθεση</value>
+    </data>
+    <data name="AlertCartAccessError" xml:space="preserve">
+        <value>Πρόβλημα πρόσβασης στο καλάθι</value>
+    </data>
+    <data name="AlertEmptyCart" xml:space="preserve">
+        <value>Το καλάθι είναι άδειο </value>
+    </data>
+    <data name="AlertFormError" xml:space="preserve">
+        <value>Πρόβλημα στη μορφή </value>
+    </data>
+    <data name="AlertLoginOrPasswordError" xml:space="preserve">
+        <value>Πρόβλημα στο  λογκιν ή στο κωδικό</value>
+    </data>
+    <data name="AlertNewlyFilledEntriesError" xml:space="preserve">
+        <value>Πρόβλημα στα νέα πεδία</value>
+    </data>
+    <data name="AlertOrdersAccessError" xml:space="preserve">
+        <value>Πρόβλημα πρόσβασης στης παραγγελίες</value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart1" xml:space="preserve">
+        <value>Πρόβληστο στο κωδικό</value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart2" xml:space="preserve">
+        <value>και πρόβλημα στα δεδομέμα</value>
+    </data>
+    <data name="AlertPasswordMismatch" xml:space="preserve">
+        <value>Οι δύο κωδικοί δεν ειναι ίδιοι</value>
+    </data>
+    <data name="AlertPasswordUpdatedButProfileError" xml:space="preserve">
+        <value>Ο κωδικός αποθηκεύτηκε αλλά όχι τα δεδομένα</value>
+    </data>
+    <data name="AlertPizzaShopAccessError" xml:space="preserve">
+        <value>Πρόβλημα πρόσβασης στης πιτσαρίες</value>
+    </data>
+    <data name="AlertPlacingOrderError" xml:space="preserve">
+        <value>Πρόβλημα στης παραγγελία</value>
+    </data>
+    <data name="AlertPlacingOrderSuccess" xml:space="preserve">
+        <value>Η παραγγελία αποκληρώθηκε</value>
+    </data>
+    <data name="AlertProfileAndPasswordUpdateSuccess" xml:space="preserve">
+        <value>Δεδομένα και κώδικος αποθηκεύτηκαν</value>
+    </data>
+    <data name="TotalPrice" xml:space="preserve">
+        <value>Σύνολο</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Αποθήκευση</value>
+    </data>
+    <data name="EmptyCart" xml:space="preserve">
+        <value>Αδειάστε</value>
+    </data>
+    <data name="EnterShop" xml:space="preserve">
+        <value>Πάμε</value>
+    </data>
+    <data name="LastName" xml:space="preserve">
+        <value>Επίθετο</value>
+    </data>
+    <data name="FirstName" xml:space="preserve">
+        <value>Ονομα </value>
+    </data>
+    <data name="ListTab" xml:space="preserve">
+        <value>Λίστα</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Συνδεθείτε</value>
+    </data>
+    <data name="MailAddress" xml:space="preserve">
+        <value>E-mail</value>
+    </data>
+    <data name="MapTab" xml:space="preserve">
+        <value>Χάρτης</value>
+    </data>
+    <data name="MyCart" xml:space="preserve">
+        <value>Το καλάθι μου</value>
+    </data>
+    <data name="NewPassword" xml:space="preserve">
+        <value>Νέος Κωδικός</value>
+    </data>
+    <data name="OrdersPage" xml:space="preserve">
+        <value>Οι παραγγελίες μου</value>
+    </data>
+    <data name="OrdersTab" xml:space="preserve">
+        <value>Παραγγελίες</value>
+    </data>
+    <data name="Password" xml:space="preserve">
+        <value>Κωδικός πρόσβασης</value>
+    </data>
+    <data name="PasswordConfirmation" xml:space="preserve">
+        <value>Επιβεβαίωση Κωδικού</value>
+    </data>
+    <data name="PhoneNumber" xml:space="preserve">
+        <value>αριθμός τηλεφώνου</value>
+    </data>
+    <data name="PizzaListPage" xml:space="preserve">
+        <value>Πιτσαρίες</value>
+    </data>
+    <data name="PlaceOrder" xml:space="preserve">
+        <value>Παραγγέλνω</value>
+    </data>
+    <data name="ProfilePage" xml:space="preserve">
+        <value>Το Προφίλ μου</value>
+    </data>
+    <data name="ProfileTab" xml:space="preserve">
+        <value>Προφίλ</value>
+    </data>
+    <data name="Register" xml:space="preserve">
+        <value>Εγγραφείτε</value>
+    </data>
+    <data name="Identity" xml:space="preserve">
+        <value>Ταυτότητα</value>
+    </data>
+    <data name="ForgotPassword" xml:space="preserve">
+        <value>Ξέχασα τον κωδικό μου</value>
+    </data>
+    <data name="EditPhoneNumber" xml:space="preserve">
+        <value>Αλλαγή αριθμού τηλεφώνου</value>
+    </data>
+    <data name="EditPassword" xml:space="preserve">
+        <value>Αλλαξή κωδικού</value>
+    </data>
+    <data name="EditMailAddress" xml:space="preserve">
+        <value>Αλλαξή e-mail</value>
+    </data>
+    <data name="AlertProfileUpdateSuccess" xml:space="preserve">
+        <value>Το προφίλ ενημερώθηκε με επιτυχία</value>
+    </data>
+    <data name="AlertProfileUpdateSuccessButPasswordError" xml:space="preserve">
+        <value>Το προφίλ ενημερώθηκε με επιτυχία αλλά πρόβλημα στον κωδικό</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Ακύρωση</value>
+    </data>
+    <data name="Confirm" xml:space="preserve">
+        <value>Επιβεβαίωση</value>
+    </data>
+    <data name="CurrentPassword" xml:space="preserve">
+        <value>Τρέχων κωδικός πρόσβασης</value>
+    </data>
+    <data name="Details" xml:space="preserve">
+        <value>Λεπτομέριες</value>
+    </data>
+    <data name="EditFirstName" xml:space="preserve">
+        <value>Αλλαγή ονόματος</value>
+    </data>
+    <data name="EditLastName" xml:space="preserve">
+        <value>
+Αλλαγή επώνυμου</value>
+    </data>
+</root>
