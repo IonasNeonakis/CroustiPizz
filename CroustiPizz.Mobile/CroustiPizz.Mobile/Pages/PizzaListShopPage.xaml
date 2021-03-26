@@ -18,12 +18,12 @@
     <forms:BaseContentPage.Resources>
         <converters:QuantityConverter x:Key="QuantityConverter" />
     </forms:BaseContentPage.Resources>
-    
+
     <forms:BaseContentPage.Content>
         <StackLayout BackgroundColor="#EBEFF5">
             <pancakeView:PancakeView BackgroundColor="White"
                                      VerticalOptions="FillAndExpand">
-                <StackLayout Spacing="0"> 
+                <StackLayout Spacing="0">
                     <StackLayout
                         Margin="0,0,0,0"
                         Orientation="Horizontal"
@@ -74,7 +74,7 @@
                                TextColor="White"
                                WidthRequest="30"
                                HeightRequest="30"
-                               Padding="0"/>
+                               Padding="0" />
                     </pancakeView:PancakeView>
                     <StackLayout Orientation="Vertical" Padding="20,0,20,0">
                         <Frame Padding="0"

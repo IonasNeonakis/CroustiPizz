@@ -16,7 +16,8 @@
                        iOS:Page.UseSafeArea="true">
     <yummy:PancakeView CornerRadius="0,0,50,50" BackgroundColor="White">
         <StackLayout Orientation="Vertical" Padding="20,30,20,0">
-            <Label FontSize="Large" TextColor="Black" Text="{x:Static resources:AppResources.OrdersPage}" HorizontalTextAlignment="Center" />
+            <Label FontSize="Large" TextColor="Black" Text="{x:Static resources:AppResources.OrdersPage}"
+                   HorizontalTextAlignment="Center" />
             <ListView
                 ItemsSource="{Binding Orders}"
                 SelectionMode="None"

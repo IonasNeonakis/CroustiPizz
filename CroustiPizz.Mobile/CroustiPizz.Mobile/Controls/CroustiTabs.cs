@@ -4,9 +4,5 @@ namespace CroustiPizz.Mobile.Controls
 {
     public class CroustiTabs : TabbedPage
     {
-        public CroustiTabs()
-        {
-            
-        }
     }
 }

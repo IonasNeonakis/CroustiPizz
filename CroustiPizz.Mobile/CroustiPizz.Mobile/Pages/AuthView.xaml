@@ -20,13 +20,15 @@
                 <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
                     <StackLayout Orientation="Vertical">
-                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Login}" FontFamily="GilroyBold"
+                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Login}"
+                                FontFamily="GilroyBold"
                                 TextColor="{Binding LoginTextColor}" Command="{Binding ShowLoginCommand}" />
                         <BoxView IsVisible="{Binding ShowingLogin}" BackgroundColor="#FA130B" CornerRadius="20"
                                  HeightRequest="4" />
                     </StackLayout>
                     <StackLayout Orientation="Vertical">
-                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Register}" FontFamily="GilroyBold"
+                        <Button BackgroundColor="#EBEFF5" Text="{x:Static resources:AppResources.Register}"
+                                FontFamily="GilroyBold"
                                 TextColor="{Binding SignUpTextColor}" Command="{Binding ShowSignUpCommand}" />
                         <BoxView IsVisible="{Binding ShowingSignup}" BackgroundColor="#FA130B" CornerRadius="20"
                                  HeightRequest="4" />
@@ -51,12 +53,14 @@
                 </Frame>
             </StackLayout>
 
-            <Button Text="{x:Static resources:AppResources.ForgotPassword}" BackgroundColor="White" FontFamily="GilroyBold"
+            <Button Text="{x:Static resources:AppResources.ForgotPassword}" BackgroundColor="White"
+                    FontFamily="GilroyBold"
                     TextColor="#4C4E52" CornerRadius="50" />
 
             <ActivityIndicator IsRunning="{Binding IsLoading}" />
 
-            <Button Text="{x:Static resources:AppResources.Login}" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+            <Button Text="{x:Static resources:AppResources.Login}" BackgroundColor="#FA130B" HeightRequest="50"
+                    CornerRadius="20"
                     VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsSubmitEnabled}" />
@@ -64,51 +68,58 @@
 
         <StackLayout IsVisible="{Binding ShowingSignup}" VerticalOptions="FillAndExpand" Orientation="Vertical"
                      Spacing="20">
-            <ScrollView Orientation="Vertical" >
-                <StackLayout Orientation="Vertical" Spacing="20" Padding="20" >
+            <ScrollView Orientation="Vertical">
+                <StackLayout Orientation="Vertical" Spacing="20" Padding="20">
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.LastName}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.LastName}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Nom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.FirstName}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.FirstName}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Prenom}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.MailAddress}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.MailAddress}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding EmailRegister}" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.Password}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.Password}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Mdp1}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.PasswordConfirmation}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.PasswordConfirmation}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Mdp2}" IsPassword="True" />
                         </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label Text="{x:Static resources:AppResources.PhoneNumber}" FontFamily="GilroyBold" TextColor="#4C4E52" />
+                        <Label Text="{x:Static resources:AppResources.PhoneNumber}" FontFamily="GilroyBold"
+                               TextColor="#4C4E52" />
                         <Frame CornerRadius="15" BackgroundColor="#EBEFF5" Padding="0">
                             <controls:CroustiEntry Text="{Binding Numero}" FontSize="20" />
                         </Frame>
                     </StackLayout>
 
-                    <Button Text="{x:Static resources:AppResources.Register}" BackgroundColor="#FA130B" HeightRequest="50" CornerRadius="20"
+                    <Button Text="{x:Static resources:AppResources.Register}" BackgroundColor="#FA130B"
+                            HeightRequest="50" CornerRadius="20"
                             Margin="0,50,0,0"
                             VerticalOptions="EndAndExpand" TextColor="White" FontFamily="GilroyBold"
                             Command="{Binding SignUpCommand}"

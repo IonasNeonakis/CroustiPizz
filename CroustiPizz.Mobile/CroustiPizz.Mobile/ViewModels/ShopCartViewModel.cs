@@ -134,7 +134,8 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertCartAccessError + response.ErrorMessage);
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertCartAccessError + response.ErrorMessage);
             }
         }
 
@@ -160,7 +161,8 @@ namespace CroustiPizz.Mobile.ViewModels
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPlacingOrderError + response.ErrorMessage);
+                    DependencyService.Get<IMessage>()
+                        .LongAlert(Resources.AppResources.AlertPlacingOrderError + response.ErrorMessage);
                 }
             }
             else

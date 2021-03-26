@@ -4,12 +4,12 @@ using Foundation;
 using UIKit;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MessageIOS))]
+
 namespace CroustiPizz.Mobile.iOS.Classes
 {
     public class MessageIOS : IMessage
     {
         const double LONG_DELAY = 3.5;
-        const double SHORT_DELAY = 2.0;
 
         NSTimer alertDelay;
         UIAlertController alert;
@@ -18,17 +18,10 @@ namespace CroustiPizz.Mobile.iOS.Classes
         {
             ShowAlert(message, LONG_DELAY);
         }
-        public void ShortAlert(string message)
-        {
-            ShowAlert(message, SHORT_DELAY);
-        }
 
         void ShowAlert(string message, double seconds)
         {
-            alertDelay = NSTimer.CreateScheduledTimer(seconds, (obj) =>
-            {
-                DismissMessage();
-            });
+            alertDelay = NSTimer.CreateScheduledTimer(seconds, (obj) => { DismissMessage(); });
             alert = UIAlertController.Create(null, message, UIAlertControllerStyle.Alert);
             if (UIApplication.SharedApplication.KeyWindow.RootViewController != null)
                 UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(alert, true, null);

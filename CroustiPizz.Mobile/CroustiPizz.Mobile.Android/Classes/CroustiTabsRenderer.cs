@@ -2,8 +2,6 @@
 using Android.Views;
 using CroustiPizz.Mobile.Android.Classes;
 using CroustiPizz.Mobile.Controls;
-using Google.Android.Material.BottomNavigation;
-using Google.Android.Material.Tabs;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Platform.Android.AppCompat;
@@ -15,7 +13,6 @@ namespace CroustiPizz.Mobile.Android.Classes
 {
     public class CroustiTabsRenderer : TabbedPageRenderer
     {
-        
         public CroustiTabsRenderer(Context context) : base(context)
         {
         }

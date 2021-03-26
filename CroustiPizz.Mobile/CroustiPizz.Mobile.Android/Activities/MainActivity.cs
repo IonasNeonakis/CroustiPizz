@@ -33,7 +33,7 @@ namespace CroustiPizz.Mobile.Android
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            
+
             TransparentStatusBar();
 
             Rg.Plugins.Popup.Popup.Init(this);
@@ -74,7 +74,7 @@ namespace CroustiPizz.Mobile.Android
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
         }
-        
+
         private void TransparentStatusBar()
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
@@ -91,9 +91,7 @@ namespace CroustiPizz.Mobile.Android
                 Window.DecorView.SystemUiVisibility = 0;
 
                 Window.SetStatusBarColor(Color.Transparent);
-
             }
-
         }
     }
 }

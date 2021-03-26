@@ -34,12 +34,14 @@
                                          VerticalOptions="CenterAndExpand" Padding="15"
                                          Command="{Binding CloseShopCartPopupCommand}" />
                         </yummy:PancakeView>
-                        <Label Text="{x:Static resources:AppResources.MyCart}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                        <Label Text="{x:Static resources:AppResources.MyCart}" VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand"
                                FontSize="Large" Margin="15,0,0,0" />
                         <yummy:PancakeView VerticalOptions="CenterAndExpand"
                                            Border="{yummy:BorderMarkup Color=#EBEFF5, Thickness='2'}" CornerRadius="20"
                                            WidthRequest="70" HorizontalOptions="EndAndExpand">
-                            <Button Text="{x:Static resources:AppResources.EmptyCart}" BackgroundColor="#EBEFF5" HorizontalOptions="CenterAndExpand"
+                            <Button Text="{x:Static resources:AppResources.EmptyCart}" BackgroundColor="#EBEFF5"
+                                    HorizontalOptions="CenterAndExpand"
                                     VerticalOptions="CenterAndExpand"
                                     TextColor="#FA130B"
                                     CornerRadius="20"
@@ -47,9 +49,9 @@
                         </yummy:PancakeView>
                     </StackLayout>
                     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-                        <ListView 
-                            ItemsSource="{Binding Cart}" 
-                            x:Name="LesPizzas" 
+                        <ListView
+                            ItemsSource="{Binding Cart}"
+                            x:Name="LesPizzas"
                             RowHeight="150"
                             SelectionMode="None">
                             <ListView.ItemTemplate>
@@ -59,7 +61,8 @@
                                             <StackLayout Orientation="Horizontal">
                                                 <yummy:PancakeView Padding="0" CornerRadius="30"
                                                                    VerticalOptions="CenterAndExpand">
-                                                    <Image Source="{Binding Url}" Aspect="AspectFill" WidthRequest="100" HeightRequest="100" />
+                                                    <Image Source="{Binding Url}" Aspect="AspectFill"
+                                                           WidthRequest="100" HeightRequest="100" />
                                                 </yummy:PancakeView>
                                                 <Label Text="{Binding Quantite, StringFormat='{0} x'}"
                                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
@@ -104,7 +107,8 @@
                     <Label Text="{Binding Total, StringFormat='{0:0.00} €'}" FontSize="Large" TextColor="Black" />
                 </StackLayout>
                 <Button BackgroundColor="#FA130B" TextColor="White" CornerRadius="20" Padding="50,0,50,0"
-                        Text="{x:Static resources:AppResources.PlaceOrder}" Command="{Binding CommanderCommand}" HorizontalOptions="EndAndExpand" />
+                        Text="{x:Static resources:AppResources.PlaceOrder}" Command="{Binding CommanderCommand}"
+                        HorizontalOptions="EndAndExpand" />
             </StackLayout>
         </StackLayout>
     </yummy:PancakeView>

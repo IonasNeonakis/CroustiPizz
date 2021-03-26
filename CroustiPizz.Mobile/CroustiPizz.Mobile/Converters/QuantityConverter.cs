@@ -8,7 +8,7 @@ namespace CroustiPizz.Mobile.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            long quantite =  (long) value;
+            long quantite = (long) value;
             if (quantite >= 100)
             {
                 return "99+";

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using CroustiPizz.Mobile.Dtos.Authentications;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
 {
@@ -39,7 +38,8 @@ namespace CroustiPizz.Mobile.Services
                 string content = await response.Content.ReadAsStringAsync();
 
                 return JsonConvert.DeserializeObject<TResponse>(content);
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 HttpResponseMessage erreur = new HttpResponseMessage(HttpStatusCode.RequestedRangeNotSatisfiable);
                 string contentResponse = await erreur.Content.ReadAsStringAsync();
@@ -75,7 +75,8 @@ namespace CroustiPizz.Mobile.Services
                 string contentResponse = await response.Content.ReadAsStringAsync();
 
                 return JsonConvert.DeserializeObject<TResponse>(contentResponse);
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 HttpResponseMessage erreur = new HttpResponseMessage(HttpStatusCode.RequestedRangeNotSatisfiable);
                 string contentResponse = await erreur.Content.ReadAsStringAsync();
@@ -153,9 +154,9 @@ namespace CroustiPizz.Mobile.Services
                     await SecureStorage.SetAsync(Constantes.REFRESH_TOKEN, responseFinale.RefreshToken);
                     await SecureStorage.SetAsync(Constantes.EXPIRES_AT,
                         (tempsActuel + responseFinale.ExpiresIn).ToString());
-                }catch (Exception)
+                }
+                catch (Exception)
                 {
-                    
                 }
             }
         }

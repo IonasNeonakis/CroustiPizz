@@ -117,13 +117,15 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
         private bool _isLoading = false;
+
         public bool IsLoading
         {
             get => _isLoading;
             set => SetProperty(ref _isLoading, value);
         }
-        
+
         private bool _isSubmitEnabled = true;
+
         public bool IsSubmitEnabled
         {
             get => _isSubmitEnabled;
@@ -183,14 +185,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 else
                 {
                     ResetActivityIndicatorAndSubmitButton();
-                    DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertFormError + response.ErrorMessage );
-
+                    DependencyService.Get<IMessage>()
+                        .LongAlert(Resources.AppResources.AlertFormError + response.ErrorMessage);
                 }
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertPasswordMismatch );
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordMismatch);
             }
         }
 
@@ -217,7 +219,7 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertLoginOrPasswordError );
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertLoginOrPasswordError);
             }
         }
 
@@ -255,11 +257,12 @@ namespace CroustiPizz.Mobile.ViewModels
         {
             string accessToken = await SecureStorage.GetAsync(Constantes.ACCESS_TOKEN);
             string refreshToken = await SecureStorage.GetAsync(Constantes.REFRESH_TOKEN);
-            if (accessToken != null && refreshToken != null){
+            if (accessToken != null && refreshToken != null)
+            {
                 AllerPageAccueil();
             }
-            await base.OnResume();
 
+            await base.OnResume();
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using CroustiPizz.Mobile.Dtos.Pizzas;
-using CroustiPizz.Mobile.ViewModels;
 using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Converters
@@ -15,14 +13,14 @@ namespace CroustiPizz.Mobile.Converters
             {
                 return "";
             }
+
             if (distance > 1000)
             {
                 distance = distance / 1000;
                 return distance.ToString("0.0") + " km";
             }
 
-            return distance.ToString("0") +" m";
-
+            return distance.ToString("0") + " m";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

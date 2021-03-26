@@ -5,7 +5,6 @@ namespace CroustiPizz.Mobile.Dtos.Pizzas
 {
     public class CreateOrderRequest
     {
-        [JsonProperty("pizza_ids")]
-        public List<long> PizzaIds { get; set; }
+        [JsonProperty("pizza_ids")] public List<long> PizzaIds { get; set; }
     }
 }

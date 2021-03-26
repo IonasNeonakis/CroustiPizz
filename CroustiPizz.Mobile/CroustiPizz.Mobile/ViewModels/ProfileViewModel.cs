@@ -183,8 +183,7 @@ namespace CroustiPizz.Mobile.ViewModels
                     OldPassword = CurrentPassword,
                     NewPassword = NewPassword
                 };
-                 reponsePassword = await service.ChangePassword(passwordRequest);
-                 
+                reponsePassword = await service.ChangePassword(passwordRequest);
             }
 
             SetUserProfileRequest userProfileRequest = new SetUserProfileRequest
@@ -197,27 +196,35 @@ namespace CroustiPizz.Mobile.ViewModels
 
 
             Response<SetUserProfileRequest> reponseUser = await service.UpdateUser(userProfileRequest);
-            
+
 
             if (reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
             {
-                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertProfileAndPasswordUpdateSuccess);
-            }else if (reponseUser.IsSuccess && reponsePassword == null)
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertProfileAndPasswordUpdateSuccess);
+            }
+            else if (reponseUser.IsSuccess && reponsePassword == null)
             {
                 DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertProfileUpdateSuccess);
-            }else if (reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertProfileUpdateSuccessButPasswordError + reponsePassword.ErrorMessage);
-            }else if (!reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordUpdatedButProfileError + reponseUser.ErrorMessage);
-            }else if (!reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
-            {
-                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordAndProfileErrorPart1 + reponsePassword.ErrorMessage + Resources.AppResources.AlertPasswordAndProfileErrorPart2 + reponseUser.ErrorMessage);
             }
-
-
-
+            else if (reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>()
+                    .LongAlert(Resources.AppResources.AlertProfileUpdateSuccessButPasswordError +
+                               reponsePassword.ErrorMessage);
+            }
+            else if (!reponseUser.IsSuccess && reponsePassword != null && reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordUpdatedButProfileError +
+                                                            reponseUser.ErrorMessage);
+            }
+            else if (!reponseUser.IsSuccess && reponsePassword != null && !reponsePassword.IsSuccess)
+            {
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPasswordAndProfileErrorPart1 +
+                                                            reponsePassword.ErrorMessage +
+                                                            Resources.AppResources.AlertPasswordAndProfileErrorPart2 +
+                                                            reponseUser.ErrorMessage);
+            }
         }
 
         private void LogoutAction()

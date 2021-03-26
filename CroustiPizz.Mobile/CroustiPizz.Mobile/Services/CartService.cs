@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Xml.Schema;
-using CroustiPizz.Mobile.Dtos.Authentications;
+
 
 namespace CroustiPizz.Mobile.Services
 {
-
-
     public interface ICartService
     {
         Dictionary<long, Dictionary<long, int>> GetCart();
@@ -17,11 +13,8 @@ namespace CroustiPizz.Mobile.Services
         void EmptyCart(long shopId);
         List<long> GetListId(long shopId);
         int NumberOfItems(long shopId);
-
-
-
-
     }
+
     public class CartService : ICartService
     {
         private Dictionary<long, Dictionary<long, int>> _cart;
@@ -32,7 +25,6 @@ namespace CroustiPizz.Mobile.Services
             _cart = new Dictionary<long, Dictionary<long, int>>();
         }
 
-        
 
         // A appeler uniquement depuis la liste des pizzas !!!
         public Dictionary<long, Dictionary<long, int>> GetCart()
@@ -92,7 +84,7 @@ namespace CroustiPizz.Mobile.Services
         {
             List<long> list = new List<long>();
 
-            foreach (KeyValuePair<long,int> keyValuePair in _cart[shopId])
+            foreach (KeyValuePair<long, int> keyValuePair in _cart[shopId])
             {
                 for (int i = 0; i < keyValuePair.Value; i++)
                 {
@@ -108,12 +100,12 @@ namespace CroustiPizz.Mobile.Services
             int total = 0;
             if (_cart.ContainsKey(shopId))
             {
-                foreach (KeyValuePair<long,int> keyValuePair in _cart[shopId])
+                foreach (KeyValuePair<long, int> keyValuePair in _cart[shopId])
                 {
                     total += keyValuePair.Value;
                 }
             }
-            
+
 
             return total;
         }
