@@ -31,7 +31,9 @@ namespace CroustiPizz.Mobile.ViewModels
 
             if (response.IsSuccess)
             {
+                response.Data.Reverse();
                 Orders = new ObservableCollection<OrderItem>(response.Data);
+                
             }
             else
             {
