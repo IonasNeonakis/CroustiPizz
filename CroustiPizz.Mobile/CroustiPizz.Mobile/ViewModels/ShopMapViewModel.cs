@@ -133,7 +133,7 @@ namespace CroustiPizz.Mobile.ViewModels
                 Position position = new Position(46.4547, 2.2529);
                 MapSpan mapSpan = new MapSpan(position, 12, 12);
                 MaMap = new Map(mapSpan);
-                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès aux pizzerias "+response.ErrorMessage);
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPizzaShopAccessError + response.ErrorMessage);
             }
         }
 

@@ -88,7 +88,7 @@ namespace CroustiPizz.Mobile.ViewModels
 
                     if (!pizza.OutOfStock)
                     {
-                        DependencyService.Get<IMessage>().LongAlert("Ajout de " + pizza.Quantite + " " + pizza.Name);
+                        DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertAddingToCart + pizza.Quantite + " " + pizza.Name);
                         CartService.AddToCart(ShopId, pizza.Id, pizza.Quantite);
                         CartQuantity = CartService.NumberOfItems(ShopId);
                     }
@@ -206,7 +206,7 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 Pizzas = new ObservableCollection<PizzaItem>();
-                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès aux pizzerias " + response.ErrorMessage);
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPizzaShopAccessError + response.ErrorMessage);
             }
         }
 

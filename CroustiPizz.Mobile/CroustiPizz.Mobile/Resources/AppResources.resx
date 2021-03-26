@@ -123,4 +123,55 @@
     <data name="EnterShop" xml:space="preserve">
         <value>Go</value>
     </data>
+    <data name="AlertFormError" xml:space="preserve">
+        <value>Error in form </value>
+    </data>
+    <data name="AlertPasswordMismatch" xml:space="preserve">
+        <value>Password and confirmation doesn't match</value>
+    </data>
+    <data name="AlertLoginOrPasswordError" xml:space="preserve">
+        <value>Login or password error</value>
+    </data>
+    <data name="AlertPizzaShopAccessError" xml:space="preserve">
+        <value>Can't access pizza shops </value>
+    </data>
+    <data name="AlertCartAccessError" xml:space="preserve">
+        <value>Cart access error </value>
+    </data>
+    <data name="AlertEmptyCart" xml:space="preserve">
+        <value>Your cart is empty</value>
+    </data>
+    <data name="AlertPlacingOrderError" xml:space="preserve">
+        <value>Can't place this order</value>
+    </data>
+    <data name="AlertPlacingOrderSuccess" xml:space="preserve">
+        <value>Order placed!</value>
+    </data>
+    <data name="AlertAddingToCart" xml:space="preserve">
+        <value>Adding </value>
+    </data>
+    <data name="AlertOrdersAccessError" xml:space="preserve">
+        <value>Error when trying to get your orders </value>
+    </data>
+    <data name="AlertProfileAndPasswordUpdateSuccess" xml:space="preserve">
+        <value>Profile and password successfully updated!</value>
+    </data>
+    <data name="AlertProfileUpdateSuccess" xml:space="preserve">
+        <value>Profile successfully updated!</value>
+    </data>
+    <data name="AlertProfileUpdateSuccessButPasswordError" xml:space="preserve">
+        <value>Profile updated but password error </value>
+    </data>
+    <data name="AlertPasswordUpdatedButProfileError" xml:space="preserve">
+        <value>Password updated but error while updating profile </value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart1" xml:space="preserve">
+        <value>Password error </value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart2" xml:space="preserve">
+        <value> and profile error </value>
+    </data>
+    <data name="AlertNewlyFilledEntriesError" xml:space="preserve">
+        <value>Newly filled entries contains errors</value>
+    </data>
 </root>

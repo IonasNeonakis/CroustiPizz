@@ -134,7 +134,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert("Probleme d'accès à votre panier " + response.ErrorMessage);
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertCartAccessError + response.ErrorMessage);
             }
         }
 
@@ -156,16 +156,16 @@ namespace CroustiPizz.Mobile.ViewModels
                 {
                     CartService.EmptyCart(ShopId);
                     CloseShopCartPopupAction();
-                    DependencyService.Get<IMessage>().LongAlert("Commande passée avec succès");
+                    DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPlacingOrderSuccess);
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().LongAlert("Erreur dans la commande " + response.ErrorMessage);
+                    DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertPlacingOrderError + response.ErrorMessage);
                 }
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert("Le panier est vide");
+                DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertEmptyCart);
             }
         }
     }

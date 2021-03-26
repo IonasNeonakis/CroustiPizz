@@ -120,4 +120,55 @@
     <data name="EnterShop" xml:space="preserve">
         <value>Voir</value>
     </data>
+    <data name="AlertFormError" xml:space="preserve">
+        <value>Erreur dans le formulaire </value>
+    </data>
+    <data name="AlertPasswordMismatch" xml:space="preserve">
+        <value>Les deux mots de passe ne sont pas identiques</value>
+    </data>
+    <data name="AlertLoginOrPasswordError" xml:space="preserve">
+        <value>Erreur de login et ou mot de passe</value>
+    </data>
+    <data name="AlertPizzaShopAccessError" xml:space="preserve">
+        <value>Problème d'accès aux pizzerias </value>
+    </data>
+    <data name="AlertCartAccessError" xml:space="preserve">
+        <value>Problème d'accès à votre panier </value>
+    </data>
+    <data name="AlertEmptyCart" xml:space="preserve">
+        <value>Le panier est vide</value>
+    </data>
+    <data name="AlertPlacingOrderError" xml:space="preserve">
+        <value>Erreur dans la commande </value>
+    </data>
+    <data name="AlertPlacingOrderSuccess" xml:space="preserve">
+        <value>Commande passée avec succès</value>
+    </data>
+    <data name="AlertAddingToCart" xml:space="preserve">
+        <value>Ajout de </value>
+    </data>
+    <data name="AlertOrdersAccessError" xml:space="preserve">
+        <value>Problème d'accès à vos commandes </value>
+    </data>
+    <data name="AlertProfileAndPasswordUpdateSuccess" xml:space="preserve">
+        <value>Données et mot de passe sauvegardés</value>
+    </data>
+    <data name="AlertProfileUpdateSuccess" xml:space="preserve">
+        <value>Données sauvegardées</value>
+    </data>
+    <data name="AlertProfileUpdateSuccessButPasswordError" xml:space="preserve">
+        <value>Données changées mais erreur mot de passe </value>
+    </data>
+    <data name="AlertPasswordUpdatedButProfileError" xml:space="preserve">
+        <value>Mot de passe changé mais erreur sauvegarde données </value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart1" xml:space="preserve">
+        <value>Erreur mot de passe </value>
+    </data>
+    <data name="AlertPasswordAndProfileErrorPart2" xml:space="preserve">
+        <value> et erreur sauvegarde données </value>
+    </data>
+    <data name="AlertNewlyFilledEntriesError" xml:space="preserve">
+        <value>Erreur dans les nouveaux champs entrés</value>
+    </data>
 </root>

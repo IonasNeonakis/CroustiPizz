@@ -70,6 +70,159 @@ namespace CroustiPizz.Mobile.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ajout de .
+        /// </summary>
+        internal static string AlertAddingToCart {
+            get {
+                return ResourceManager.GetString("AlertAddingToCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problème d&apos;accès à votre panier .
+        /// </summary>
+        internal static string AlertCartAccessError {
+            get {
+                return ResourceManager.GetString("AlertCartAccessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Le panier est vide.
+        /// </summary>
+        internal static string AlertEmptyCart {
+            get {
+                return ResourceManager.GetString("AlertEmptyCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erreur dans le formulaire .
+        /// </summary>
+        internal static string AlertFormError {
+            get {
+                return ResourceManager.GetString("AlertFormError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erreur de login et ou mot de passe.
+        /// </summary>
+        internal static string AlertLoginOrPasswordError {
+            get {
+                return ResourceManager.GetString("AlertLoginOrPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erreur dans les nouveaux champs entrés.
+        /// </summary>
+        internal static string AlertNewlyFilledEntriesError {
+            get {
+                return ResourceManager.GetString("AlertNewlyFilledEntriesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problème d&apos;accès à vos commandes .
+        /// </summary>
+        internal static string AlertOrdersAccessError {
+            get {
+                return ResourceManager.GetString("AlertOrdersAccessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erreur mot de passe .
+        /// </summary>
+        internal static string AlertPasswordAndProfileErrorPart1 {
+            get {
+                return ResourceManager.GetString("AlertPasswordAndProfileErrorPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  et erreur sauvegarde données .
+        /// </summary>
+        internal static string AlertPasswordAndProfileErrorPart2 {
+            get {
+                return ResourceManager.GetString("AlertPasswordAndProfileErrorPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Les deux mots de passe ne sont pas identiques.
+        /// </summary>
+        internal static string AlertPasswordMismatch {
+            get {
+                return ResourceManager.GetString("AlertPasswordMismatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mot de passe changé mais erreur sauvegarde données .
+        /// </summary>
+        internal static string AlertPasswordUpdatedButProfileError {
+            get {
+                return ResourceManager.GetString("AlertPasswordUpdatedButProfileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problème d&apos;accès aux pizzerias .
+        /// </summary>
+        internal static string AlertPizzaShopAccessError {
+            get {
+                return ResourceManager.GetString("AlertPizzaShopAccessError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erreur dans la commande .
+        /// </summary>
+        internal static string AlertPlacingOrderError {
+            get {
+                return ResourceManager.GetString("AlertPlacingOrderError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commande passée avec succès.
+        /// </summary>
+        internal static string AlertPlacingOrderSuccess {
+            get {
+                return ResourceManager.GetString("AlertPlacingOrderSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Données et mot de passe sauvegardés.
+        /// </summary>
+        internal static string AlertProfileAndPasswordUpdateSuccess {
+            get {
+                return ResourceManager.GetString("AlertProfileAndPasswordUpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Données sauvegardées.
+        /// </summary>
+        internal static string AlertProfileUpdateSuccess {
+            get {
+                return ResourceManager.GetString("AlertProfileUpdateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Données changées mais erreur mot de passe .
+        /// </summary>
+        internal static string AlertProfileUpdateSuccessButPasswordError {
+            get {
+                return ResourceManager.GetString("AlertProfileUpdateSuccessButPasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Annuler.
         /// </summary>
         internal static string Cancel {

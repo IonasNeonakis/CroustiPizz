@@ -183,14 +183,14 @@ namespace CroustiPizz.Mobile.ViewModels
                 else
                 {
                     ResetActivityIndicatorAndSubmitButton();
-                    DependencyService.Get<IMessage>().LongAlert( "Erreur dans le formulaire " + response.ErrorMessage );
+                    DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertFormError + response.ErrorMessage );
 
                 }
             }
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                DependencyService.Get<IMessage>().LongAlert( "Les deux mots de passes ne sont pas identiques" );
+                DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertPasswordMismatch );
             }
         }
 
@@ -217,7 +217,7 @@ namespace CroustiPizz.Mobile.ViewModels
             else
             {
                 ResetActivityIndicatorAndSubmitButton();
-                DependencyService.Get<IMessage>().LongAlert( "Erreur de login et ou mot de passe" );
+                DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertLoginOrPasswordError );
             }
         }
 

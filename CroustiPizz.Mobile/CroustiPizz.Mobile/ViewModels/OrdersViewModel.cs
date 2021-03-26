@@ -37,7 +37,7 @@ namespace CroustiPizz.Mobile.ViewModels
             }
             else
             {
-                DependencyService.Get<IMessage>().LongAlert( "Probleme d'accès à vos commandes " + response.ErrorMessage );
+                DependencyService.Get<IMessage>().LongAlert( Resources.AppResources.AlertOrdersAccessError + response.ErrorMessage );
 
             }
             
