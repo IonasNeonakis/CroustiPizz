@@ -33,8 +33,6 @@ namespace CroustiPizz.Mobile.Android
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            
-            TransparentStatusBar();
 
             Rg.Plugins.Popup.Popup.Init(this);
             TouchEffectPreserver.Preserve();
@@ -73,27 +71,6 @@ namespace CroustiPizz.Mobile.Android
         public override void OnBackPressed()
         {
             Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
-        }
-        
-        private void TransparentStatusBar()
-        {
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
-            {
-                // for covering the full screen in android..
-                //Window.SetFlags(WindowManagerFlags.LayoutNoLimits, WindowManagerFlags.LayoutNoLimits);
-
-                // clear FLAG_TRANSLUCENT_STATUS flag:
-                Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
-
-                // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-
-                Window.DecorView.SystemUiVisibility = 0;
-
-                Window.SetStatusBarColor(Color.Transparent);
-
-            }
-
         }
     }
 }
