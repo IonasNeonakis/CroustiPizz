@@ -23,7 +23,7 @@ L'application affiche une page de connexion à la première ouverture. Il est ai
 Après connexion, une vue avec plusieurs onglets s'affiche avec par défaut une vue cartographique de tous les restaurants disponibles dans le monde.
 Il est possible d'en choisir un afin de commander dans ce dernier mais il est également possible de choisir ce même restaurant dans le deuxième onglet comportant la liste de tous ces restaurants triés dans l'ordre croissant de leur distance par rapport à l'utilisateur.
 
-Une fois un restaurant choisi, il est possible de commander autant de pizzas de voulues à condition que cette dernière ne soit pas en rupture de stock.
+Une fois un restaurant choisi, il est possible de commander autant de pizzas que voulu à condition que cette dernière ne soit pas en rupture de stock.
 Pour chaque pizza, il est possible d'en commander une quantité précise ou d'afficher les détails de cette dernière.
 Il est également possible de filtrer les pizzas par leur nom.
 
