@@ -48,6 +48,8 @@
                                HorizontalOptions="CenterAndExpand"
                                HorizontalTextAlignment="Center"
                                VerticalTextAlignment="Center"
+                               MaxLines="1"
+                               LineBreakMode="TailTruncation"
                                TextColor="Black" />
                         <Frame CornerRadius="15"
                                IsClippedToBounds="True"

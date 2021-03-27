@@ -313,7 +313,7 @@ namespace CroustiPizz.Mobile.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Voir.
+        ///   Looks up a localized string similar to VOIR.
         /// </summary>
         internal static string EnterShop {
             get {

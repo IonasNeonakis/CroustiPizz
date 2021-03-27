@@ -118,7 +118,7 @@
         <value>Pizzerias</value>
     </data>
     <data name="EnterShop" xml:space="preserve">
-        <value>Voir</value>
+        <value>VOIR</value>
     </data>
     <data name="AlertFormError" xml:space="preserve">
         <value>Erreur dans le formulaire </value>
