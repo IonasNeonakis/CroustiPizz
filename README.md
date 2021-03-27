@@ -20,7 +20,7 @@ Afin de compiler ce projet, il suffit simplement d'importer la solution dans l'I
 
 L'application affiche une page de connexion à la première ouverture. Il est ainsi possible de se connecter voire même de s'inscrire.
 
-Après connexion, une vue avec plusieurs onglets s'affiche avec par défaut une vue cartographique de tous les restaurants disponibles dans le monde.
+Après connexion, une vue avec plusieurs onglets s'affiche avec par défaut une vue cartographique (centrée sur l'utilisateur) de tous les restaurants disponibles dans le monde. Si l'utilisateur n'a pas autorisé la permission de géolocalisation, la carte sera centrée sur la France.
 Il est possible d'en choisir un afin de commander dans ce dernier mais il est également possible de choisir ce même restaurant dans le deuxième onglet comportant la liste de tous ces restaurants triés dans l'ordre croissant de leur distance par rapport à l'utilisateur.
 
 Une fois un restaurant choisi, il est possible de commander autant de pizzas que voulu à condition que cette dernière ne soit pas en rupture de stock.
@@ -29,7 +29,7 @@ Il est également possible de filtrer les pizzas par leur nom.
 
 Le panier est unique à chaque restaurant et est accessible depuis l'affichage des pizzas pour un restaurant. On peut supprimer un élément voire même vider complètement ce dernier.
 
-L'application comporte également un onglet Commandes comportant les commandes passées.
+L'application comporte également un onglet Commandes comportant les commandes passées triées de manière à ce que les dernières commandes soient affichées en premier.
 
 Le dernier onglet est un profil comportant les informations de l'utilisateur modifiables à souhait. Cet onglet comporte également un bouton de déconnexion.
 
@@ -68,7 +68,7 @@ Au cours du développement, nous avons pu rencontrer diverses difficultés que n
 Voici une listes non exhaustive des principales difficultés :
 
 - La gestion de plusieurs BindingContexts dans l'affichage d'une liste était assez compliqué à comprendre à première vue.
-- L'affichage de l'image pour chaque pizza s'est avéré plus compliqué de prévu mais s'est solutionné par l'ajout d'un attribut url dans l'objet Pizza.
+- L'affichage de l'image pour chaque pizza s'est avéré plus compliqué que prévu mais s'est solutionné par l'ajout d'un attribut url dans l'objet Pizza.
 - Pour gérer la quantité de chaque pizza, il nous a fallu faire hériter de NotifierBase la classe PizzItem.
 - Le fait de devoir créer des CustomsRenderer et de gérer ces derniers sur chaques plateformes supportées.
 - Le fait que les vues ne rendent pas pareil d'une plateforme à l'autre (comportements étranges...)
