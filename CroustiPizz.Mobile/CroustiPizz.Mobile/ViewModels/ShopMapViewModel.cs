@@ -21,6 +21,7 @@ namespace CroustiPizz.Mobile.ViewModels
     {
         private bool _selected;
         private bool _locationAsked;
+        private Location _location;
 
         private ObservableCollection<ShopItem> _shops;
 
@@ -77,23 +78,22 @@ namespace CroustiPizz.Mobile.ViewModels
                 Shops = new ObservableCollection<ShopItem>(response.Data);
                 Position position;
                 MapSpan mapSpan;
-                Location location = null;
                 if (!_locationAsked)
                 {
                     try
                     {
-                        _locationAsked = true;
-                        location = await Geolocation.GetLastKnownLocationAsync();
+                        _location = await Geolocation.GetLastKnownLocationAsync();
                     }
                     catch (PermissionException)
                     {
-                        location = null;
+                        _locationAsked = true;
+                        _location = null;
                     }
                 }
 
-                if (location != null)
+                if (_location != null)
                 {
-                    position = new Position(location.Latitude, location.Longitude);
+                    position = new Position(_location.Latitude, _location.Longitude);
                     mapSpan = new MapSpan(position, 0.01, 0.01);
                 }
                 else
@@ -102,7 +102,7 @@ namespace CroustiPizz.Mobile.ViewModels
                     mapSpan = new MapSpan(position, 12, 12);
                 }
 
-                bool showUser = location != null;
+                bool showUser = _location != null;
 
                 MaMap = new Map(mapSpan)
                 {

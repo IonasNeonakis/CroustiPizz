@@ -62,11 +62,11 @@ namespace CroustiPizz.Mobile.ViewModels
             {
                 try
                 {
-                    _locationAsked = true;
                     _userLocation = await Geolocation.GetLastKnownLocationAsync();
                 }
                 catch (PermissionException)
                 {
+                    _locationAsked = true;
                     _userLocation = null;
                 }
             }
