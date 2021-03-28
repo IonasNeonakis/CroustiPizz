@@ -97,7 +97,6 @@
         <Compile Include="Classes\CroustiTabsRenderer.cs" />
     </ItemGroup>
     <ItemGroup>
-        <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
             <Visible>false</Visible>
         </ImageAsset>
@@ -147,6 +146,10 @@
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512.png" />
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\512-1.png" />
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\1024-2.png" />
+        <InterfaceDefinition Include="Resources\Launch Screen.storyboard" />
+        <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+        <ImageAsset Include="Resources\Assets.xcassets\logo.imageset\logo.png" />
+        <ImageAsset Include="Resources\Assets.xcassets\logo.imageset\Contents.json" />
     </ItemGroup>
     <ItemGroup>
         <Reference Include="System" />
@@ -181,6 +184,7 @@
       <BundleResource Include="Resources\map.png" />
       <BundleResource Include="Resources\person.png" />
       <BundleResource Include="Resources\pizza.png" />
+      <BundleResource Include="Resources\logo.png" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
