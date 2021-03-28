@@ -7,6 +7,9 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// ViewModel des détails d'une pizza
+    /// </summary>
     public class PizzaDetailsViewModel : ViewModelBase
     {
         private string _pizzaName;

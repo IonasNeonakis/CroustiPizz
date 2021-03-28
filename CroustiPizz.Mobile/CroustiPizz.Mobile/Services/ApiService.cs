@@ -9,6 +9,10 @@ using Xamarin.Essentials;
 
 namespace CroustiPizz.Mobile.Services
 {
+    /// <summary>
+    /// Service qui permet de faire les requetes GET POST et PATCH
+    /// Toutes les requetes passent le header d'authorization
+    /// </summary>
     public interface IApiService
     {
         Task<TResponse> Get<TResponse>(string url);
@@ -23,6 +27,10 @@ namespace CroustiPizz.Mobile.Services
         private const string HOST = "https://pizza.julienmialon.ovh/";
         private readonly HttpClient _client = new HttpClient();
 
+        
+        /// <summary>
+        /// Requete GET avec l'url donnée
+        /// </summary>
         public async Task<TResponse> Get<TResponse>(string url)
         {
             RefreshifNeeded();
@@ -47,7 +55,10 @@ namespace CroustiPizz.Mobile.Services
                 return JsonConvert.DeserializeObject<TResponse>(contentResponse);
             }
         }
-
+        
+        /// <summary>
+        /// Requete POST avec l'url donnée et le contenu
+        /// </summary>
         public async Task<TResponse> Post<TResponse, TRequest>(string url, TRequest body)
         {
             if (url != Urls.LOGIN_WITH_CREDENTIALS && url != Urls.CREATE_USER)
@@ -85,6 +96,9 @@ namespace CroustiPizz.Mobile.Services
             }
         }
 
+        /// <summary>
+        /// Requete PATCH avec l'url donnée et le contenu
+        /// </summary>
         public async Task<TResponse> Patch<TResponse, TRequest>(string url, TRequest body)
         {
             RefreshifNeeded();
@@ -115,6 +129,9 @@ namespace CroustiPizz.Mobile.Services
             }
         }
 
+        /// <summary>
+        /// Méthode qui test s'il faut faire un refresh de token et qui fait le refresh si besoin
+        /// </summary>
         private async void RefreshifNeeded()
         {
             TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);

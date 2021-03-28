@@ -12,6 +12,9 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// ViewModel du panier
+    /// </summary>
     public class ShopCartViewModel : ViewModelBase
     {
         public ICommand CloseShopCartPopupCommand { get; }
@@ -22,6 +25,9 @@ namespace CroustiPizz.Mobile.ViewModels
 
         private ICartService CartService { get; set; }
 
+        /// <summary>
+        /// Action lorsqu'on clique sur supprimer une pizza
+        /// </summary>
         public ICommand SupprimerPizzas
         {
             get
@@ -41,6 +47,9 @@ namespace CroustiPizz.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// L'objet panier à afficher
+        /// </summary>
         private ObservableCollection<PizzaItem> _cart;
 
         public ObservableCollection<PizzaItem> Cart
@@ -49,6 +58,9 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _cart, value);
         }
 
+        /// <summary>
+        /// Le nom de la pizzeria
+        /// </summary>
         private string _shopName;
 
         public string ShopName
@@ -65,6 +77,10 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shopId, value);
         }
 
+        
+        /// <summary>
+        /// Le total d'un panier
+        /// </summary>
         private double _total;
 
         public double Total
@@ -73,7 +89,9 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _total, value);
         }
 
-
+        /// <summary>
+        /// Constructeur qui récupère les paramètres de navigation
+        /// </summary>
         public ShopCartViewModel(Dictionary<string, object> dico)
         {
             CloseShopCartPopupCommand = new Command(CloseShopCartPopupAction);
@@ -82,6 +100,7 @@ namespace CroustiPizz.Mobile.ViewModels
             CommanderCommand = new Command(Commander);
             ViderCorbeilleCommand = new Command(ViderPanier);
         }
+
 
         private void ViderPanier()
         {
@@ -101,6 +120,9 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
 
+        /// <summary>
+        /// Récuperation des données depuis l'api
+        /// </summary>
         public override async Task OnResume()
         {
             await base.OnResume();
@@ -139,6 +161,9 @@ namespace CroustiPizz.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Passe une comamnde avec le panier courant
+        /// </summary>
         private async void Commander()
         {
             IPizzaApiService service = DependencyService.Get<IPizzaApiService>();

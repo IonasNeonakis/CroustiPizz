@@ -17,13 +17,16 @@ using Map = Xamarin.Forms.Maps.Map;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// ViewModel de pizzerias sur la carte
+    /// </summary>
     public class ShopMapViewModel : ViewModelBase
     {
-        private bool _selected;
-        private bool _locationAsked;
-        private Location _location;
+        private bool _selected; // pour ne pas cliquer plusieurs fois sur un bouton
+        private bool _locationAsked; // pour ne pas demander la localisation en boucle 
+        private Location _location; // localisation de l'utilisateur
 
-        private ObservableCollection<ShopItem> _shops;
+        private ObservableCollection<ShopItem> _shops; // la liste des pizzerias
 
         public ObservableCollection<ShopItem> Shops
         {
@@ -31,7 +34,7 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _shops, value);
         }
 
-        private Map _maMap;
+        private Map _maMap; // La map actuelle
 
         public Map MaMap
         {
@@ -39,7 +42,7 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref _maMap, value);
         }
 
-        private bool _visible;
+        private bool _visible; // savoir si on cache ou pas les détails d'une pizzeria
 
         public bool Visible
         {
@@ -64,6 +67,10 @@ namespace CroustiPizz.Mobile.ViewModels
 
         public ICommand ClickPizzeria { get; }
 
+        /// <summary>
+        /// On récupère toutes les pizzerias et on instancie la carte
+        /// Si on a la localisation on zoom sur l'utilisateur, sinon toute la france est affichée
+        /// </summary>
         public override async Task OnResume()
         {
             await base.OnResume();
@@ -143,6 +150,9 @@ namespace CroustiPizz.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Permet de naviguer sur une pizzeria
+        /// </summary>
         private void SelectionPizzeria()
         {
             if (!_selected)

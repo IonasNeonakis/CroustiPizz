@@ -4,6 +4,9 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Converters
 {
+/// <summary>
+/// Converter pour afficher une distance en mètres 
+/// </summary>
     public class DistanceConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

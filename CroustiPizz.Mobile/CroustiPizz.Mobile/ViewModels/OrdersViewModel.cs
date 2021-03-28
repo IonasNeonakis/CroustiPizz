@@ -10,6 +10,9 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// View model pour les commandes passées
+    /// </summary>
     public class OrdersViewModel : ViewModelBase
     {
         private ObservableCollection<OrderItem> _orders;

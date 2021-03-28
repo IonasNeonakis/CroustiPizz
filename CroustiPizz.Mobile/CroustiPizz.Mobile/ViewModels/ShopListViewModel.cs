@@ -15,16 +15,18 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// ViewModel de la liste des pizzerias
+    /// </summary>
     public class ShopListViewModel : ViewModelBase
     {
-        private bool _selected;
-        private bool _locationAsked;
+        private bool _selected; // booléen pour eviter le double click sur un bouton
+        private bool _locationAsked; // booléen pour ne pas demande la localisation en boucle
+        
+        private ObservableCollection<ShopItem> _shops; // la liste de tous les shops
 
-
-        private ObservableCollection<ShopItem> _shops;
-
-        private Location _userLocation;
-
+        private Location _userLocation; // La position de l'utilisateur
+        
         public ObservableCollection<ShopItem> Shops
         {
             get => _shops;
@@ -39,6 +41,9 @@ namespace CroustiPizz.Mobile.ViewModels
             _locationAsked = false;
         }
 
+        /// <summary>
+        /// Action pour voir une pizzeria
+        /// </summary>
         private void SelectedAction(ShopItem obj)
         {
             if (!_selected)
@@ -105,6 +110,9 @@ namespace CroustiPizz.Mobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Méthode qui compare la distance de deux objects pour les trier
+        /// </summary>
         private int DistancePoint(ShopItem item1, ShopItem item2)
         {
             if (_userLocation == null
@@ -136,6 +144,9 @@ namespace CroustiPizz.Mobile.ViewModels
         }
 
 
+        /// <summary>
+        /// Méthode qui récupère la distance entre 2 coordonnées
+        /// </summary>
         private double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
         {
             var d1 = latitude * (Math.PI / 180.0);

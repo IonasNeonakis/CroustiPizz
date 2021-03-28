@@ -3,15 +3,39 @@
 
 namespace CroustiPizz.Mobile.Services
 {
+    /// <summary>
+    /// Service pour la gestion du panier
+    /// </summary>
     public interface ICartService
     {
-        Dictionary<long, Dictionary<long, int>> GetCart();
+        /// <summary>
+        /// Récupèrer le panier
+        /// </summary>
+        Dictionary<long, Dictionary<long, int>> GetCart(); 
 
+        /// <summary>
+        /// Ajouter un certain nombre de pizzas à un shop
+        /// </summary>
         void AddToCart(long shopId, long pizzaId, int quantity);
+        /// <summary>
+        /// Mettre à jour un certain nombre de pizzas à un shop
+        /// </summary>
         void UpdateFromCart(long shopId, long pizzaId, int quantity);
+        /// <summary>
+        /// Supprimes toute une pizza d'un panier
+        /// </summary>
         void RemoveAllFromCart(long shopId, long pizzaId);
+        /// <summary>
+        /// Vide le panier d'une pizerria
+        /// </summary>
         void EmptyCart(long shopId);
+        /// <summary>
+        /// Retourne la liste du contenu du panier par exemple une liste de 3fois la même pizza [2,2,2,]
+        /// </summary>
         List<long> GetListId(long shopId);
+        /// <summary>
+        /// Retourne le nombre d'éléments dans le shop
+        /// </summary>
         int NumberOfItems(long shopId);
     }
 

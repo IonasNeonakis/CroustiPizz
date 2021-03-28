@@ -6,14 +6,28 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
 {
+    /// <summary>
+    /// Service qui fait toutes les requetes pour les pizzas/pizzerias
+    /// </summary>
     public interface IPizzaApiService
     {
+        /// <summary>
+        /// Retourne la liste de toutes les pizzerias
+        /// </summary>
         Task<Response<List<ShopItem>>> ListShops();
-
+        /// <summary>
+        /// Retourne la liste de toutes les pizzas d'une pizzeria
+        /// </summary>
         Task<Response<List<PizzaItem>>> ListPizzas(long shopId);
 
+        /// <summary>
+        /// Retourne la liste de toutes les commandes
+        /// </summary>
         Task<Response<List<OrderItem>>> ListOrders();
 
+        /// <summary>
+        /// Permet de commander des pizzas dans une pizzeria 
+        /// </summary>
         Task<Response<OrderItem>> OrderPizzas(long shopId, CreateOrderRequest body);
     }
 

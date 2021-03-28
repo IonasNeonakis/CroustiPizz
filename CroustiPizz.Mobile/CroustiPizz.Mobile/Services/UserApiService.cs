@@ -9,16 +9,30 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.Services
 {
+    /// <summary>
+    /// Service qui gère toutes les requêtes d'un utilisateur
+    /// </summary>
     public interface IUserApiService
     {
+        /// <summary>
+        /// Retourne le profil d'un utilisateur
+        /// </summary>
         Task<Response<UserProfileResponse>> GetUser();
-
+        /// <summary>
+        /// Permet de connecter un utilisateur
+        /// </summary>
         Task<Response<LoginResponse>> LoginUser(LoginWithCredentialsRequest utilisateur);
-
+        /// <summary>
+        /// Permet d'inscrire un utilisateur
+        /// </summary>
         Task<Response<LoginResponse>> RegisterUser(CreateUserRequest utilisateur);
-
+        /// <summary>
+        /// permet de changer de mot de passe
+        /// </summary>
         Task<Response> ChangePassword(SetPasswordRequest data);
-
+        /// <summary>
+        /// Permet de mettre à jour les informations d'un utilisateur
+        /// </summary>
         Task<Response<SetUserProfileRequest>> UpdateUser(SetUserProfileRequest data);
     }
 

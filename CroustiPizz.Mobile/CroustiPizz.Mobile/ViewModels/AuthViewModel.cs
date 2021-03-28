@@ -118,7 +118,6 @@ namespace CroustiPizz.Mobile.ViewModels
             set => SetProperty(ref mdp2, value);
         }
 
-        //@TODO Regex et le passer en nul 
         private string _numero;
 
         public string Numero
