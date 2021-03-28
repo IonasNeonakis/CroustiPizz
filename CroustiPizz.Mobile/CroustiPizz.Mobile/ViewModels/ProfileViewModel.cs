@@ -94,6 +94,13 @@ namespace CroustiPizz.Mobile.ViewModels
             EditNameCommand = new Command(EditNameAction);
         }
 
+        /// <summary>
+        /// Depuis le onResume, on récupère les informations de l'utilisateur grâce à une requête vers l'API.
+        /// Si on obtient les informations de l'utilisateur, on les affiche telles quelles dans le profil, à l'exception
+        /// du mot de passe pour lequel on affiche des étoiles à la place.
+        /// Si l'on arrive pas à obtenir les informations de l'utilisateur, on affiche un toast nous indiquant qu'il y a eut une erreur.
+        /// </summary>
+        /// <returns></returns>
         public override async Task OnResume()
         {
             await base.OnResume();
@@ -120,7 +127,12 @@ namespace CroustiPizz.Mobile.ViewModels
                 DependencyService.Get<IMessage>().LongAlert(Resources.AppResources.AlertNewlyFilledEntriesError);
             }
         }
-
+        /// <summary>
+        /// L'édition des informations se fait par le biais de popup contenant les champs nécessaires au changement voulu.
+        /// On affiche la popup tout en s'abonnant à un canal ou on pourra recevoir un message contenant l'information modifiée
+        /// et ainsi modifier cette information dans le view model avant de se désabonner du canal.
+        /// Ce système est répété pour chaque popup de modification.
+        /// </summary>
         private async void EditPasswordAction()
         {
             if (PopupNavigation.Instance.PopupStack.Count == 0)
@@ -171,7 +183,13 @@ namespace CroustiPizz.Mobile.ViewModels
                 await PopupNavigation.Instance.PushAsync(popup);
             }
         }
-
+        /// <summary>
+        /// Cette méthode permet de sauvegarder les informations du profil actuellement modifiées.
+        /// Deux requêtes séparées sont réalisées : 
+        /// - une pour changer le mot de passe
+        /// - une pour changer le reste des informations disponibles
+        /// Si la requête s'est mal déroulée, on affiche un toast avec le message correspondant. 
+        /// </summary>
         private async void SaveProfileInformationAction()
         {
             IUserApiService service = DependencyService.Get<IUserApiService>();
@@ -234,6 +252,9 @@ namespace CroustiPizz.Mobile.ViewModels
             navigationService.PopAsync();
         }
 
+        /// <summary>
+        /// Lors de la déconnexion, on supprime toutes informations dans le local storage et on ferme l'application.
+        /// </summary>
         private void CloseProfileAction()
         {
             SecureStorage.RemoveAll();
