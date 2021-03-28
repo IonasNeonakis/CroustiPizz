@@ -14,9 +14,20 @@ using Xamarin.Forms;
 
 namespace CroustiPizz.Mobile.ViewModels
 {
+    /// <summary>
+    /// Ce view model permet de gérer les informations affichées dans la vue d'authenfication.
+    /// Il comprend également une gestion d'onglets à afficher (connexion ou inscription)
+    /// </summary>
     public class AuthViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Constante représentant la couleur du texte lorsque l'onglet est selectionné.
+        /// </summary>
         public const string SELECTED_COLOR = "Black";
+        /// 
+        /// <summary>
+        /// Constante représentant la couleur du texte lorsque l'onglet n'est pas sélectionné.
+        /// </summary>
         public const string UNSELECTED_COLOR = "#BAC5DB";
 
         private string _loginTextColor;
